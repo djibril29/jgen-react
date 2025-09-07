@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Hero from '@/components/Hero'
 import { Users, Heart, BookOpen, Calendar, ArrowRight, Star } from 'lucide-react'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 
 /**
  * Page d'accueil - Page principale du site J-GEN Sénégal
@@ -75,16 +75,49 @@ export default function HomePage() {
       <Header />
       
       <main className="flex-grow">
-        {/* Hero Section */}
-        <Hero
-          title="Agir pour les femmes et les filles"
-          subtitle="J-GEN Sénégal Women Global Entrepreneurship"
-          description="Une association à but non lucratif créée en 2016, luttant pour l'égalité des sexes à travers l'autonomisation des femmes et des filles au Sénégal."
-          primaryButtonText="Découvrir nos actions"
-          primaryButtonLink="/nos-programmes"
-          secondaryButtonText="Nous soutenir"
-          secondaryButtonLink="/contact"
-        />
+        {/* News Carousel (replaces Hero) */}
+        <section className="bg-gray-900 text-white">
+          <div className="container mx-auto px-4 py-8 md:py-12">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold">Actualités</h2>
+              <Link to="/blog" className="text-sm underline hover:no-underline">Voir toutes</Link>
+            </div>
+            <div className="relative">
+              <Carousel opts={{ loop: true }} className="w-full">
+                <CarouselContent>
+                  {news.map((item) => (
+                    <CarouselItem key={item.id}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div className="aspect-video w-full overflow-hidden rounded-lg">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="flex items-center text-sm text-gray-300 mb-2">
+                            <Calendar className="h-4 w-4 mr-1" />
+                            {item.date}
+                          </div>
+                          <h3 className="text-2xl md:text-3xl font-bold mb-3">{item.title}</h3>
+                          <p className="text-gray-200 mb-6">{item.excerpt}</p>
+                          <Button asChild className="bg-white text-gray-900 hover:bg-gray-100">
+                            <Link to={`/blog/${item.id}`} className="flex items-center">
+                              Lire la suite <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                          </Button>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="-left-4 md:-left-8" />
+                <CarouselNext className="-right-4 md:-right-8" />
+              </Carousel>
+            </div>
+          </div>
+        </section>
 
         {/* Statistiques */}
         <section className="py-16 bg-[#E81F74] text-white">
@@ -193,7 +226,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Actualités */}
+        {/* Actualités (grid) */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">

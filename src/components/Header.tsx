@@ -33,9 +33,7 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full bg-[#E81F74] flex items-center justify-center">
-              <span className="text-white font-bold text-lg">J</span>
-            </div>
+            
             <img src={jgenLogo} alt="J-GEN Sénégal" className="h-8 w-auto" />
           </Link>
 
