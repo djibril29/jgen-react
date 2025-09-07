@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
-import jgenLogo from '@/assets/images/logos/jgen-logo.png'
+import jgenLogo from '@/assets/images/logos/logo-jgen.png'
 
 /**
  * Composant Header - Barre de navigation principale du site

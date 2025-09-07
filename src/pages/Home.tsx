@@ -8,6 +8,8 @@ import { Users, Heart, BookOpen, Calendar, ArrowRight, Star } from 'lucide-react
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 
+import heroBg from '@/assets/images/backgrounds/herobg1.png'
+
 /**
  * Page d'accueil - Page principale du site J-GEN Sénégal
  * Présente l'organisation, ses missions et ses actualités
@@ -77,7 +79,14 @@ export default function HomePage() {
       
       <main className="flex-grow">
         {/* News Carousel (replaces Hero) */}
-        <section className="bg-gray-900 text-white">
+        <section
+          className="text-white"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${heroBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
           <div className="container mx-auto px-4 py-8 md:py-12">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-2xl md:text-3xl font-bold">Actualités</h2>
@@ -97,12 +106,12 @@ export default function HomePage() {
                           />
                         </div>
                         <div>
-                          <div className="flex items-center text-sm text-gray-300 mb-2">
+                          <div className="flex items-center text-sm text-gray-200 mb-2">
                             <Calendar className="h-4 w-4 mr-1" />
                             {item.date}
                           </div>
                           <h3 className="text-2xl md:text-3xl font-bold mb-3">{item.title}</h3>
-                          <p className="text-gray-200 mb-6">{item.excerpt}</p>
+                          <p className="text-gray-100 mb-6">{item.excerpt}</p>
                           <Button asChild className="bg-white text-gray-900 hover:bg-gray-100">
                             <Link to={`/blog/${item.id}`} className="flex items-center">
                               Lire la suite <ArrowRight className="ml-2 h-4 w-4" />
