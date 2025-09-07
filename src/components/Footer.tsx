@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react'
 
 /**
@@ -10,6 +10,40 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-8">
       <div className="container mx-auto px-4">
+        {/* Newsletter */}
+        <div id="newsletter" className="mb-12">
+          <div className="max-w-3xl mx-auto text-center">
+            <h3 className="text-2xl font-bold mb-3">Inscrivez-vous à notre newsletter</h3>
+            <p className="text-gray-300 mb-6">Recevez nos actualités et programmes directement dans votre boîte mail.</p>
+            <form
+              className="flex flex-col sm:flex-row gap-3 justify-center"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const form = e.currentTarget as HTMLFormElement
+                const data = new FormData(form)
+                const email = (data.get('email') as string)?.trim()
+                if (!email) return
+                alert('Merci pour votre inscription !')
+                form.reset()
+              }}
+            >
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Votre adresse email"
+                className="w-full sm:w-96 px-4 py-3 rounded-md text-gray-900 focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="px-6 py-3 rounded-md bg-[#E81F74] hover:bg-[#E81F74]/90 font-medium"
+              >
+                S'inscrire
+              </button>
+            </form>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Colonne 1 - Logo et description */}
           <div className="md:col-span-1">

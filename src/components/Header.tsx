@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 
 /**
@@ -17,6 +17,13 @@ export default function Header() {
 
   const togglePrograms = () => {
     setIsProgramsOpen(!isProgramsOpen)
+  }
+
+  const scrollToNewsletter = () => {
+    const el = document.getElementById('newsletter')
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   return (
@@ -104,12 +111,12 @@ export default function Header() {
 
           {/* Bouton CTA */}
           <div className="hidden md:block">
-            <Link 
-              to="/contact" 
+            <button 
+              onClick={scrollToNewsletter}
               className="bg-[#E81F74] text-white px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity"
             >
-              Bénévolat
-            </Link>
+              Newsletter
+            </button>
           </div>
 
           {/* Bouton menu mobile */}
@@ -167,13 +174,12 @@ export default function Header() {
               >
                 Contact
               </Link>
-              <Link 
-                to="/contact" 
+              <button 
+                onClick={() => { scrollToNewsletter(); toggleMenu(); }}
                 className="bg-[#E81F74] text-white px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity text-center"
-                onClick={toggleMenu}
               >
-                Bénévolat
-              </Link>
+                Newsletter
+              </button>
             </div>
           </nav>
         )}

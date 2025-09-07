@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/Header'
@@ -547,7 +547,7 @@ export default function ProscidesProgram() {
               {programData.impactStories.map((story, index) => (
                 <Card key={index} className="bg-[#FDE8F0] border-0">
                   <CardContent className="pt-6">
-                    <Child className="h-5 w-5 text-[#E81F74] mb-4" />
+                    <Baby className="h-5 w-5 text-[#E81F74] mb-4" />
                     <h4 className="font-semibold text-gray-900 mb-2">{story.title}</h4>
                     <p className="text-gray-700 text-sm mb-3 italic">
                       "{story.story}"
