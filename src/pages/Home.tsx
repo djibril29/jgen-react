@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Users, Heart, BookOpen, Calendar, ArrowRight, Star } from 'lucide-react'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import Autoplay from 'embla-carousel-autoplay'
 
 /**
  * Page d'accueil - Page principale du site J-GEN Sénégal
@@ -83,7 +84,7 @@ export default function HomePage() {
               <Link to="/blog" className="text-sm underline hover:no-underline">Voir toutes</Link>
             </div>
             <div className="relative">
-              <Carousel opts={{ loop: true }} className="w-full">
+              <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]} className="w-full">
                 <CarouselContent>
                   {news.map((item) => (
                     <CarouselItem key={item.id}>
