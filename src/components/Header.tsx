@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
+import jgenLogo from '@/assets/images/logos/jgen-logo.svg'
 
 /**
  * Composant Header - Barre de navigation principale du site
@@ -35,7 +36,7 @@ export default function Header() {
             <div className="w-10 h-10 rounded-full bg-[#E81F74] flex items-center justify-center">
               <span className="text-white font-bold text-lg">J</span>
             </div>
-            <span className="text-xl font-bold text-gray-800">J-GEN Sénégal</span>
+            <img src={jgenLogo} alt="J-GEN Sénégal" className="h-8 w-auto" />
           </Link>
 
           {/* Navigation Desktop */}
