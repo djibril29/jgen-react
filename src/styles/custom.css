@@ -1,0 +1,345 @@
+
+/* Styles personnalisés pour J-GEN Sénégal */
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* Classes utilitaires */
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
+/* Styles pour les gradients personnalisés */
+.gradient-pink-purple {
+  background: linear-gradient(135deg, #E81F74 0%, #E81F74 100%);
+}
+
+.gradient-orange-red {
+  background: linear-gradient(135deg, #E81F74 0%, #E81F74 100%);
+}
+
+.gradient-green-teal {
+  background: linear-gradient(135deg, #22c55e 0%, #14b8a6 100%);
+}
+
+.gradient-blue-indigo {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+}
+
+.gradient-purple-pink {
+  background: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+}
+
+/* Styles pour les cartes */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Styles pour les boutons */
+.btn-gradient {
+  background: linear-gradient(135deg, #E81F74 0%, #E81F74 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Styles pour les images */
+.img-hover {
+  transition: transform 0.3s ease;
+}
+
+.img-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Styles pour les liens */
+.link-hover {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ec4899;
+  transition: width 0.3s ease;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+/* Styles pour les sections */
+.section-padding {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6rem 0;
+  }
+}
+
+/* Styles pour le texte */
+.text-gradient {
+  background: linear-gradient(135deg, #E81F74 0%, #E81F74 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Styles pour les icônes */
+.icon-gradient {
+  background: linear-gradient(135deg, #E81F74 0%, #E81F74 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Styles pour les badges */
+.badge-pink {
+  background-color: #FDE8F0;
+  color: #E81F74;
+}
+
+.badge-orange {
+  background-color: #FDE8F0;
+  color: #E81F74;
+}
+
+.badge-green {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badge-blue {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-purple {
+  background-color: #e9d5ff;
+  color: #7c3aed;
+}
+
+/* Styles pour les animations au scroll */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Styles pour le header sticky */
+.header-sticky {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Styles pour le footer */
+.footer-link {
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ec4899;
+}
+
+/* Styles pour les formulaires */
+.form-input {
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #ec4899;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+/* Styles pour les boutons sociaux */
+.social-btn {
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Styles pour les cartes de programme */
+.program-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ec4899, #9333ea);
+}
+
+/* Styles pour les statistiques */
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #E81F74 0%, #E81F74 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (min-width: 768px) {
+  .stat-number {
+    font-size: 4rem;
+  }
+}
+
+/* Styles pour les témoignages */
+.testimonial-card {
+  background: linear-gradient(135deg, #FDE8F0 0%, #FDE8F0 100%);
+  border-left: 4px solid #E81F74;
+}
+
+/* Styles pour la timeline */
+.timeline-line {
+  background: linear-gradient(180deg, #E81F74 0%, #E81F74 100%);
+}
+
+.timeline-dot {
+  background: linear-gradient(135deg, #E81F74 0%, #E81F74 100%);
+}
+
+/* Styles pour les tags */
+.tag {
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background-color: #ec4899;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Styles pour les boutons de navigation */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #E81F74;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Styles pour les sections d'alternance */
+.section-alternate:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Styles pour les images de couverture */
+.hero-image {
+  position: relative;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(232, 31, 116, 0.8) 0%, rgba(232, 31, 116, 0.8) 100%);
+  z-index: 1;
+}
+
+.hero-image > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Styles pour les animations de chargement */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Styles pour les messages de succès */
+.success-message {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-left: 4px solid #10b981;
+  color: #065f46;
+}
+
+/* Styles pour les messages d'erreur */
+.error-message {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border-left: 4px solid #ef4444;
+  color: #991b1b;
+}
+
+/* Styles pour les boutons CTA */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
