@@ -14,6 +14,8 @@ import uefImg from '@/assets/images/projects/uef/uef1.png'
 import proscidesImg from '@/assets/images/projects/proscides/proscide1.jpeg'
 import jvImg from '@/assets/images/projects/jeunes-volontaires/jeunevolontaire.jpeg'
 
+import InterventionMap from '@/components/InterventionMap'
+
 /**
  * Page d'accueil - Page principale du site J-GEN Sénégal
  * Présente l'organisation, ses missions et ses actualités
@@ -245,9 +247,22 @@ export default function HomePage() {
           </div>
         </div>
         </section>
-        
 
-        {/* Statistiques */}
+        {/* Nos Zones d'intervention */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nos zones d'intervention</h2>
+              <p className="text-lg text-gray-600">
+                Survolez la carte pour découvrir nos zones d’intervention et les projets menés dans chaque région.
+              </p>
+            </div>
+            <InterventionMap />
+          </div>
+        </section>
+          
+         
+         {/* Statistiques */}
         <section className="py-16 bg-[#8A1036] text-white">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
