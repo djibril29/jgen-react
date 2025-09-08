@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Dakar", "code": "dakar" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -17.55, 14.9 ], [ -17.1, 14.9 ], [ -17.1, 14.6 ], [ -17.55, 14.6 ], [ -17.55, 14.9 ]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Kaolack", "code": "kaolack" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -16.6, 13.2 ], [ -15.9, 13.2 ], [ -15.9, 13.8 ], [ -16.6, 13.8 ], [ -16.6, 13.2 ]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Fatick", "code": "fatick" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[ -16.9, 13.5 ], [ -16.2, 13.5 ], [ -16.2, 14.0 ], [ -16.9, 14.0 ], [ -16.9, 13.5 ]]]
+      }
+    }
+  ]
+} 

@@ -31,7 +31,8 @@ const esbuildOpts = {
     '.jpeg': 'file',
     '.svg': 'file',
     '.webp': 'file',
-    '.gif': 'file'
+    '.gif': 'file',
+    '.geojson': 'json'
   },
   plugins: [
     stylePlugin({
@@ -40,6 +41,7 @@ const esbuildOpts = {
       },
     }),
   ],
+  external: ['react-leaflet']
 }
 
 if (isProd) {
