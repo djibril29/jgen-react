@@ -58,6 +58,11 @@ module.exports = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        brand: {
+          primary: '#9B153E',
+          dark: '#1B2A31',
+          sand: '#F3D3B7',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
