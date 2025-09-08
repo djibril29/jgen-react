@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/Header'
@@ -13,7 +13,10 @@ import { Calendar, User, Tag, Search, ArrowRight } from 'lucide-react'
  * Affiche les articles du blog avec système de filtrage par catégorie
  */
 export default function BlogPage() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  const initialQ = params.get('q') || ''
+  const [searchTerm, setSearchTerm] = useState(initialQ)
   const [selectedCategory, setSelectedCategory] = useState('all')
 
   // Catégories d'articles
@@ -97,9 +100,10 @@ export default function BlogPage() {
 
   // Filtrer les articles
   const filteredArticles = articles.filter(article => {
-    const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+    const q = searchTerm.toLowerCase()
+    const matchesSearch = article.title.toLowerCase().includes(q) ||
+                         article.excerpt.toLowerCase().includes(q) ||
+                         article.tags.some((tag: string) => tag.toLowerCase().includes(q))
     
     const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory
     

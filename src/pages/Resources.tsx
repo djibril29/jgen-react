@@ -6,14 +6,17 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { Download, FileText, Video, Image, ExternalLink, Search, Filter, Calendar } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 /**
  * Page Ressources - Documents et ressources téléchargeables
  * Affiche les rapports, guides, vidéos et autres ressources de J-GEN
  */
 export default function ResourcesPage() {
-  const [searchTerm, setSearchTerm] = useState('')
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  const initialQ = params.get('q') || ''
+  const [searchTerm, setSearchTerm] = useState(initialQ)
   const [selectedType, setSelectedType] = useState('all')
   const [selectedYear, setSelectedYear] = useState('all')
 
@@ -154,8 +157,9 @@ export default function ResourcesPage() {
 
   // Filtrer les ressources
   const filteredResources = resources.filter(resource => {
-    const matchesSearch = resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         resource.description.toLowerCase().includes(searchTerm.toLowerCase())
+    const q = searchTerm.toLowerCase()
+    const matchesSearch = resource.title.toLowerCase().includes(q) ||
+                         resource.description.toLowerCase().includes(q)
     
     const matchesType = selectedType === 'all' || resource.type === selectedType
     const matchesYear = selectedYear === 'all' || resource.year === selectedYear

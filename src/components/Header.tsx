@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Menu, X, ChevronDown, Search, Facebook, Instagram, Linkedin } from 'lucide-react'
 import jgenLogo from '@/assets/images/logos/logo-jgen.png'
 
@@ -11,6 +11,9 @@ import jgenLogo from '@/assets/images/logos/logo-jgen.png'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isProgramsOpen, setIsProgramsOpen] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
+  const [searchText, setSearchText] = useState('')
+  const navigate = useNavigate()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -27,9 +30,16 @@ export default function Header() {
     }
   }
 
+  const doSearch = (target: 'blog' | 'ressources' = 'blog') => {
+    const q = encodeURIComponent(searchText.trim())
+    if (!q) return
+    setShowSearch(false)
+    navigate(`/${target}?q=${q}`)
+  }
+
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-4 relative">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
@@ -106,32 +116,28 @@ export default function Header() {
             <Link to="/contact" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
               Contact
             </Link>
-
-            {/* Search + Socials (desktop) */}
-            <div className="flex items-center space-x-4 ml-4">
-              <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche">
-                <Search className="h-5 w-5" />
-              </button>
-              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
           </nav>
 
-          {/* Bouton CTA */}
-          <div className="hidden md:block">
+          {/* Bouton CTA + Icons (Desktop) */}
+          <div className="hidden md:flex items-center space-x-4">
             <button 
               onClick={scrollToNewsletter}
               className="bg-[#E81F74] text-white px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity"
             >
               Newsletter
             </button>
+            <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche" onClick={() => setShowSearch((v) => !v)}>
+              <Search className="h-5 w-5" />
+            </button>
+            <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
+              <Linkedin className="h-5 w-5" />
+            </a>
           </div>
 
           {/* Bouton menu mobile */}
@@ -143,10 +149,45 @@ export default function Header() {
           </button>
         </div>
 
+        {/* Search dropdown (desktop) */}
+        {showSearch && (
+          <div className="hidden md:block absolute right-4 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w-md">
+            <div className="flex items-center gap-2">
+              <Search className="h-4 w-4 text-gray-500" />
+              <input
+                type="text"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                onKeyDown={(e) => { if (e.key === 'Enter') doSearch('blog') }}
+                placeholder="Rechercher..."
+                className="flex-1 outline-none text-sm"
+                autoFocus
+              />
+            </div>
+            <div className="flex justify-end gap-2 mt-3">
+              <button onClick={() => doSearch('blog')} className="text-sm px-3 py-1 rounded bg-gray-100 hover:bg-gray-200">Articles</button>
+              <button onClick={() => doSearch('ressources')} className="text-sm px-3 py-1 rounded bg-gray-100 hover:bg-gray-200">Ressources</button>
+            </div>
+          </div>
+        )}
+
         {/* Navigation Mobile */}
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4">
             <div className="flex flex-col space-y-3">
+              <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2">
+                <Search className="h-4 w-4 text-gray-500" />
+                <input
+                  type="text"
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { doSearch('blog'); toggleMenu() } }}
+                  placeholder="Rechercher..."
+                  className="flex-1 outline-none text-sm"
+                />
+                <button onClick={() => { doSearch('blog'); toggleMenu() }} className="text-xs text-[#E81F74]">OK</button>
+              </div>
+
               <Link 
                 to="/" 
                 className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
@@ -198,9 +239,6 @@ export default function Header() {
 
               {/* Socials (mobile) */}
               <div className="flex items-center space-x-4 pt-2">
-                <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche">
-                  <Search className="h-5 w-5" />
-                </button>
                 <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
                   <Facebook className="h-5 w-5" />
                 </a>
