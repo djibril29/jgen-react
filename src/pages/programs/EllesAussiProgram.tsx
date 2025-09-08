@@ -1,10 +1,11 @@
 
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
+import ProgramRelated from '@/components/ProgramRelated'
 import { 
   Users, 
   Shield, 
@@ -542,6 +543,7 @@ export default function EllesAussiProgram() {
         </section>
       </main>
       
+      <ProgramRelated programId="elles-aussi" />
       <Footer />
     </div>
   )

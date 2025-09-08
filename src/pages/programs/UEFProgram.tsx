@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
+import ProgramRelated from '@/components/ProgramRelated'
 import { 
   Users, 
   BookOpen, 
@@ -429,6 +430,7 @@ export default function UEFProgram() {
         </section>
       </main>
       
+      <ProgramRelated programId="uef" />
       <Footer />
     </div>
   )

@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
+import ProgramRelated from '@/components/ProgramRelated'
 import { 
   Users, 
   Baby, 
@@ -649,6 +650,7 @@ export default function ProscidesProgram() {
         </section>
       </main>
       
+      <ProgramRelated programId="proscides" />
       <Footer />
     </div>
   )

@@ -166,24 +166,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Statistiques */}
-        <section className="py-16 bg-[#E81F74] text-white">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {stats.map((stat, index) => {
-                const match = String(stat.number).match(/^(\d+)(.*)$/)
-                const end = match ? parseInt(match[1], 10) : 0
-                const suffix = match ? match[2] : ''
-                return (
-                  <div key={index} className="space-y-2">
-                    <CountUp end={end} suffix={suffix} className="text-4xl md:text-5xl font-bold" />
-                    <div className="text-lg">{stat.label}</div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
+       
+    
 
         {/* Notre mission */}
         <section className="py-16 bg-white">
@@ -231,41 +215,53 @@ export default function HomePage() {
         </section>
 
         {/* Programmes phares */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16" style={{ backgroundColor: '#1B2A31' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nos programmes phares</h2>
-              <p className="text-lg text-gray-600">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Nos programmes phares</h2>
+              <p className="text-lg text-white/80">
                 Découvrez nos initiatives clés qui transforment la vie des femmes et des filles au Sénégal.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredPrograms.map((program) => (
-                <Card key={program.id} className="border-0 shadow-lg overflow-hidden">
-                  <div className={`h-2 bg-gradient-to-r ${program.color}`}></div>
-                  <CardHeader>
-                    <div className="flex items-center space-x-3">
-                      <div className={`p-2 rounded-lg bg-gradient-to-r ${program.color} text-white`}>
-                        {program.icon}
-                      </div>
-                      <CardTitle className="text-xl">{program.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600">
-                      {program.description}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                    <Button asChild variant="outline" className="bg-transparent w-full">
-                      <Link to={`/nos-programmes#${program.id}`}>
-                        En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
+            <div className="relative">
+              <Carousel opts={{ loop: true }} className="w-full">
+                <CarouselContent>
+                  {featuredPrograms.map((program) => (
+                    <CarouselItem key={program.id} className="md:basis-1/2 lg:basis-1/3">
+                      <Card className="border-0 shadow-lg overflow-hidden bg-white">
+                        <div className={`h-2 bg-gradient-to-r ${program.color}`}></div>
+                        <div className="h-40 w-full bg-gray-200">
+                          {/* Placeholder image area; can be wired to real images later */}
+                          <div className={`h-full w-full bg-gradient-to-r ${program.color} opacity-30`}></div>
+                        </div>
+                        <CardHeader>
+                          <div className="flex items-center space-x-3">
+                            <div className={`p-2 rounded-lg bg-gradient-to-r ${program.color} text-white`}>
+                              {program.icon}
+                            </div>
+                            <CardTitle className="text-xl">{program.title}</CardTitle>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <CardDescription className="text-gray-600">
+                            {program.description}
+                          </CardDescription>
+                        </CardContent>
+                        <CardFooter>
+                          <Button asChild variant="outline" className="bg-transparent w-full">
+                            <Link to={`/nos-programmes#${program.id}`}>
+                              En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                          </Button>
+                        </CardFooter>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="-left-4 md:-left-8 bg-white" />
+                <CarouselNext className="-right-4 md:-right-8 bg-white" />
+              </Carousel>
             </div>
 
             <div className="text-center mt-12">

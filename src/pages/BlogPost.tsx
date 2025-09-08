@@ -273,32 +273,6 @@ export default function BlogPost() {
           </div>
         </section>
 
-        {/* Newsletter */}
-        <section className="py-16 bg-white border-t border-gray-200">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-12">
-                <h2 className="text-3xl font-bold text-white mb-4">Restez informé</h2>
-                <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                  Inscrivez-vous à notre newsletter pour recevoir nos dernières actualités et articles directement dans votre boîte mail.
-                </p>
-                <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-                  <input
-                    type="email"
-                    placeholder="Votre email"
-                    className="flex-grow px-6 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/30"
-                  />
-                  <Button className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold shadow-lg">
-                    S'inscrire
-                  </Button>
-                </div>
-                <p className="text-sm text-white/80 mt-4">
-                  Nous respectons votre vie privée. Désabonnez-vous à tout moment.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       
       <Footer />
