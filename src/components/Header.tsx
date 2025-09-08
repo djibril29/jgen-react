@@ -1,7 +1,7 @@
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Search, Facebook, Instagram, Linkedin } from 'lucide-react'
 import jgenLogo from '@/assets/images/logos/logo-jgen.png'
 
 /**
@@ -38,7 +38,7 @@ export default function Header() {
           </Link>
 
           {/* Navigation Desktop */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             <Link to="/" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
               Accueil
             </Link>
@@ -106,6 +106,22 @@ export default function Header() {
             <Link to="/contact" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
               Contact
             </Link>
+
+            {/* Search + Socials (desktop) */}
+            <div className="flex items-center space-x-4 ml-4">
+              <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche">
+                <Search className="h-5 w-5" />
+              </button>
+              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
           </nav>
 
           {/* Bouton CTA */}
@@ -179,6 +195,22 @@ export default function Header() {
               >
                 Newsletter
               </button>
+
+              {/* Socials (mobile) */}
+              <div className="flex items-center space-x-4 pt-2">
+                <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche">
+                  <Search className="h-5 w-5" />
+                </button>
+                <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
             </div>
           </nav>
         )}
