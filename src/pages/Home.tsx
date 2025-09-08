@@ -188,6 +188,58 @@ export default function HomePage() {
           </div>
         </section>
 
+         {/* Notre mission */}
+         <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre mission</h2>
+              <p className="text-lg text-gray-600">
+                Contribuer à l'égalité des sexes à travers l'autonomisation des femmes et des filles par le renforcement 
+                de capacités, la mobilisation communautaire, le plaidoyer et l'éducation entrepreneuriale.
+              </p>
+            </div>
+          </div>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          {/* Domaine 1 : Autonomisation & Leadership */}
+          <div className="flex flex-col items-center text-center bg-gray-50 rounded-xl shadow p-6 h-full">
+            <img
+              src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=400&h=250&facepad=2"
+              alt="Autonomisation & Leadership"
+              className="w-full h-40 object-cover rounded-lg mb-4"
+            />
+            <h3 className="text-xl font-semibold text-pink-700 mb-2">Autonomisation & Leadership</h3>
+            <p className="text-gray-600">
+              Renforcer les capacités, l'estime de soi et le leadership des femmes et des filles pour qu'elles deviennent actrices du changement dans leurs communautés.
+            </p>
+          </div>
+          {/* Domaine 2 : Éducation & Entrepreneuriat */}
+          <div className="flex flex-col items-center text-center bg-gray-50 rounded-xl shadow p-6 h-full">
+            <img
+              src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=facearea&w=400&h=250&facepad=2"
+              alt="Éducation & Entrepreneuriat"
+              className="w-full h-40 object-cover rounded-lg mb-4"
+            />
+            <h3 className="text-xl font-semibold text-pink-700 mb-2">Éducation & Entrepreneuriat</h3>
+            <p className="text-gray-600">
+              Promouvoir l'accès à l'éducation, la formation professionnelle et l'entrepreneuriat féminin pour une autonomie économique durable.
+            </p>
+          </div>
+          {/* Domaine 3 : Plaidoyer & Mobilisation sociale */}
+          <div className="flex flex-col items-center text-center bg-gray-50 rounded-xl shadow p-6 h-full">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=250&facepad=2"
+              alt="Plaidoyer & Mobilisation sociale"
+              className="w-full h-40 object-cover rounded-lg mb-4"
+            />
+            <h3 className="text-xl font-semibold text-pink-700 mb-2">Plaidoyer & Mobilisation sociale</h3>
+            <p className="text-gray-600">
+              Défendre les droits des femmes et des filles, sensibiliser et mobiliser la société pour l'égalité des sexes et la justice sociale.
+            </p>
+          </div>
+        </div>
+        </section>
+        
+
         {/* Statistiques */}
         <section className="py-16 bg-[#8A1036] text-white">
           <div className="container mx-auto px-4">
@@ -207,19 +259,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Notre mission */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre mission</h2>
-              <p className="text-lg text-gray-600">
-                Contribuer à l'égalité des sexes à travers l'autonomisation des femmes et des filles par le renforcement 
-                de capacités, la mobilisation communautaire, le plaidoyer et l'éducation entrepreneuriale.
-              </p>
-            </div>
-          </div>
-        </section>
-        
+       
 
         {/* Programmes phares */}
         <section className="py-16" style={{ backgroundColor: '#1B2A31' }}>
