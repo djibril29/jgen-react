@@ -207,6 +207,20 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Notre mission */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre mission</h2>
+              <p className="text-lg text-gray-600">
+                Contribuer à l'égalité des sexes à travers l'autonomisation des femmes et des filles par le renforcement 
+                de capacités, la mobilisation communautaire, le plaidoyer et l'éducation entrepreneuriale.
+              </p>
+            </div>
+          </div>
+        </section>
+        
+
         {/* Programmes phares */}
         <section className="py-16" style={{ backgroundColor: '#1B2A31' }}>
           <div className="container mx-auto px-4">
