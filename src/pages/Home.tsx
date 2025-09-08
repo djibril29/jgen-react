@@ -189,7 +189,7 @@ export default function HomePage() {
         </section>
 
         {/* Statistiques */}
-        <section className="py-16 bg-[#E81F74] text-white">
+        <section className="py-16 bg-[#8A1036] text-white">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {stats.map((stat, index) => {
