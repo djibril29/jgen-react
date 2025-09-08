@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Menu, X, ChevronDown, Search, Facebook, Instagram, Linkedin } from 'lucide-react'
 import jgenLogo from '@/assets/images/logos/logo-jgen.png'
+import i18n from '@/i18n'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Composant Header - Barre de navigation principale du site
@@ -14,6 +16,7 @@ export default function Header() {
   const [showSearch, setShowSearch] = useState(false)
   const [searchText, setSearchText] = useState('')
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -37,6 +40,10 @@ export default function Header() {
     navigate(`/${target}?q=${q}`)
   }
 
+  const changeLang = (lng: 'fr' | 'en' | 'es') => {
+    i18n.changeLanguage(lng)
+  }
+
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 relative">
@@ -50,10 +57,10 @@ export default function Header() {
           {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 -translate-x-1/2">
             <Link to="/" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
-              Accueil
+              {t('nav.home')}
             </Link>
             <Link to="/a-propos" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
-              À propos
+              {t('nav.about')}
             </Link>
             
             {/* Menu déroulant Programmes */}
@@ -62,7 +69,7 @@ export default function Header() {
                 onClick={togglePrograms}
                 className="flex items-center text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
               >
-                Nos programmes
+                {t('nav.programs')}
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               
@@ -108,23 +115,30 @@ export default function Header() {
             </div>
             
             <Link to="/blog" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
-              Blog
+              {t('nav.blog')}
             </Link>
             <Link to="/ressources" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
-              Ressources
+              {t('nav.resources')}
             </Link>
             <Link to="/contact" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
-              Contact
+              {t('nav.contact')}
             </Link>
           </nav>
 
           {/* Bouton CTA + Icons (Desktop) */}
           <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-2 mr-2">
+              <button onClick={() => changeLang('fr')} className="text-sm text-gray-600 hover:text-[#E81F74]">FR</button>
+              <span className="text-gray-300">|</span>
+              <button onClick={() => changeLang('en')} className="text-sm text-gray-600 hover:text-[#E81F74]">EN</button>
+              <span className="text-gray-300">|</span>
+              <button onClick={() => changeLang('es')} className="text-sm text-gray-600 hover:text-[#E81F74]">ES</button>
+            </div>
             <button 
               onClick={scrollToNewsletter}
               className="bg-[#E81F74] text-white px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity"
             >
-              Newsletter
+              {t('nav.newsletter')}
             </button>
             <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche" onClick={() => setShowSearch((v) => !v)}>
               <Search className="h-5 w-5" />
@@ -188,53 +202,61 @@ export default function Header() {
                 <button onClick={() => { doSearch('blog'); toggleMenu() }} className="text-xs text-[#E81F74]">OK</button>
               </div>
 
+              <div className="flex items-center gap-3 pt-1">
+                <button onClick={() => changeLang('fr')} className="text-xs text-gray-700">FR</button>
+                <span className="text-gray-300">|</span>
+                <button onClick={() => changeLang('en')} className="text-xs text-gray-700">EN</button>
+                <span className="text-gray-300">|</span>
+                <button onClick={() => changeLang('es')} className="text-xs text-gray-700">ES</button>
+              </div>
+
               <Link 
                 to="/" 
                 className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
                 onClick={toggleMenu}
               >
-                Accueil
+                {t('nav.home')}
               </Link>
               <Link 
                 to="/a-propos" 
                 className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
                 onClick={toggleMenu}
               >
-                À propos
+                {t('nav.about')}
               </Link>
               <Link 
                 to="/nos-programmes" 
                 className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
                 onClick={toggleMenu}
               >
-                Nos programmes
+                {t('nav.programs')}
               </Link>
               <Link 
                 to="/blog" 
                 className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
                 onClick={toggleMenu}
               >
-                Blog
+                {t('nav.blog')}
               </Link>
               <Link 
                 to="/ressources" 
                 className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
                 onClick={toggleMenu}
               >
-                Ressources
+                {t('nav.resources')}
               </Link>
               <Link 
                 to="/contact" 
                 className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
                 onClick={toggleMenu}
               >
-                Contact
+                {t('nav.contact')}
               </Link>
               <button 
                 onClick={() => { scrollToNewsletter(); toggleMenu(); }}
                 className="bg-[#E81F74] text-white px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity text-center"
               >
-                Newsletter
+                {t('nav.newsletter')}
               </button>
 
               {/* Socials (mobile) */}

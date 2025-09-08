@@ -133,8 +133,9 @@ export default function AboutPage() {
         <section className="py-12 bg-[#F3D3B7]">
           <div className="container mx-auto px-4 text-center">
             <p className="text-2xl md:text-3xl font-extrabold text-[#1B2A31] max-w-4xl mx-auto">
-              Nous aspirons à être une organisation féministe engagée dans l’évolution continue et l’apprentissage.
-              Nos valeurs guident la manière dont nous agissons au sein du mouvement.
+            La vision de J-GEN est d'être une référence dans l’accompagnement des femmes et de filles
+pour une meilleure prise en charge de leurs droits fondamentaux particulièrement en matière
+de santé et bien-être, d’insertion socioprofessionnelle, de participation politique entre autres.
             </p>
           </div>
         </section>
