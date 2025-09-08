@@ -10,6 +10,9 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from 'embla-carousel-autoplay'
 
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
+import uefImg from '@/assets/images/projects/uef/uef1.png'
+import proscidesImg from '@/assets/images/projects/proscides/proscide1.jpeg'
+import jvImg from '@/assets/images/projects/jeunes-volontaires/jeunevolontaire.jpeg'
 
 /**
  * Page d'accueil - Page principale du site J-GEN Sénégal
@@ -59,22 +62,41 @@ export default function HomePage() {
       title: 'Université d\'Été Féministe',
       description: 'Un espace de mobilisation, de savoir et de résistance pour les féministes d\'Afrique de l\'Ouest et du Centre.',
       color: 'from-pink-500 to-purple-600',
-      icon: <BookOpen className="h-8 w-8" />
+      icon: <BookOpen className="h-8 w-8" />,
+      image: uefImg as string,
     },
     {
       id: 'pas-a-pas',
       title: 'PAS À PAS',
       description: 'Programme pionnier en soutien au plaidoyer pour l\'avortement sécurisé en cas de viol et d\'inceste.',
       color: 'from-orange-500 to-red-500',
-      icon: <Heart className="h-8 w-8" />
+      icon: <Heart className="h-8 w-8" />,
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
     },
     {
       id: 'elles-aussi',
       title: 'ELLES AUSSI',
       description: 'Projet d\'intervention communautaire contre les violences sexuelles à l\'égard des filles.',
       color: 'from-green-500 to-teal-500',
-      icon: <Users className="h-8 w-8" />
-    }
+      icon: <Users className="h-8 w-8" />,
+      image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
+    },
+    {
+      id: 'proscides',
+      title: 'PROSCIDES',
+      description: 'Programme de protection des droits de l\'enfant et participation citoyenne.',
+      color: 'from-blue-500 to-indigo-600',
+      icon: <Users className="h-8 w-8" />,
+      image: proscidesImg as string,
+    },
+    {
+      id: 'jeunes-volontaires',
+      title: 'Jeunes Volontaires (SSR)',
+      description: 'Renforcement des capacités des jeunes sur la santé sexuelle et reproductive.',
+      color: 'from-yellow-500 to-orange-500',
+      icon: <Users className="h-8 w-8" />,
+      image: jvImg as string,
+    },
   ]
 
   // Données des actualités
@@ -166,50 +188,21 @@ export default function HomePage() {
           </div>
         </section>
 
-       
-    
-
-        {/* Notre mission */}
-        <section className="py-16 bg-white">
+        {/* Statistiques */}
+        <section className="py-16 bg-[#E81F74] text-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre mission</h2>
-              <p className="text-lg text-gray-600">
-                Contribuer à l'égalité des sexes à travers l'autonomisation des femmes et des filles par le renforcement 
-                de capacités, la mobilisation communautaire, le plaidoyer et l'éducation entrepreneuriale.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-pink-50 rounded-lg p-6 text-center">
-                <div className="w-16 h-16 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Renforcement de capacités</h3>
-                <p className="text-gray-600">
-                  Formation des jeunes femmes et militantes féministes sur le leadership, les droits humains et la lutte contre les VBG.
-                </p>
-              </div>
-
-              <div className="bg-orange-50 rounded-lg p-6 text-center">
-                <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Mobilisation communautaire</h3>
-                <p className="text-gray-600">
-                  Sensibilisation des communautés sur la justice sociale, l'égalité des droits et l'élimination des disparités.
-                </p>
-              </div>
-
-              <div className="bg-green-50 rounded-lg p-6 text-center">
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookOpen className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Plaidoyer et communication</h3>
-                <p className="text-gray-600">
-                  Défense des droits des femmes et des filles auprès des décideurs et création de mouvements sociaux féministes.
-                </p>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {stats.map((stat, index) => {
+                const match = String(stat.number).match(/^(\d+)(.*)$/)
+                const end = match ? parseInt(match[1], 10) : 0
+                const suffix = match ? match[2] : ''
+                return (
+                  <div key={index} className="space-y-2">
+                    <CountUp end={end} suffix={suffix} className="text-4xl md:text-5xl font-bold" />
+                    <div className="text-lg">{stat.label}</div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -230,11 +223,12 @@ export default function HomePage() {
                   {featuredPrograms.map((program) => (
                     <CarouselItem key={program.id} className="md:basis-1/2 lg:basis-1/3">
                       <Card className="border-0 shadow-lg overflow-hidden bg-white">
-                        <div className={`h-2 bg-gradient-to-r ${program.color}`}></div>
-                        <div className="h-40 w-full bg-gray-200">
-                          {/* Placeholder image area; can be wired to real images later */}
-                          <div className={`h-full w-full bg-gradient-to-r ${program.color} opacity-30`}></div>
-                        </div>
+                        <div className={`h-1 bg-gradient-to-r ${program.color}`}></div>
+                        {program.image && (
+                          <div className="h-40 w-full overflow-hidden">
+                            <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+                          </div>
+                        )}
                         <CardHeader>
                           <div className="flex items-center space-x-3">
                             <div className={`p-2 rounded-lg bg-gradient-to-r ${program.color} text-white`}>
@@ -259,8 +253,8 @@ export default function HomePage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="-left-4 md:-left-8 bg-white" />
-                <CarouselNext className="-right-4 md:-right-8 bg-white" />
+                <CarouselPrevious className="-left-4 md:-left-8" />
+                <CarouselNext className="-right-4 md:-right-8" />
               </Carousel>
             </div>
 
