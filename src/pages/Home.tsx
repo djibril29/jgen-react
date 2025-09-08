@@ -191,7 +191,7 @@ export default function HomePage() {
         </section>
 
          {/* Notre mission (layout inspired by provided image) */}
-         <section className="py-20" style={{ backgroundColor: '#D8F876' }}>
+         <section className="py-20" style={{ backgroundColor: '#F3D3B7' }}>
           
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
