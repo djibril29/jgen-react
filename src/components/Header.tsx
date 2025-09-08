@@ -40,7 +40,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 relative">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center relative">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             
@@ -48,7 +48,7 @@ export default function Header() {
           </Link>
 
           {/* Navigation Desktop */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 -translate-x-1/2">
             <Link to="/" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
               Accueil
             </Link>
