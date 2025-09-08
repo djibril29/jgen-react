@@ -45,7 +45,7 @@ export default function BlogPost() {
       date: '15 Décembre 2024',
       author: 'Maimouna YADE',
       category: 'actualites',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/c59e67c0-6fd2-4195-b00d-765d6e28fc84.jpg',
+      image: '/assets/images/pas-a-pas/site3.jpeg',
       tags: ['rapport annuel', '2024', 'résilience', 'féminisme'],
       readTime: '8 min'
     },

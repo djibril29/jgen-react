@@ -212,9 +212,16 @@ export default function HomePage() {
                     <blockquote className="text-gray-700 italic mb-4 whitespace-pre-line">
                       {t('about.welcomeQuote')}
                     </blockquote>
-                    <div className="mt-6">
-                      <p className="font-semibold text-[#1B2A31]">{t('about.welcomeName')}</p>
-                      <p className="text-gray-600">{t('about.welcomeRole')}</p>
+                    <div className="mt-6 flex items-center gap-4">
+                      <div>
+                        <p className="font-semibold text-[#1B2A31]">{t('about.welcomeName')}</p>
+                        <p className="text-gray-600">{t('about.welcomeRole')}</p>
+                      </div>
+                      <Button asChild size="sm" variant="outline" className="ml-auto">
+                        <Link to="/a-propos">
+                          {t('common.learnMore')}
+                        </Link>
+                      </Button>
                     </div>
                   </div>
                 </div>
