@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { Users, Heart, BookOpen, Calendar, ArrowRight, Star } from 'lucide-react'
+import { Users, Heart, BookOpen, Calendar, ArrowRight, Star, Equal, Megaphone, Hand } from 'lucide-react'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 
@@ -190,79 +190,54 @@ export default function HomePage() {
           </div>
         </section>
 
-         {/* Notre mission */}
-         <section
-           className="py-16"
-           style={{
-             backgroundImage: `linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url(/src/assets/images/backgrounds/herobg2.png)`,
-             backgroundSize: 'cover',
-             backgroundPosition: 'center',
-           }}
-         >
+         {/* Notre mission (layout inspired by provided image) */}
+         <section className="py-20" style={{ backgroundColor: '#D8F876' }}>
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre mission</h2>
-              <p className="text-lg text-gray-600">
-                Contribuer à l'égalité des sexes à travers l'autonomisation des femmes et des filles par le renforcement 
-                de capacités, la mobilisation communautaire, le plaidoyer et l'éducation entrepreneuriale.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {/* WHO WE ARE */}
+              <div className="text-center">
+                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
+                  <Equal className="h-12 w-12" style={{ color: '#F3D3B7' }} />
+                </div>
+                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}>Who we are</div>
+                <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+                  A feminist fund with an intersectional lens
+                </h3>
+                <Link to="/a-propos" className="underline text-lg" style={{ color: '#1B2A31' }}>Learn More</Link>
+              </div>
+
+              {/* WHAT WE DO */}
+              <div className="text-center">
+                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
+                  <Hand className="h-12 w-12" style={{ color: '#F3D3B7' }} />
+                </div>
+                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}>What we do</div>
+                <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+                  Grantmaking and advocacy to challenge the status quo
+                </h3>
+                <Link to="/nos-programmes" className="underline text-lg" style={{ color: '#1B2A31' }}>Learn More</Link>
+              </div>
+
+              {/* HOW WE WORK */}
+              <div className="text-center">
+                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
+                  <Megaphone className="h-12 w-12" style={{ color: '#F3D3B7' }} />
+                </div>
+                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}>How we work</div>
+                <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+                  Support for grassroots movements to lead the way
+                </h3>
+                <Link to="/contact" className="underline text-lg" style={{ color: '#1B2A31' }}>Learn More</Link>
+              </div>
             </div>
           </div>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-          {/* Domaine 1 : Autonomisation & Leadership */}
-          <div className="flex flex-col items-center text-center bg-gray-50 rounded-xl shadow p-6 h-full">
-            <img
-              src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=400&h=250&facepad=2"
-              alt="Autonomisation & Leadership"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-pink-700 mb-2">Autonomisation & Leadership</h3>
-            <p className="text-gray-600">
-              Renforcer les capacités, l'estime de soi et le leadership des femmes et des filles pour qu'elles deviennent actrices du changement dans leurs communautés.
-            </p>
-          </div>
-          {/* Domaine 2 : Éducation & Entrepreneuriat */}
-          <div className="flex flex-col items-center text-center bg-gray-50 rounded-xl shadow p-6 h-full">
-            <img
-              src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=facearea&w=400&h=250&facepad=2"
-              alt="Éducation & Entrepreneuriat"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-pink-700 mb-2">Éducation & Entrepreneuriat</h3>
-            <p className="text-gray-600">
-              Promouvoir l'accès à l'éducation, la formation professionnelle et l'entrepreneuriat féminin pour une autonomie économique durable.
-            </p>
-          </div>
-          {/* Domaine 3 : Plaidoyer & Mobilisation sociale */}
-          <div className="flex flex-col items-center text-center bg-gray-50 rounded-xl shadow p-6 h-full">
-            <img
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=250&facepad=2"
-              alt="Plaidoyer & Mobilisation sociale"
-              className="w-full h-40 object-cover rounded-lg mb-4"
-            />
-            <h3 className="text-xl font-semibold text-pink-700 mb-2">Plaidoyer & Mobilisation sociale</h3>
-            <p className="text-gray-600">
-              Défendre les droits des femmes et des filles, sensibiliser et mobiliser la société pour l'égalité des sexes et la justice sociale.
-            </p>
-          </div>
-        </div>
         </section>
 
         {/* Nos Zones d'intervention */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nos zones d'intervention</h2>
-              <p className="text-lg text-gray-600">
-                Survolez la carte pour découvrir nos zones d’intervention et les projets menés dans chaque région.
-              </p>
-            </div>
-            <InterventionMap />
-          </div>
-        </section>
-          
-         
-         {/* Statistiques */}
+        
+        
+
+        {/* Statistiques */}
         <section className="py-16 bg-[#8A1036] text-white">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
