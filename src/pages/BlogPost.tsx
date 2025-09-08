@@ -112,56 +112,48 @@ export default function BlogPost() {
       <Header />
       
       <main className="flex-grow">
-        {/* En-tête de l'article */}
-        <section className="py-12 bg-cover bg-center relative" style={{backgroundImage: "url('https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/15c723a7-2680-488c-80e7-5a604730d281.png')"}}>
-          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        {/* En-tête de l'article (Hero) */}
+        <section
+          className="relative bg-cover bg-center"
+          style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${article.image})` }}
+        >
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Button asChild variant="ghost" className="mb-6 text-pink-600 hover:text-pink-700">
+            <div className="max-w-4xl mx-auto py-12 md:py-16">
+              <Button asChild variant="ghost" className="mb-6 text-white hover:text-white/90">
                 <Link to="/blog" className="flex items-center">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Retour au blog
                 </Link>
               </Button>
-              
-              <div className="mb-8">
-                <div className="flex items-center text-sm text-gray-600 mb-4">
-                  <Calendar className="h-4 w-4 mr-1" />
-                  {article.date}
-                  <span className="mx-2">•</span>
-                  <User className="h-4 w-4 mr-1" />
-                  {article.author}
-                  <span className="mx-2">•</span>
-                  {article.readTime} de lecture
-                </div>
-                
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  {article.title}
-                </h1>
-                
-                <p className="text-lg text-gray-600 mb-6">
+
+              <div className="mb-5 text-white/90 text-sm flex items-center flex-wrap gap-x-3 gap-y-2">
+                <span className="inline-flex items-center"><Calendar className="h-4 w-4 mr-1" /> {article.date}</span>
+                <span>•</span>
+                <span className="inline-flex items-center"><User className="h-4 w-4 mr-1" /> {article.author}</span>
+                <span>•</span>
+                <span>{article.readTime} de lecture</span>
+              </div>
+
+              <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+                {article.title}
+              </h1>
+
+              {article.excerpt && (
+                <p className="text-base md:text-lg text-white/90 max-w-3xl">
                   {article.excerpt}
                 </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {article.tags.map((tag: string, index: number) => (
-                    <span 
-                      key={index} 
-                      className="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
-                    >
-                      <Tag className="h-3 w-3 inline mr-1" />
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="aspect-video rounded-lg overflow-hidden shadow-lg">
-                <img 
-                  src={article.image} 
-                  alt={article.title}
-                  className="w-full h-full object-cover"
-                />
+              )}
+
+              <div className="flex flex-wrap gap-2 mt-6">
+                {article.tags.map((tag: string, index: number) => (
+                  <span 
+                    key={index} 
+                    className="px-3 py-1 bg-white/15 text-white rounded-full text-sm backdrop-blur"
+                  >
+                    <Tag className="h-3 w-3 inline mr-1" />
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
