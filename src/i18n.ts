@@ -68,8 +68,89 @@ const resources = {
         contactTeam: 'Contacter notre équipe',
         sendEmail: 'Envoyer un email'
       },
+      programsPage: {
+        title: 'Nos programmes',
+        description: "Découvrez nos initiatives pour l'autonomisation des femmes et des filles au Sénégal.",
+        filters: {
+          all: 'Tous les programmes',
+          education: 'Éducation',
+          health: 'Santé',
+          protection: 'Protection',
+          childhood: 'Enfance',
+          economic: 'Autonomisation économique'
+        },
+        keyPoints: 'Points clés',
+        achievements: 'Réalisations',
+        partners: 'Partenaires',
+        sidebarTitle: 'En savoir plus',
+        sidebarText: 'Vous souhaitez en savoir plus sur ce programme ou participer à nos actions ?',
+        participate: 'Participer au programme',
+        viewResources: 'Voir les ressources',
+        impactTitle: 'Notre impact en 2024',
+        impactDesc: 'Nos actions ont permis de toucher des milliers de personnes à travers le Sénégal',
+        impacted: 'Personnes touchées',
+        trained: 'Personnes formées',
+        sensitized: 'Personnes sensibilisées',
+        activeProjects: 'Projets actifs',
+        joinActionsTitle: 'Rejoignez nos actions',
+        joinActionsDesc: 'Votre engagement nous permet de continuer à lutter pour les droits des femmes et des filles au Sénégal.'
+      },
+      blogPost: {
+        backToBlog: 'Retour au blog',
+        notFound: 'Article non trouvé',
+        read: 'de lecture',
+        share: 'Partager cet article :',
+        like: "J'aime",
+        comment: 'Commenter',
+        relatedTitle: 'Articles similaires',
+        relatedDesc: 'Continuez votre lecture avec ces articles en lien avec le sujet'
+      },
+      resourceView: {
+        backToResources: '← Retour aux ressources',
+        about: 'À propos de cette ressource',
+        publishedOn: 'Publiée le {{date}}',
+        type: 'Type: {{type}}',
+        download: 'Télécharger la ressource',
+        downloadNA: 'Téléchargement indisponible'
+      },
+      contact: {
+        title: 'Contactez-nous',
+        description: "Nous sommes à votre écoute. N'hésitez pas à nous contacter pour toute question ou suggestion.",
+        howHelp: 'Comment pouvons-nous vous aider ?',
+        chooseCategory: 'Choisissez la catégorie qui correspond le mieux à votre demande',
+        options: {
+          general: { title: 'Informations générales', desc: 'Pour toute question générale sur nos activités' },
+          volunteer: { title: 'Bénévolat', desc: 'Pour devenir bénévole ou participer à nos actions' },
+          information: { title: "Demande d'informations", desc: 'Pour obtenir plus d’informations sur nos activités' },
+          partnership: { title: 'Partenariat', desc: 'Pour proposer un partenariat ou une collaboration' }
+        },
+        formTitle: 'Envoyez-nous un message',
+        sentTitle: 'Message envoyé !',
+        sentText: 'Merci pour votre message. Nous vous répondrons dans les plus brefs délais.',
+        fullName: 'Nom complet *',
+        email: 'Email *',
+        subject: 'Sujet *',
+        requestType: 'Type de demande',
+        message: 'Message *',
+        placeholderName: 'Votre nom',
+        placeholderEmail: 'votre@email.com',
+        placeholderSubject: 'Sujet de votre message',
+        placeholderMessage: 'Votre message...',
+        sending: 'Envoi en cours...',
+        sendMessage: 'Envoyer le message',
+        contactInfo: 'Informations de contact',
+        mapTitle: 'Notre localisation',
+        mapLabel: 'Carte interactive',
+        viewOnMaps: 'Voir sur Google Maps',
+        followUs: 'Suivez-nous',
+        faqTitle: 'Questions fréquentes'
+      },
       about: {
-        title: 'À propos de J-GEN Sénégal'
+        title: 'À propos de J-GEN Sénégal',
+        welcomeTitle: 'Mot de la Directrice Exécutive',
+        welcomeQuote: 'Bienvenue sur le site de J-GEN Sénégal. Notre combat pour l’égalité, la justice sociale et l’autonomisation des filles et des femmes est plus que jamais nécessaire. Ensemble, nous faisons bouger les lignes.',
+        welcomeName: 'Maimouna YADE',
+        welcomeRole: 'Directrice Exécutive de J-GEN Sénégal'
       },
       footer: {
         newsletterTitle: 'Inscrivez-vous à notre newsletter',
@@ -81,7 +162,8 @@ const resources = {
         contact: 'Contact',
         legal: 'Mentions légales',
         privacy: 'Politique de confidentialité',
-        rights: 'Tous droits réservés.'
+        rights: 'Tous droits réservés.',
+        subscribed: 'Merci pour votre inscription !'
       }
     }
   },
@@ -150,8 +232,89 @@ const resources = {
         contactTeam: 'Contact our team',
         sendEmail: 'Send an email'
       },
+      programsPage: {
+        title: 'Our programs',
+        description: 'Discover our initiatives for the empowerment of women and girls in Senegal.',
+        filters: {
+          all: 'All programs',
+          education: 'Education',
+          health: 'Health',
+          protection: 'Protection',
+          childhood: 'Childhood',
+          economic: 'Economic empowerment'
+        },
+        keyPoints: 'Key points',
+        achievements: 'Achievements',
+        partners: 'Partners',
+        sidebarTitle: 'Learn more',
+        sidebarText: 'Want to know more about this program or join our actions?',
+        participate: 'Join the program',
+        viewResources: 'View resources',
+        impactTitle: 'Our impact in 2024',
+        impactDesc: 'Our actions have reached thousands of people across Senegal',
+        impacted: 'People reached',
+        trained: 'People trained',
+        sensitized: 'People sensitized',
+        activeProjects: 'Active projects',
+        joinActionsTitle: 'Join our actions',
+        joinActionsDesc: 'Your engagement helps us continue fighting for women and girls’ rights in Senegal.'
+      },
+      blogPost: {
+        backToBlog: 'Back to blog',
+        notFound: 'Article not found',
+        read: 'read',
+        share: 'Share this article:',
+        like: 'Like',
+        comment: 'Comment',
+        relatedTitle: 'Related articles',
+        relatedDesc: 'Continue reading with these related articles'
+      },
+      resourceView: {
+        backToResources: '← Back to resources',
+        about: 'About this resource',
+        publishedOn: 'Published on {{date}}',
+        type: 'Type: {{type}}',
+        download: 'Download resource',
+        downloadNA: 'Download unavailable'
+      },
+      contact: {
+        title: 'Contact us',
+        description: 'We are listening. Feel free to reach out for any question or suggestion.',
+        howHelp: 'How can we help you?',
+        chooseCategory: 'Choose the category that best matches your request',
+        options: {
+          general: { title: 'General information', desc: 'For any general question about our activities' },
+          volunteer: { title: 'Volunteering', desc: 'To become a volunteer or join our actions' },
+          information: { title: 'Information request', desc: 'To get more information about our activities' },
+          partnership: { title: 'Partnership', desc: 'To propose a partnership or collaboration' }
+        },
+        formTitle: 'Send us a message',
+        sentTitle: 'Message sent!',
+        sentText: 'Thank you for your message. We will get back to you shortly.',
+        fullName: 'Full name *',
+        email: 'Email *',
+        subject: 'Subject *',
+        requestType: 'Request type',
+        message: 'Message *',
+        placeholderName: 'Your name',
+        placeholderEmail: 'your@email.com',
+        placeholderSubject: 'Subject of your message',
+        placeholderMessage: 'Your message...',
+        sending: 'Sending...',
+        sendMessage: 'Send message',
+        contactInfo: 'Contact information',
+        mapTitle: 'Our location',
+        mapLabel: 'Interactive map',
+        viewOnMaps: 'View on Google Maps',
+        followUs: 'Follow us',
+        faqTitle: 'Frequently asked questions'
+      },
       about: {
-        title: 'About J-GEN Senegal'
+        title: 'About J-GEN Senegal',
+        welcomeTitle: 'Message from the Executive Director',
+        welcomeQuote: 'Welcome to J-GEN Senegal. Our fight for equality, social justice and the empowerment of girls and women is more necessary than ever. Together, we move the lines.',
+        welcomeName: 'Maimouna YADE',
+        welcomeRole: 'Executive Director of J-GEN Senegal'
       },
       footer: {
         newsletterTitle: 'Subscribe to our newsletter',
@@ -163,7 +326,8 @@ const resources = {
         contact: 'Contact',
         legal: 'Legal notice',
         privacy: 'Privacy policy',
-        rights: 'All rights reserved.'
+        rights: 'All rights reserved.',
+        subscribed: 'Thanks for subscribing!'
       }
     }
   },
@@ -232,8 +396,89 @@ const resources = {
         contactTeam: 'Contactar a nuestro equipo',
         sendEmail: 'Enviar un correo'
       },
+      programsPage: {
+        title: 'Nuestros programas',
+        description: 'Descubre nuestras iniciativas para el empoderamiento de mujeres y niñas en Senegal.',
+        filters: {
+          all: 'Todos los programas',
+          education: 'Educación',
+          health: 'Salud',
+          protection: 'Protección',
+          childhood: 'Infancia',
+          economic: 'Empoderamiento económico'
+        },
+        keyPoints: 'Puntos clave',
+        achievements: 'Logros',
+        partners: 'Aliados',
+        sidebarTitle: 'Saber más',
+        sidebarText: '¿Quieres saber más sobre este programa o unirte a nuestras acciones?',
+        participate: 'Participar en el programa',
+        viewResources: 'Ver recursos',
+        impactTitle: 'Nuestro impacto en 2024',
+        impactDesc: 'Nuestras acciones han alcanzado a miles de personas en Senegal',
+        impacted: 'Personas alcanzadas',
+        trained: 'Personas formadas',
+        sensitized: 'Personas sensibilizadas',
+        activeProjects: 'Proyectos activos',
+        joinActionsTitle: 'Únete a nuestras acciones',
+        joinActionsDesc: 'Tu compromiso nos ayuda a seguir luchando por los derechos de mujeres y niñas en Senegal.'
+      },
+      blogPost: {
+        backToBlog: 'Volver al blog',
+        notFound: 'Artículo no encontrado',
+        read: 'de lectura',
+        share: 'Compartir este artículo:',
+        like: 'Me gusta',
+        comment: 'Comentar',
+        relatedTitle: 'Artículos relacionados',
+        relatedDesc: 'Continúa leyendo con estos artículos relacionados'
+      },
+      resourceView: {
+        backToResources: '← Volver a recursos',
+        about: 'Acerca de este recurso',
+        publishedOn: 'Publicado el {{date}}',
+        type: 'Tipo: {{type}}',
+        download: 'Descargar el recurso',
+        downloadNA: 'Descarga no disponible'
+      },
+      contact: {
+        title: 'Contáctanos',
+        description: 'Estamos a tu disposición. No dudes en escribirnos para cualquier pregunta o sugerencia.',
+        howHelp: '¿Cómo podemos ayudarte?',
+        chooseCategory: 'Elige la categoría que mejor corresponde a tu solicitud',
+        options: {
+          general: { title: 'Información general', desc: 'Para cualquier pregunta general sobre nuestras actividades' },
+          volunteer: { title: 'Voluntariado', desc: 'Para hacerte voluntario o unirte a nuestras acciones' },
+          information: { title: 'Solicitud de información', desc: 'Para obtener más información sobre nuestras actividades' },
+          partnership: { title: 'Alianzas', desc: 'Para proponer una alianza o colaboración' }
+        },
+        formTitle: 'Envíanos un mensaje',
+        sentTitle: '¡Mensaje enviado!',
+        sentText: 'Gracias por tu mensaje. Te responderemos lo antes posible.',
+        fullName: 'Nombre completo *',
+        email: 'Email *',
+        subject: 'Asunto *',
+        requestType: 'Tipo de solicitud',
+        message: 'Mensaje *',
+        placeholderName: 'Tu nombre',
+        placeholderEmail: 'tu@email.com',
+        placeholderSubject: 'Asunto de tu mensaje',
+        placeholderMessage: 'Tu mensaje...',
+        sending: 'Enviando...',
+        sendMessage: 'Enviar mensaje',
+        contactInfo: 'Información de contacto',
+        mapTitle: 'Nuestra ubicación',
+        mapLabel: 'Mapa interactivo',
+        viewOnMaps: 'Ver en Google Maps',
+        followUs: 'Síguenos',
+        faqTitle: 'Preguntas frecuentes'
+      },
       about: {
-        title: 'Acerca de J-GEN Senegal'
+        title: 'Acerca de J-GEN Senegal',
+        welcomeTitle: 'Mensaje de la Directora Ejecutiva',
+        welcomeQuote: 'Bienvenidas a J-GEN Senegal. Nuestra lucha por la igualdad, la justicia social y el empoderamiento de niñas y mujeres es hoy más necesaria que nunca. Juntas movemos las líneas.',
+        welcomeName: 'Maimouna YADE',
+        welcomeRole: 'Directora Ejecutiva de J-GEN Senegal'
       },
       footer: {
         newsletterTitle: 'Suscríbete a nuestro boletín',
@@ -245,7 +490,8 @@ const resources = {
         contact: 'Contacto',
         legal: 'Aviso legal',
         privacy: 'Política de privacidad',
-        rights: 'Todos los derechos reservados.'
+        rights: 'Todos los derechos reservados.',
+        subscribed: '¡Gracias por suscribirte!'
       }
     }
   }

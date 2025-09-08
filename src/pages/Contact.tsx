@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { MapPin, Phone, Mail, Clock, Send, Users, Heart, Star, BookOpen } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Page Contact - Informations de contact et formulaire
@@ -22,6 +23,7 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const { t } = useTranslation()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -82,29 +84,29 @@ export default function ContactPage() {
   const contactOptions = [
     {
       id: 'general',
-      title: 'Informations générales',
-      description: 'Pour toute question générale sur nos activités',
+      title: t('contact.options.general.title'),
+      description: t('contact.options.general.desc'),
       icon: <Mail className="h-8 w-8" />,
       color: 'from-blue-500 to-blue-600'
     },
     {
       id: 'volunteer',
-      title: 'Bénévolat',
-      description: 'Pour devenir bénévole ou participer à nos actions',
+      title: t('contact.options.volunteer.title'),
+      description: t('contact.options.volunteer.desc'),
       icon: <Users className="h-8 w-8" />,
       color: 'from-green-500 to-green-600'
     },
     {
       id: 'information',
-      title: 'Demande d\'informations',
-      description: 'Pour obtenir plus d\'informations sur nos activités',
+      title: t('contact.options.information.title'),
+      description: t('contact.options.information.desc'),
       icon: <BookOpen className="h-8 w-8" />,
       color: 'from-blue-500 to-blue-600'
     },
     {
       id: 'partnership',
-      title: 'Partenariat',
-      description: 'Pour proposer un partenariat ou une collaboration',
+      title: t('contact.options.partnership.title'),
+      description: t('contact.options.partnership.desc'),
       icon: <Star className="h-8 w-8" />,
       color: 'from-purple-500 to-purple-600'
     }
@@ -117,17 +119,17 @@ export default function ContactPage() {
       <main className="flex-grow">
         {/* Hero Section */}
         <Hero
-          title="Contactez-nous"
-          description="Nous sommes à votre écoute. N\'hésitez pas à nous contacter pour toute question ou suggestion."
+          title={t('contact.title')}
+          description={t('contact.description')}
         />
 
         {/* Options de contact */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Comment pouvons-nous vous aider ?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('contact.howHelp')}</h2>
               <p className="text-lg text-gray-600">
-                Choisissez la catégorie qui correspond le mieux à votre demande
+                {t('contact.chooseCategory')}
               </p>
             </div>
 
@@ -163,7 +165,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Formulaire de contact */}
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Envoyez-nous un message</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('contact.formTitle')}</h2>
                 
                 {isSubmitted ? (
                   <Card className="border-green-200 bg-green-50">
@@ -172,9 +174,9 @@ export default function ContactPage() {
                         <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                           <Send className="h-8 w-8 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-green-800 mb-2">Message envoyé !</h3>
+                        <h3 className="text-xl font-semibold text-green-800 mb-2">{t('contact.sentTitle')}</h3>
                         <p className="text-green-700">
-                          Merci pour votre message. Nous vous répondrons dans les plus brefs délais.
+                          {t('contact.sentText')}
                         </p>
                       </div>
                     </CardContent>
@@ -184,7 +186,7 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Nom complet *
+                          {t('contact.fullName')}
                         </label>
                         <input
                           type="text"
@@ -194,12 +196,12 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                          placeholder="Votre nom"
+                          placeholder={t('contact.placeholderName') as string}
                         />
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email *
+                          {t('contact.email')}
                         </label>
                         <input
                           type="email"
@@ -209,14 +211,14 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                          placeholder="votre@email.com"
+                          placeholder={t('contact.placeholderEmail') as string}
                         />
                       </div>
                     </div>
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Sujet *
+                        {t('contact.subject')}
                       </label>
                       <input
                         type="text"
@@ -226,13 +228,13 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                        placeholder="Sujet de votre message"
+                        placeholder={t('contact.placeholderSubject') as string}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="contactType" className="block text-sm font-medium text-gray-700 mb-2">
-                        Type de demande
+                        {t('contact.requestType')}
                       </label>
                       <select
                         id="contactType"
@@ -251,7 +253,7 @@ export default function ContactPage() {
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
+                        {t('contact.message')}
                       </label>
                       <textarea
                         id="message"
@@ -261,7 +263,7 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                        placeholder="Votre message..."
+                        placeholder={t('contact.placeholderMessage') as string}
                       ></textarea>
                     </div>
 
@@ -270,7 +272,7 @@ export default function ContactPage() {
                       disabled={isSubmitting}
                       className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90"
                     >
-                      {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
+                      {isSubmitting ? t('contact.sending') : t('contact.sendMessage')}
                     </Button>
                   </form>
                 )}
@@ -278,7 +280,7 @@ export default function ContactPage() {
 
               {/* Informations de contact */}
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Informations de contact</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('contact.contactInfo')}</h2>
                 
                 <div className="space-y-6 mb-8">
                   {contactInfo.map((info, index) => (
@@ -297,13 +299,13 @@ export default function ContactPage() {
                 {/* Carte */}
                 <Card className="overflow-hidden">
                   <CardHeader>
-                    <CardTitle>Notre localisation</CardTitle>
+                    <CardTitle>{t('contact.mapTitle')}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
                       <div className="text-center">
                         <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">Carte interactive</p>
+                        <p className="text-gray-500">{t('contact.mapLabel')}</p>
                         <p className="text-sm text-gray-400">6781 Sicap Liberté 6, Dakar</p>
                       </div>
                     </div>
@@ -314,7 +316,7 @@ export default function ContactPage() {
                           target="_blank" 
                           rel="noopener noreferrer"
                         >
-                          Voir sur Google Maps
+                          {t('contact.viewOnMaps')}
                         </a>
                       </Button>
                     </div>
@@ -323,7 +325,7 @@ export default function ContactPage() {
 
                 {/* Réseaux sociaux */}
                 <div className="mt-8">
-                  <h3 className="font-semibold text-gray-900 mb-4">Suivez-nous</h3>
+                  <h3 className="font-semibold text-gray-900 mb-4">{t('contact.followUs')}</h3>
                   <div className="flex space-x-4">
                     <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
                       <span className="font-bold">f</span>
@@ -345,7 +347,7 @@ export default function ContactPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Questions fréquentes</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">{t('contact.faqTitle')}</h2>
               
               <div className="space-y-6">
                 <Card>

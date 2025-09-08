@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Calendar, User, Tag, ArrowLeft, Share2, Heart, MessageCircle, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Page BlogPost - Affiche un article de blog individuel
@@ -12,12 +13,13 @@ import { Calendar, User, Tag, ArrowLeft, Share2, Heart, MessageCircle, ArrowRigh
  */
 export default function BlogPost() {
   const { id } = useParams<{ id: string }>()
+  const { t } = useTranslation()
 
   // Données des articles (simulées)
   const articles: Record<string, any> = {
     '1': {
       id: 1,
-      title: 'Rapport Annuel 2024 : Une année de résilience et d\'adaptation stratégique',
+      title: "Rapport Annuel 2024 : Une année de résilience et d'adaptation stratégique",
       excerpt: 'Découvrez les réalisations marquantes de J-GEN en 2024 et notre vision pour 2025 dans ce rapport annuel complet.',
       content: `
         <h3>Contexte 2024 : Un espace civique en rétrécissement</h3>
@@ -50,7 +52,7 @@ export default function BlogPost() {
     '2': {
       id: 2,
       title: 'Forum National sur la Justice Reproductive : Un pas vers le changement',
-      excerpt: '150 participants ont discuté des avortements clandestins et de l\'application du Protocole de Maputo.',
+      excerpt: "150 participants ont discuté des avortements clandestins et de l'application du Protocole de Maputo.",
       content: `
         <h3>Un événement historique</h3>
         <p>Organisé en septembre 2024, le premier Forum de JGEN sur les avortements clandestins et l'application du Protocole de Maputo a rassemblé 150 participant·es issues des réseaux constitués par le programme PAS À PAS. Cet événement majeur, soutenu par PP Global, FJS, et Marie Stopes International, a marqué une étape importante dans le plaidoyer pour la justice reproductive au Sénégal.</p>
@@ -93,9 +95,9 @@ export default function BlogPost() {
         <Header />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Article non trouvé</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('blogPost.notFound')}</h1>
             <Button asChild>
-              <Link to="/blog">Retour au blog</Link>
+              <Link to="/blog">{t('blogPost.backToBlog')}</Link>
             </Button>
           </div>
         </main>
@@ -119,7 +121,7 @@ export default function BlogPost() {
               <Button asChild variant="ghost" className="mb-6 text-pink-600 hover:text-pink-700">
                 <Link to="/blog" className="flex items-center">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Retour au blog
+                  {t('blogPost.backToBlog')}
                 </Link>
               </Button>
 
@@ -128,7 +130,7 @@ export default function BlogPost() {
                 <span>•</span>
                 <span className="inline-flex items-center"><User className="h-4 w-4 mr-1" /> {article.author}</span>
                 <span>•</span>
-                <span>{article.readTime} de lecture</span>
+                <span>{article.readTime} {t('blogPost.read')}</span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
@@ -172,7 +174,7 @@ export default function BlogPost() {
                   </div>
                 </div>
                 <div className="text-sm text-gray-500">
-                  {article.readTime} de lecture
+                  {article.readTime} {t('blogPost.read')}
                 </div>
               </div>
               
@@ -188,7 +190,7 @@ export default function BlogPost() {
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
                   <div className="flex items-center space-x-4">
-                    <span className="text-gray-700 font-medium">Partager cet article :</span>
+                    <span className="text-gray-700 font-medium">{t('blogPost.share')}</span>
                     <div className="flex space-x-3">
                       <button className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors shadow-md">
                         <span className="font-bold text-sm">f</span>
@@ -204,15 +206,14 @@ export default function BlogPost() {
                       </button>
                     </div>
                   </div>
-                  
                   <div className="flex items-center space-x-4">
                     <button className="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors bg-gray-100 px-4 py-2 rounded-full">
                       <Heart className="h-4 w-4" />
-                      <span>J'aime</span>
+                      <span>{t('blogPost.like')}</span>
                     </button>
                     <button className="flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors bg-gray-100 px-4 py-2 rounded-full">
                       <MessageCircle className="h-4 w-4" />
-                      <span>Commenter</span>
+                      <span>{t('blogPost.comment')}</span>
                     </button>
                   </div>
                 </div>
@@ -226,9 +227,9 @@ export default function BlogPost() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Articles similaires</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('blogPost.relatedTitle')}</h2>
                 <p className="text-lg text-gray-600">
-                  Continuez votre lecture avec ces articles en lien avec le sujet
+                  {t('blogPost.relatedDesc')}
                 </p>
               </div>
               
@@ -262,7 +263,7 @@ export default function BlogPost() {
                       </p>
                       <Button asChild variant="ghost" className="text-pink-600 hover:text-pink-700 hover:bg-pink-50 p-0 text-sm font-medium group-hover:bg-pink-50 group-hover:px-3 group-hover:py-1 group-hover:rounded-full transition-all">
                         <Link to={`/blog/${related.id}`} className="flex items-center">
-                          Lire la suite <ArrowRight className="ml-1 h-3 w-3" />
+                          {t('common.readMore')} <ArrowRight className="ml-1 h-3 w-3" />
                         </Link>
                       </Button>
                     </CardContent>

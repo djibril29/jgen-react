@@ -3,6 +3,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useTranslation } from 'react-i18next'
 
 interface ResourceItem {
   id: number
@@ -55,6 +56,7 @@ const mockResources: Record<string, ResourceItem> = {
 
 export default function ResourceView() {
   const { id } = useParams<{ id: string }>()
+  const { t } = useTranslation()
   const resource = (id && mockResources[id]) || {
     id: 0,
     title: 'Ressource introuvable',
@@ -93,7 +95,7 @@ export default function ResourceView() {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="mb-6 text-sm text-gray-500">
-                <Link to="/ressources" className="hover:underline">← Retour aux ressources</Link>
+                <Link to="/ressources" className="hover:underline">{t('resourceView.backToResources')}</Link>
               </div>
 
               <div className="mb-6">
@@ -111,22 +113,22 @@ export default function ResourceView() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>À propos de cette ressource</CardTitle>
+                  <CardTitle>{t('resourceView.about')}</CardTitle>
                   {resource.date && (
-                    <CardDescription>Publiée le {resource.date}</CardDescription>
+                    <CardDescription>{t('resourceView.publishedOn', { date: resource.date })}</CardDescription>
                   )}
                 </CardHeader>
                 <CardContent>
                   <div className="flex justify-between items-center">
-                    <div className="text-sm text-gray-600">Type: {resource.type}</div>
+                    <div className="text-sm text-gray-600">{t('resourceView.type', { type: resource.type })}</div>
                     {resource.fileUrl ? (
                       <Button asChild>
                         <a href={resource.fileUrl} download>
-                          Télécharger la ressource
+                          {t('resourceView.download')}
                         </a>
                       </Button>
                     ) : (
-                      <Button disabled>Téléchargement indisponible</Button>
+                      <Button disabled>{t('resourceView.downloadNA')}</Button>
                     )}
                   </div>
                 </CardContent>
