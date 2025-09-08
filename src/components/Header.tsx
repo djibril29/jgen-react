@@ -55,7 +55,7 @@ export default function Header() {
           </Link>
 
           {/* Navigation Desktop */}
-          <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
             <Link to="/" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
               {t('nav.home')}
             </Link>
@@ -126,30 +126,32 @@ export default function Header() {
           </nav>
 
           {/* Bouton CTA + Icons (Desktop) */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="hidden md:flex items-center space-x-2 mr-2">
+          <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
+            <div className="hidden md:flex items-center space-x-2 mr-1 lg:mr-2">
               <button onClick={() => changeLang('fr')} className="text-sm text-gray-600 hover:text-[#E81F74]">FR</button>
               <span className="text-gray-300">|</span>
               <button onClick={() => changeLang('en')} className="text-sm text-gray-600 hover:text-[#E81F74]">EN</button>
             </div>
             <button 
               onClick={scrollToNewsletter}
-              className="bg-[#E81F74] text-white px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity"
+              className="bg-[#E81F74] text-white px-4 md:px-5 lg:px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity text-sm md:text-sm lg:text-base"
             >
               {t('nav.newsletter')}
             </button>
             <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche" onClick={() => setShowSearch((v) => !v)}>
               <Search className="h-5 w-5" />
             </button>
-            <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
-              <Facebook className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
-            </a>
+            <div className="hidden lg:flex items-center space-x-4">
+              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           {/* Bouton menu mobile */}

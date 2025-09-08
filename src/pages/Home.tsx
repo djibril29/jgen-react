@@ -159,8 +159,8 @@ export default function HomePage() {
               <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]} className="w-full">
                 <CarouselContent>
                   {news.map((item) => (
-                    <CarouselItem key={item.id}>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <CarouselItem key={item.id} className="min-h-[360px] md:min-h-[320px]">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
                         <div className="aspect-video w-full overflow-hidden rounded-lg">
                           <img
                             src={item.image}
@@ -193,7 +193,7 @@ export default function HomePage() {
         </section>
 
         {/* Mot de la directrice exécutive */}
-        <section className="py-16 bg-white">
+        <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="flex flex-col md:flex-row items-center gap-8">
@@ -207,8 +207,8 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="md:w-2/3">
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#1B2A31] mb-4">{t('about.welcomeTitle')}</h2>
-                  <div className="bg-gray-50 rounded-lg p-6">
+                  <h2 className="text-2xl md:text-4xl font-bold text-[#1B2A31] mb-4">{t('about.welcomeTitle')}</h2>
+                  <div className="bg-gray-50 rounded-lg p-5 md:p-6">
                     <blockquote className="text-gray-700 italic mb-4 whitespace-pre-line">
                       {t('about.welcomeQuote')}
                     </blockquote>
@@ -231,56 +231,56 @@ export default function HomePage() {
         </section>
 
          {/* Notre mission (layout inspired by provided image) */}
-         <section className="py-20" style={{ backgroundColor: '#F3D3B7' }}>
+         <section className="py-16 md:py-20" style={{ backgroundColor: '#F3D3B7' }}>
           
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+            <div className="max-w-4xl mx-auto text-center mb-10 md:mb-12">
+              <h2 className="text-2xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
                 {t('home.mission')}
               </h2>
-              <p className="text-lg" style={{ color: '#1B2A31' }}>
+              <p className="text-base md:text-lg" style={{ color: '#1B2A31' }}>
               L’association JGEN œuvre pour l’émancipation des jeunes femmes et des militantes féministes 
               en les accompagnant à travers le renforcement de leurs compétences,
               la sensibilisation communautaire à la justice sociale et l’autonomisation économique.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
               {/* WHO WE ARE */}
               <div className="text-center">
-                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
-                  <Equal className="h-12 w-12" style={{ color: '#F3D3B7' }} />
+                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
+                  <Equal className="h-10 w-10 md:h-12 md:w-12" style={{ color: '#F3D3B7' }} />
                 </div>
-                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
-                <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+                <div className="uppercase tracking-widest text-xs md:text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
+                <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
                 Renforcement des capacités
                 </h3>
-                <p>Formations sur le leadership féministe, le consentement, les violences basées sur le genre et les droits en santé sexuelle et reproductive (DSSR).</p>
+                <p className="text-sm md:text-base">Formations sur le leadership féministe, le consentement, les violences basées sur le genre et les droits en santé sexuelle et reproductive (DSSR).</p>
                
               </div>
 
               {/* WHAT WE DO */}
               <div className="text-center">
-                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
-                  <Hand className="h-12 w-12" style={{ color: '#F3D3B7' }} />
+                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
+                  <Hand className="h-10 w-10 md:h-12 md:w-12" style={{ color: '#F3D3B7' }} />
                 </div>
-                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
-                <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+                <div className="uppercase tracking-widest text-xs md:text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
+                <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
                 Sensibilisation à la justice sociale
                 </h3>
-                <p>Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l’égalité des droits et réduire les inégalités socioéconomiques.</p>
+                <p className="text-sm md:text-base">Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l’égalité des droits et réduire les inégalités socioéconomiques.</p>
                  
               </div>
 
               {/* HOW WE WORK */}
               <div className="text-center">
-                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
-                  <Megaphone className="h-12 w-12" style={{ color: '#F3D3B7' }} />
+                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
+                  <Megaphone className="h-10 w-10 md:h-12 md:w-12" style={{ color: '#F3D3B7' }} />
                 </div>
-                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
-                <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+                <div className="uppercase tracking-widest text-xs md:text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
+                <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
                 Autonomisation socioéconomique
                 </h3>
-                <p>Soutien à la formation professionnelle, à la création d’emplois décents et à l’insertion des jeunes femmes vulnérables.</p>
+                <p className="text-sm md:text-base">Soutien à la formation professionnelle, à la création d’emplois décents et à l’insertion des jeunes femmes vulnérables.</p>
                
               </div>
             </div>
@@ -288,7 +288,7 @@ export default function HomePage() {
         </section>
 
         {/* Statistiques */}
-        <section className="py-16 bg-[#8A1036] text-white">
+        <section className="py-12 md:py-16 bg-[#8A1036] text-white">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {stats.map((stat, index) => {
@@ -297,8 +297,8 @@ export default function HomePage() {
                 const suffix = match ? match[2] : ''
                 return (
                   <div key={index} className="space-y-2">
-                    <CountUp end={end} suffix={suffix} className="text-4xl md:text-5xl font-bold" />
-                    <div className="text-lg">{stat.label}</div>
+                    <CountUp end={end} suffix={suffix} className="text-3xl md:text-5xl font-bold" />
+                    <div className="text-sm md:text-lg">{stat.label}</div>
                   </div>
                 )
               })}
@@ -307,11 +307,11 @@ export default function HomePage() {
         </section>
 
         {/* Programmes phares */}
-        <section className="py-16" style={{ backgroundColor: '#ffffff' }}>
+        <section className="py-12 md:py-16" style={{ backgroundColor: '#ffffff' }}>
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('home.programsHeadline')}</h2>
-              <p className="text-lg text-white/80">
+            <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{t('home.programsHeadline')}</h2>
+              <p className="text-base md:text-lg text-gray-600">
                 {t('home.programsSub')}
               </p>
             </div>
@@ -320,11 +320,11 @@ export default function HomePage() {
               <Carousel opts={{ loop: true }} className="w-full">
                 <CarouselContent>
                   {featuredPrograms.map((program) => (
-                    <CarouselItem key={program.id} className="basis-[85%] sm:basis-[60%] md:basis-[48%] lg:basis-[30%]">
-                      <Card className="border-0 shadow-lg overflow-hidden bg-white">
+                    <CarouselItem key={program.id} className="basis-[90%] sm:basis-[70%] md:basis-[48%] lg:basis-[31%]">
+                      <Card className="border-0 shadow-lg overflow-hidden bg-white h-full">
                         <div className={`h-1 bg-gradient-to-r ${program.color}`}></div>
                         {program.image && (
-                          <div className="h-40 w-full overflow-hidden">
+                          <div className="h-40 md:h-44 w-full overflow-hidden">
                             <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
                           </div>
                         )}
@@ -333,15 +333,15 @@ export default function HomePage() {
                             <div className={`p-2 rounded-lg bg-gradient-to-r ${program.color} text-white`}>
                               {program.icon}
                             </div>
-                            <CardTitle className="text-xl">{program.title}</CardTitle>
+                            <CardTitle className="text-base md:text-xl">{program.title}</CardTitle>
                           </div>
                         </CardHeader>
                         <CardContent>
-                          <CardDescription className="text-gray-600">
+                          <CardDescription className="text-gray-600 text-sm md:text-base">
                             {program.description}
                           </CardDescription>
                         </CardContent>
-                        <CardFooter>
+                        <CardFooter className="mt-auto">
                           <Button asChild variant="outline" className="bg-transparent w-full">
                             <Link to={`/nos-programmes#${program.id}`}>
                               {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
@@ -352,12 +352,12 @@ export default function HomePage() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="-left-4 md:-left-8" />
-                <CarouselNext className="-right-4 md:-right-8" />
+                <CarouselPrevious className="-left-3 md:-left-8" />
+                <CarouselNext className="-right-3 md:-right-8" />
               </Carousel>
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-10 md:mt-12">
               <Button asChild className="bg-[#E81F74] hover:bg-[#E81F74]/90">
                 <Link to="/nos-programmes">
                   {t('common.seeAllPrograms')}
@@ -368,19 +368,19 @@ export default function HomePage() {
         </section>
 
         {/* Actualités (grid) */}
-        <section className="py-16 bg-white">
+        <section className="py-12 md:py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('home.newsGridTitle')}</h2>
-              <p className="text-lg text-gray-600">
+            <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{t('home.newsGridTitle')}</h2>
+              <p className="text-base md:text-lg text-gray-600">
                 {t('home.newsGridSub')}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {news.map((item) => (
-                <Card key={item.id} className="overflow-hidden shadow-md">
-                  <div className="h-48 overflow-hidden">
+                <Card key={item.id} className="overflow-hidden shadow-md h-full">
+                  <div className="h-44 md:h-48 overflow-hidden">
                     <img 
                       src={item.image} 
                       alt={item.title}
@@ -388,14 +388,14 @@ export default function HomePage() {
                     />
                   </div>
                   <CardHeader>
-                    <div className="flex items-center text-sm text-gray-500 mb-2">
+                    <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2">
                       <Calendar className="h-4 w-4 mr-1" />
                       {item.date}
                     </div>
-                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                    <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-gray-600">
+                    <CardDescription className="text-gray-600 text-sm md:text-base">
                       {item.excerpt}
                     </CardDescription>
                   </CardContent>
@@ -410,7 +410,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-10 md:mt-12">
               <Button asChild variant="outline" className="bg-transparent">
                 <Link to="/blog">
                   {t('common.viewAll')} {t('home.news')}
@@ -421,13 +421,13 @@ export default function HomePage() {
         </section>
 
         {/* Appel à l'action */}
-        <section className="py-16 bg-[#E81F74] text-white">
+        <section className="py-12 md:py-16 bg-[#E81F74] text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('cta.join')}</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4">{t('cta.join')}</h2>
+            <p className="text-base md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto">
               Ensemble, nous pouvons créer un monde plus juste et égalitaire pour les femmes et les filles.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
               <Button asChild size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
                 <Link to="/contact">
                   {t('cta.volunteer')}
