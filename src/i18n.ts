@@ -148,7 +148,7 @@ const resources = {
       about: {
         title: 'À propos de J-GEN Sénégal',
         welcomeTitle: 'Mot de la Directrice Exécutive',
-        welcomeQuote: 'Bienvenue sur le site de J-GEN Sénégal. Notre combat pour l’égalité, la justice sociale et l’autonomisation des filles et des femmes est plus que jamais nécessaire. Ensemble, nous faisons bouger les lignes.',
+        welcomeQuote: "Chers ami.e.s, je vous souhaite une cordiale bienvenue sur le site de l’association JGEN SÉNÉGAL, Women Global Entrepreneurship. Créée en Octobre 2016, JGEN est une association féministe à but non lucratif qui travaille essentiellement à contribuer à l’élimination des violences basées sur le genre notamment les violences sexuelles et sexistes contre les femmes et les filles et la promotion de la santé sexuelle et reproductive des femmes. JGEN est également engagée à accompagner l’entrepreneuriat féminin des jeunes femmes et des jeunes filles sénégalaises, à promouvoir les droits des enfants, la justice climatique de genre et la justice économique.",
         welcomeName: 'Maimouna YADE',
         welcomeRole: 'Directrice Exécutive de J-GEN Sénégal'
       },

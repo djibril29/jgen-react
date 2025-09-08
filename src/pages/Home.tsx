@@ -284,8 +284,8 @@ export default function HomePage() {
                 <div className="md:w-2/3">
                   <h2 className="text-3xl md:text-4xl font-bold text-[#1B2A31] mb-4">{t('about.welcomeTitle')}</h2>
                   <div className="bg-gray-50 rounded-lg p-6">
-                    <blockquote className="text-gray-700 italic mb-4">
-                      “{t('about.welcomeQuote')}”
+                    <blockquote className="text-gray-700 italic mb-4 whitespace-pre-line">
+                      {t('about.welcomeQuote')}
                     </blockquote>
                     <div className="mt-6">
                       <p className="font-semibold text-[#1B2A31]">{t('about.welcomeName')}</p>
