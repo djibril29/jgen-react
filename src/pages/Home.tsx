@@ -192,7 +192,18 @@ export default function HomePage() {
 
          {/* Notre mission (layout inspired by provided image) */}
          <section className="py-20" style={{ backgroundColor: '#D8F876' }}>
+          
           <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
+                Notre mission
+              </h2>
+              <p className="text-lg" style={{ color: '#1B2A31' }}>
+                Contribuer à l’égalité des genres en soutenant les mouvements féministes, en finançant des
+                initiatives locales et en menant un plaidoyer ambitieux pour transformer durablement les vies
+                des femmes et des filles au Sénégal.
+              </p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {/* WHO WE ARE */}
               <div className="text-center">
