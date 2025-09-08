@@ -13,6 +13,7 @@ import EllesAussiProgram from './pages/programs/EllesAussiProgram'
 import ProscidesProgram from './pages/programs/ProscidesProgram'
 import JeunesVolontairesProgram from './pages/programs/JeunesVolontairesProgram'
 import LiggeeyalElegProgram from './pages/programs/LiggeeyalElegProgram'
+import ResourceView from './pages/ResourceView'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/ressources" element={<ResourcesPage />} />
+        <Route path="/ressources/:id" element={<ResourceView />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/programme/universite-ete-feministe" element={<UEFProgram />} />
         <Route path="/programme/pas-a-pas" element={<PasAPasProgram />} />

@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { Download, FileText, Video, Image, ExternalLink, Search, Filter, Calendar } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 /**
  * Page Ressources - Documents et ressources téléchargeables
@@ -308,12 +309,19 @@ export default function ResourcesPage() {
                         )}
                       </div>
                     </div>
-                    <Button asChild className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
-                      <a href={resource.fileUrl} className="flex items-center justify-center">
-                        <Download className="h-4 w-4 mr-2" />
-                        Télécharger
-                      </a>
-                    </Button>
+                    <div className="flex gap-3">
+                      <Button asChild variant="outline" className="flex-1">
+                        <Link to={`/ressources/${resource.id}`} className="flex items-center justify-center">
+                          Consulter
+                        </Link>
+                      </Button>
+                      <Button asChild className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
+                        <a href={resource.fileUrl || '#'} className="flex items-center justify-center" onClick={(e) => { if (!resource.fileUrl) e.preventDefault() }}>
+                          <Download className="h-4 w-4 mr-2" />
+                          Télécharger
+                        </a>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}

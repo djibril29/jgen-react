@@ -1,4 +1,5 @@
 
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -15,6 +16,42 @@ import heroBg from '@/assets/images/backgrounds/herobg1.png'
  * Présente l'organisation, ses missions et ses actualités
  */
 export default function HomePage() {
+  const CountUp = ({ end, durationMs = 1500, className, suffix = '' }: { end: number; durationMs?: number; className?: string; suffix?: string }) => {
+    const [value, setValue] = useState(0)
+    const containerRef = useRef<HTMLDivElement | null>(null)
+    const startedRef = useRef(false)
+
+    useEffect(() => {
+      const node = containerRef.current
+      if (!node) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !startedRef.current) {
+            startedRef.current = true
+            let startTimestamp: number | null = null
+            const step = (timestamp: number) => {
+              if (startTimestamp === null) startTimestamp = timestamp
+              const elapsed = timestamp - startTimestamp
+              const progress = Math.min(elapsed / durationMs, 1)
+              setValue(Math.floor(progress * end))
+              if (progress < 1) requestAnimationFrame(step)
+            }
+            requestAnimationFrame(step)
+            observer.disconnect()
+          }
+        },
+        { threshold: 0.3 }
+      )
+      observer.observe(node)
+      return () => observer.disconnect()
+    }, [end, durationMs])
+
+    return (
+      <div ref={containerRef} className={className}>
+        {value.toLocaleString()}{suffix}
+      </div>
+    )
+  }
   // Données des programmes phares
   const featuredPrograms = [
     {
@@ -133,12 +170,17 @@ export default function HomePage() {
         <section className="py-16 bg-[#E81F74] text-white">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {stats.map((stat, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="text-4xl md:text-5xl font-bold">{stat.number}</div>
-                  <div className="text-lg">{stat.label}</div>
-                </div>
-              ))}
+              {stats.map((stat, index) => {
+                const match = String(stat.number).match(/^(\d+)(.*)$/)
+                const end = match ? parseInt(match[1], 10) : 0
+                const suffix = match ? match[2] : ''
+                return (
+                  <div key={index} className="space-y-2">
+                    <CountUp end={end} suffix={suffix} className="text-4xl md:text-5xl font-bold" />
+                    <div className="text-lg">{stat.label}</div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
