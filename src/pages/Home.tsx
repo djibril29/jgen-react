@@ -199,9 +199,9 @@ export default function HomePage() {
                 Notre mission
               </h2>
               <p className="text-lg" style={{ color: '#1B2A31' }}>
-                Contribuer à l’égalité des genres en soutenant les mouvements féministes, en finançant des
-                initiatives locales et en menant un plaidoyer ambitieux pour transformer durablement les vies
-                des femmes et des filles au Sénégal.
+              L’association JGEN œuvre pour l’émancipation des jeunes femmes et des militantes féministes 
+              en les accompagnant à travers le renforcement de leurs compétences,
+              la sensibilisation communautaire à la justice sociale et l’autonomisation économique.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -210,11 +210,12 @@ export default function HomePage() {
                 <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
                   <Equal className="h-12 w-12" style={{ color: '#F3D3B7' }} />
                 </div>
-                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}>Who we are</div>
+                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
                 <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
-                  A feminist fund with an intersectional lens
+                Renforcement des capacités
                 </h3>
-                <Link to="/a-propos" className="underline text-lg" style={{ color: '#1B2A31' }}>Learn More</Link>
+                <p>Formations sur le leadership féministe, le consentement, les violences basées sur le genre et les droits en santé sexuelle et reproductive (DSSR).</p>
+               
               </div>
 
               {/* WHAT WE DO */}
@@ -222,11 +223,12 @@ export default function HomePage() {
                 <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
                   <Hand className="h-12 w-12" style={{ color: '#F3D3B7' }} />
                 </div>
-                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}>What we do</div>
+                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
                 <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
-                  Grantmaking and advocacy to challenge the status quo
+                Sensibilisation à la justice sociale
                 </h3>
-                <Link to="/nos-programmes" className="underline text-lg" style={{ color: '#1B2A31' }}>Learn More</Link>
+                <p>Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l’égalité des droits et réduire les inégalités socioéconomiques.</p>
+                
               </div>
 
               {/* HOW WE WORK */}
@@ -234,11 +236,12 @@ export default function HomePage() {
                 <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
                   <Megaphone className="h-12 w-12" style={{ color: '#F3D3B7' }} />
                 </div>
-                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}>How we work</div>
+                <div className="uppercase tracking-widest text-sm font-semibold mb-3" style={{ color: '#1B2A31' }}></div>
                 <h3 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
-                  Support for grassroots movements to lead the way
+                Autonomisation socioéconomique
                 </h3>
-                <Link to="/contact" className="underline text-lg" style={{ color: '#1B2A31' }}>Learn More</Link>
+                <p>Soutien à la formation professionnelle, à la création d’emplois décents et à l’insertion des jeunes femmes vulnérables.</p>
+               
               </div>
             </div>
           </div>
