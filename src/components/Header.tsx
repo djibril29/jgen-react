@@ -40,7 +40,7 @@ export default function Header() {
     navigate(`/${target}?q=${q}`)
   }
 
-  const changeLang = (lng: 'fr' | 'en' | 'es') => {
+  const changeLang = (lng: 'fr' | 'en') => {
     i18n.changeLanguage(lng)
   }
 
@@ -131,8 +131,6 @@ export default function Header() {
               <button onClick={() => changeLang('fr')} className="text-sm text-gray-600 hover:text-[#E81F74]">FR</button>
               <span className="text-gray-300">|</span>
               <button onClick={() => changeLang('en')} className="text-sm text-gray-600 hover:text-[#E81F74]">EN</button>
-              <span className="text-gray-300">|</span>
-              <button onClick={() => changeLang('es')} className="text-sm text-gray-600 hover:text-[#E81F74]">ES</button>
             </div>
             <button 
               onClick={scrollToNewsletter}
@@ -206,8 +204,6 @@ export default function Header() {
                 <button onClick={() => changeLang('fr')} className="text-xs text-gray-700">FR</button>
                 <span className="text-gray-300">|</span>
                 <button onClick={() => changeLang('en')} className="text-xs text-gray-700">EN</button>
-                <span className="text-gray-300">|</span>
-                <button onClick={() => changeLang('es')} className="text-xs text-gray-700">ES</button>
               </div>
 
               <Link 
