@@ -192,6 +192,37 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Mot de la directrice exécutive */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="md:w-1/3">
+                  <div className="aspect-square rounded-full overflow-hidden border-4" style={{ borderColor: '#F3D3B7' }}>
+                    <img 
+                      src="https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/847298f4-d790-46cb-8256-7683454f55d6.jpg" 
+                      alt={t('about.welcomeName') as string}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="md:w-2/3">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#1B2A31] mb-4">{t('about.welcomeTitle')}</h2>
+                  <div className="bg-gray-50 rounded-lg p-6">
+                    <blockquote className="text-gray-700 italic mb-4 whitespace-pre-line">
+                      {t('about.welcomeQuote')}
+                    </blockquote>
+                    <div className="mt-6">
+                      <p className="font-semibold text-[#1B2A31]">{t('about.welcomeName')}</p>
+                      <p className="text-gray-600">{t('about.welcomeRole')}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
          {/* Notre mission (layout inspired by provided image) */}
          <section className="py-20" style={{ backgroundColor: '#F3D3B7' }}>
           
@@ -264,36 +295,6 @@ export default function HomePage() {
                   </div>
                 )
               })}
-            </div>
-          </div>
-        </section>
-        {/* Mot de la directrice exécutive */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="md:w-1/3">
-                  <div className="aspect-square rounded-full overflow-hidden border-4" style={{ borderColor: '#F3D3B7' }}>
-                    <img 
-                      src="https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/847298f4-d790-46cb-8256-7683454f55d6.jpg" 
-                      alt={t('about.welcomeName') as string}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="md:w-2/3">
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#1B2A31] mb-4">{t('about.welcomeTitle')}</h2>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <blockquote className="text-gray-700 italic mb-4 whitespace-pre-line">
-                      {t('about.welcomeQuote')}
-                    </blockquote>
-                    <div className="mt-6">
-                      <p className="font-semibold text-[#1B2A31]">{t('about.welcomeName')}</p>
-                      <p className="text-gray-600">{t('about.welcomeRole')}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
