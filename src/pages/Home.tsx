@@ -189,7 +189,14 @@ export default function HomePage() {
         </section>
 
          {/* Notre mission */}
-         <section className="py-16 bg-white">
+         <section
+           className="py-16"
+           style={{
+             backgroundImage: `linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)), url(/src/assets/images/backgrounds/herobg2.png)`,
+             backgroundSize: 'cover',
+             backgroundPosition: 'center',
+           }}
+         >
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Notre mission</h2>
