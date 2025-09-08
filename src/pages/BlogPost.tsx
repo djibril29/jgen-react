@@ -113,20 +113,17 @@ export default function BlogPost() {
       
       <main className="flex-grow">
         {/* En-tête de l'article (Hero) */}
-        <section
-          className="relative bg-cover bg-center"
-          style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${article.image})` }}
-        >
+        <section className="py-12 md:py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto py-12 md:py-16">
-              <Button asChild variant="ghost" className="mb-6 text-white hover:text-white/90">
+            <div className="max-w-4xl mx-auto">
+              <Button asChild variant="ghost" className="mb-6 text-pink-600 hover:text-pink-700">
                 <Link to="/blog" className="flex items-center">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Retour au blog
                 </Link>
               </Button>
 
-              <div className="mb-5 text-white/90 text-sm flex items-center flex-wrap gap-x-3 gap-y-2">
+              <div className="mb-5 text-gray-600 text-sm flex items-center flex-wrap gap-x-3 gap-y-2">
                 <span className="inline-flex items-center"><Calendar className="h-4 w-4 mr-1" /> {article.date}</span>
                 <span>•</span>
                 <span className="inline-flex items-center"><User className="h-4 w-4 mr-1" /> {article.author}</span>
@@ -134,12 +131,12 @@ export default function BlogPost() {
                 <span>{article.readTime} de lecture</span>
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+              <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
                 {article.title}
               </h1>
 
               {article.excerpt && (
-                <p className="text-base md:text-lg text-white/90 max-w-3xl">
+                <p className="text-base md:text-lg text-gray-600 max-w-3xl">
                   {article.excerpt}
                 </p>
               )}
@@ -148,7 +145,7 @@ export default function BlogPost() {
                 {article.tags.map((tag: string, index: number) => (
                   <span 
                     key={index} 
-                    className="px-3 py-1 bg-white/15 text-white rounded-full text-sm backdrop-blur"
+                    className="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm"
                   >
                     <Tag className="h-3 w-3 inline mr-1" />
                     {tag}
