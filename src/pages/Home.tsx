@@ -282,7 +282,7 @@ export default function HomePage() {
               <Carousel opts={{ loop: true }} className="w-full">
                 <CarouselContent>
                   {featuredPrograms.map((program) => (
-                    <CarouselItem key={program.id} className="md:basis-1/2 lg:basis-1/3">
+                    <CarouselItem key={program.id} className="basis-[85%] sm:basis-[60%] md:basis-[48%] lg:basis-[30%]">
                       <Card className="border-0 shadow-lg overflow-hidden bg-white">
                         <div className={`h-1 bg-gradient-to-r ${program.color}`}></div>
                         {program.image && (
