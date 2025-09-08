@@ -5,12 +5,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Users, Target, Award, Globe, Heart, Star, Shield, Hand, Megaphone } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Page À propos - Présentation détaillée de l'organisation J-GEN
  * Historique, mission, vision, valeurs et équipe
  */
 export default function AboutPage() {
+  const { t } = useTranslation()
   // Valeurs de l'organisation
   const values = [
     {
@@ -133,9 +135,8 @@ export default function AboutPage() {
         <section className="py-12 bg-[#F3D3B7]">
           <div className="container mx-auto px-4 text-center">
             <p className="text-2xl md:text-3xl font-extrabold text-[#1B2A31] max-w-4xl mx-auto">
-            La vision de J-GEN est d'être une référence dans l’accompagnement des femmes et de filles
-pour une meilleure prise en charge de leurs droits fondamentaux particulièrement en matière
-de santé et bien-être, d’insertion socioprofessionnelle, de participation politique entre autres.
+              Nous aspirons à être une organisation féministe engagée dans l’évolution continue et l’apprentissage.
+              Nos valeurs guident la manière dont nous agissons au sein du mouvement.
             </p>
           </div>
         </section>
@@ -208,19 +209,19 @@ de santé et bien-être, d’insertion socioprofessionnelle, de participation po
         {/* Appel à l'action */}
         <section className="py-16 bg-[#1B2A31] text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Rejoignez notre mouvement</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('cta.join')}</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Votre engagement nous permet de continuer notre lutte pour les droits des femmes et des filles.
             </p>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Button asChild size="lg" className="bg-white text-[#1B2A31] hover:bg-gray-100">
                 <Link to="/contact">
-                  Devenir bénévole
+                  {t('cta.volunteer')}
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-[#1B2A31]">
                 <Link to="/blog">
-                  Suivre nos actualités
+                  {t('cta.followNews')}
                 </Link>
               </Button>
             </div>

@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { Download, FileText, Video, Image, ExternalLink, Search, Filter, Calendar } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Page Ressources - Documents et ressources téléchargeables
@@ -19,10 +20,11 @@ export default function ResourcesPage() {
   const [searchTerm, setSearchTerm] = useState(initialQ)
   const [selectedType, setSelectedType] = useState('all')
   const [selectedYear, setSelectedYear] = useState('all')
+  const { t } = useTranslation()
 
   // Types de ressources
   const resourceTypes = [
-    { id: 'all', name: 'Tous les types', icon: <FileText className="h-5 w-5" /> },
+    { id: 'all', name: t('resourcesPage.filterTypeAll'), icon: <FileText className="h-5 w-5" /> },
     { id: 'rapport', name: 'Rapports', icon: <FileText className="h-5 w-5" /> },
     { id: 'guide', name: 'Guides', icon: <FileText className="h-5 w-5" /> },
     { id: 'video', name: 'Vidéos', icon: <Video className="h-5 w-5" /> },
@@ -32,7 +34,7 @@ export default function ResourcesPage() {
 
   // Années disponibles
   const years = [
-    { id: 'all', name: 'Toutes les années' },
+    { id: 'all', name: t('resourcesPage.yearsAll') },
     { id: '2024', name: '2024' },
     { id: '2023', name: '2023' },
     { id: '2022', name: '2022' },
@@ -44,7 +46,7 @@ export default function ResourcesPage() {
     {
       id: 1,
       title: 'Rapport Annuel J-GEN 2024',
-      description: 'Le rapport annuel complet des activités et réalisations de J-GEN pour l\'année 2024.',
+      description: "Le rapport annuel complet des activités et réalisations de J-GEN pour l'année 2024.",
       type: 'rapport',
       year: '2024',
       date: '15 Décembre 2024',
@@ -71,8 +73,8 @@ export default function ResourcesPage() {
     },
     {
       id: 3,
-      title: 'Outils de plaidoyer pour l\'avortement sécurisé',
-      description: 'Kit d\'outils développés dans le cadre du programme PAS À PAS pour le plaidoyer en faveur de l\'avortement sécurisé.',
+      title: "Outils de plaidoyer pour l'avortement sécurisé",
+      description: "Kit d'outils développés dans le cadre du programme PAS À PAS pour le plaidoyer en faveur de l'avortement sécurisé.",
       type: 'outil',
       year: '2024',
       date: '15 Septembre 2024',
@@ -86,7 +88,7 @@ export default function ResourcesPage() {
     {
       id: 4,
       title: 'Rapport Annuel J-GEN 2023',
-      description: 'Le rapport annuel complet des activités et réalisations de J-GEN pour l\'année 2023.',
+      description: "Le rapport annuel complet des activités et réalisations de J-GEN pour l'année 2023.",
       type: 'rapport',
       year: '2023',
       date: '20 Décembre 2023',
@@ -114,7 +116,7 @@ export default function ResourcesPage() {
     {
       id: 6,
       title: 'Guide de prévention des VBG',
-      description: 'Guide complet sur la prévention des violences basées sur le genre à l\'égard des femmes et des filles.',
+      description: "Guide complet sur la prévention des violences basées sur le genre à l'égard des femmes et des filles.",
       type: 'guide',
       year: '2023',
       date: '25 Novembre 2023',
@@ -177,8 +179,8 @@ export default function ResourcesPage() {
       <main className="flex-grow">
         {/* Hero Section */}
         <Hero
-          title="Ressources"
-          description="Accédez à nos rapports, guides, outils et autres ressources pour en savoir plus sur nos actions."
+          title={t('resourcesPage.title')}
+          description={t('resourcesPage.description')}
           backgroundImage="https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/101a1234-1e2a-4546-a390-f68da941068b.jpg"
         />
 
@@ -190,7 +192,7 @@ export default function ResourcesPage() {
               <div className="relative flex-grow max-w-md">
                 <input
                   type="text"
-                  placeholder="Rechercher une ressource..."
+                  placeholder={t('resourcesPage.searchPlaceholder')}
                   className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -235,7 +237,7 @@ export default function ResourcesPage() {
           <div className="container mx-auto px-4">
             {/* Catégories */}
             <div className="mb-12">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Parcourir par catégorie</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('resourcesPage.browseByCategory')}</h3>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category, index) => (
                   <button
@@ -252,14 +254,14 @@ export default function ResourcesPage() {
             {/* Résultats */}
             <div className="mb-6 flex justify-between items-center">
               <p className="text-gray-600">
-                {filteredResources.length} ressource{filteredResources.length > 1 ? 's' : ''} trouvée{filteredResources.length > 1 ? 's' : ''}
+                {t('resourcesPage.results', { count: filteredResources.length })}
               </p>
               <div className="flex space-x-2">
                 <Button variant="outline" size="sm">
-                  Plus récentes
+                  {t('resourcesPage.newest')}
                 </Button>
                 <Button variant="outline" size="sm">
-                  Plus téléchargées
+                  {t('resourcesPage.mostDownloaded')}
                 </Button>
               </div>
             </div>
@@ -316,13 +318,13 @@ export default function ResourcesPage() {
                     <div className="flex gap-3">
                       <Button asChild variant="outline" className="flex-1">
                         <Link to={`/ressources/${resource.id}`} className="flex items-center justify-center">
-                          Consulter
+                          {t('resourcesPage.view')}
                         </Link>
                       </Button>
                       <Button asChild className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
                         <a href={resource.fileUrl || '#'} className="flex items-center justify-center" onClick={(e) => { if (!resource.fileUrl) e.preventDefault() }}>
                           <Download className="h-4 w-4 mr-2" />
-                          Télécharger
+                          {t('resourcesPage.download')}
                         </a>
                       </Button>
                     </div>
@@ -334,7 +336,7 @@ export default function ResourcesPage() {
             {/* Message si aucun résultat */}
             {filteredResources.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-gray-500 text-lg mb-4">Aucune ressource trouvée pour votre recherche.</p>
+                <p className="text-gray-500 text-lg mb-4">{t('resourcesPage.noneFound')}</p>
                 <Button 
                   variant="outline"
                   onClick={() => {
@@ -343,7 +345,7 @@ export default function ResourcesPage() {
                     setSelectedYear('all')
                   }}
                 >
-                  Réinitialiser les filtres
+                  {t('common.resetFilters')}
                 </Button>
               </div>
             )}
@@ -354,19 +356,19 @@ export default function ResourcesPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Vous ne trouvez pas ce que vous cherchez ?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('resourcesPage.helpTitle')}</h2>
               <p className="text-lg text-gray-600 mb-8">
-                Nous pouvons vous aider à trouver l'information dont vous avez besoin ou vous mettre en contact avec nos experts.
+                {t('resourcesPage.helpText')}
               </p>
               <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <Button asChild size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
                   <a href="/contact">
-                    Contacter notre équipe
+                    {t('resourcesPage.contactTeam')}
                   </a>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-transparent">
                   <a href="mailto:jgensenegal@gmail.com">
-                    Envoyer un email
+                    {t('resourcesPage.sendEmail')}
                   </a>
                 </Button>
               </div>

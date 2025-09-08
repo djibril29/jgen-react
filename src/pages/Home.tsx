@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 import { Users, Heart, BookOpen, Calendar, ArrowRight, Star, Equal, Megaphone, Hand } from 'lucide-react'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
+import { useTranslation } from 'react-i18next'
 
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import uefImg from '@/assets/images/projects/uef/uef1.png'
@@ -21,6 +22,7 @@ import InterventionMap from '@/components/InterventionMap'
  * Présente l'organisation, ses missions et ses actualités
  */
 export default function HomePage() {
+  const { t } = useTranslation()
   const CountUp = ({ end, durationMs = 1500, className, suffix = '' }: { end: number; durationMs?: number; className?: string; suffix?: string }) => {
     const [value, setValue] = useState(0)
     const containerRef = useRef<HTMLDivElement | null>(null)
@@ -61,8 +63,8 @@ export default function HomePage() {
   const featuredPrograms = [
     {
       id: 'uef',
-      title: 'Université d\'Été Féministe',
-      description: 'Un espace de mobilisation, de savoir et de résistance pour les féministes d\'Afrique de l\'Ouest et du Centre.',
+      title: "Université d'Été Féministe",
+      description: "Un espace de mobilisation, de savoir et de résistance pour les féministes d'Afrique de l'Ouest et du Centre.",
       color: 'from-pink-500 to-purple-600',
       icon: <BookOpen className="h-8 w-8" />,
       image: uefImg as string,
@@ -70,7 +72,7 @@ export default function HomePage() {
     {
       id: 'pas-a-pas',
       title: 'PAS À PAS',
-      description: 'Programme pionnier en soutien au plaidoyer pour l\'avortement sécurisé en cas de viol et d\'inceste.',
+      description: "Programme pionnier en soutien au plaidoyer pour l'avortement sécurisé en cas de viol et d'inceste.",
       color: 'from-orange-500 to-red-500',
       icon: <Heart className="h-8 w-8" />,
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
@@ -78,7 +80,7 @@ export default function HomePage() {
     {
       id: 'elles-aussi',
       title: 'ELLES AUSSI',
-      description: 'Projet d\'intervention communautaire contre les violences sexuelles à l\'égard des filles.',
+      description: "Projet d'intervention communautaire contre les violences sexuelles à l'égard des filles.",
       color: 'from-green-500 to-teal-500',
       icon: <Users className="h-8 w-8" />,
       image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
@@ -86,7 +88,7 @@ export default function HomePage() {
     {
       id: 'proscides',
       title: 'PROSCIDES',
-      description: 'Programme de protection des droits de l\'enfant et participation citoyenne.',
+      description: "Programme de protection des droits de l'enfant et participation citoyenne.",
       color: 'from-blue-500 to-indigo-600',
       icon: <Users className="h-8 w-8" />,
       image: proscidesImg as string,
@@ -107,21 +109,21 @@ export default function HomePage() {
       id: 1,
       title: 'Rapport Annuel 2024 publié',
       date: '15 Décembre 2024',
-      excerpt: 'Découvrez nos réalisations et l\'impact de nos actions tout au long de l\'année 2024.',
+      excerpt: "Découvrez nos réalisations et l'impact de nos actions tout au long de l'année 2024.",
       image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/36408d98-48eb-4f40-b6c0-5521359ae9c1.jpg'
     },
     {
       id: 2,
       title: 'Forum National sur la Justice Reproductive',
       date: '30 Septembre 2024',
-      excerpt: '150 participants ont discuté des avortements clandestins et de l\'application du Protocole de Maputo.',
+      excerpt: "150 participants ont discuté des avortements clandestins et de l'application du Protocole de Maputo.",
       image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/e6d101e4-0e4c-4038-9fc9-080fa240aa9b.jpg'
     },
     {
       id: 3,
       title: 'Lancement du projet LIGGEEYAL ËLËG',
       date: '15 Novembre 2024',
-      excerpt: 'Un nouveau projet pour l\'autonomisation économique des jeunes filles et femmes vulnérables.',
+      excerpt: "Un nouveau projet pour l'autonomisation économique des jeunes filles et femmes vulnérables.",
       image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/20f3a980-af34-4acd-849f-41702537edd8.jpg'
     }
   ]
@@ -150,8 +152,8 @@ export default function HomePage() {
         >
           <div className="container mx-auto px-4 py-8 md:py-12">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl md:text-3xl font-bold">Actualités</h2>
-              <Link to="/blog" className="text-sm underline hover:no-underline">Voir toutes</Link>
+              <h2 className="text-2xl md:text-3xl font-bold">{t('home.news')}</h2>
+              <Link to="/blog" className="text-sm underline hover:no-underline">{t('common.viewAll')}</Link>
             </div>
             <div className="relative">
               <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]} className="w-full">
@@ -175,7 +177,7 @@ export default function HomePage() {
                           <p className="text-gray-100 mb-6">{item.excerpt}</p>
                           <Button asChild className="bg-white text-gray-900 hover:bg-gray-100">
                             <Link to={`/blog/${item.id}`} className="flex items-center">
-                              Lire la suite <ArrowRight className="ml-2 h-4 w-4" />
+                              {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                           </Button>
                         </div>
@@ -196,7 +198,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
-                Notre mission
+                {t('home.mission')}
               </h2>
               <p className="text-lg" style={{ color: '#1B2A31' }}>
               L’association JGEN œuvre pour l’émancipation des jeunes femmes et des militantes féministes 
@@ -228,7 +230,7 @@ export default function HomePage() {
                 Sensibilisation à la justice sociale
                 </h3>
                 <p>Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l’égalité des droits et réduire les inégalités socioéconomiques.</p>
-                
+                 
               </div>
 
               {/* HOW WE WORK */}
@@ -246,10 +248,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Nos Zones d'intervention */}
-        
-        
 
         {/* Statistiques */}
         <section className="py-16 bg-[#8A1036] text-white">
@@ -270,15 +268,13 @@ export default function HomePage() {
           </div>
         </section>
 
-       
-
         {/* Programmes phares */}
         <section className="py-16" style={{ backgroundColor: '#1B2A31' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Nos programmes phares</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('home.programsHeadline')}</h2>
               <p className="text-lg text-white/80">
-                Découvrez nos initiatives clés qui transforment la vie des femmes et des filles au Sénégal.
+                {t('home.programsSub')}
               </p>
             </div>
 
@@ -310,7 +306,7 @@ export default function HomePage() {
                         <CardFooter>
                           <Button asChild variant="outline" className="bg-transparent w-full">
                             <Link to={`/nos-programmes#${program.id}`}>
-                              En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
+                              {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                           </Button>
                         </CardFooter>
@@ -326,7 +322,7 @@ export default function HomePage() {
             <div className="text-center mt-12">
               <Button asChild className="bg-[#E81F74] hover:bg-[#E81F74]/90">
                 <Link to="/nos-programmes">
-                  Voir tous nos programmes
+                  {t('common.seeAllPrograms')}
                 </Link>
               </Button>
             </div>
@@ -337,9 +333,9 @@ export default function HomePage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Actualités</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('home.newsGridTitle')}</h2>
               <p className="text-lg text-gray-600">
-                Restez informé de nos dernières actions et événements.
+                {t('home.newsGridSub')}
               </p>
             </div>
 
@@ -368,7 +364,7 @@ export default function HomePage() {
                   <CardFooter>
                     <Button asChild variant="ghost" className="text-pink-600 hover:text-pink-700 hover:bg-pink-50 p-0">
                       <Link to={`/blog/${item.id}`} className="flex items-center">
-                        Lire la suite <ArrowRight className="ml-2 h-4 w-4" />
+                        {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
                   </CardFooter>
@@ -379,7 +375,7 @@ export default function HomePage() {
             <div className="text-center mt-12">
               <Button asChild variant="outline" className="bg-transparent">
                 <Link to="/blog">
-                  Voir toutes les actualités
+                  {t('common.viewAll')} {t('home.news')}
                 </Link>
               </Button>
             </div>
@@ -389,19 +385,19 @@ export default function HomePage() {
         {/* Appel à l'action */}
         <section className="py-16 bg-[#E81F74] text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Rejoignez notre mouvement</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('cta.join')}</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Ensemble, nous pouvons créer un monde plus juste et égalitaire pour les femmes et les filles.
             </p>
             <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Button asChild size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
                 <Link to="/contact">
-                  Devenir bénévole
+                  {t('cta.volunteer')}
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-purple-600">
                 <Link to="/blog">
-                  Suivre nos actualités
+                  {t('cta.followNews')}
                 </Link>
               </Button>
             </div>

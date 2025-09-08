@@ -7,6 +7,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { Calendar, User, Tag, Search, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 /**
  * Page Blog - Actualités et articles de J-GEN
@@ -18,23 +19,24 @@ export default function BlogPage() {
   const initialQ = params.get('q') || ''
   const [searchTerm, setSearchTerm] = useState(initialQ)
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const { t } = useTranslation()
 
   // Catégories d'articles
   const categories = [
-    { id: 'all', name: 'Tous les articles', count: 12 },
-    { id: 'actualites', name: 'Actualités', count: 5 },
-    { id: 'evenements', name: 'Événements', count: 3 },
-    { id: 'plaidoyer', name: 'Plaidoyer', count: 2 },
-    { id: 'temoignages', name: 'Témoignages', count: 2 }
+    { id: 'all', name: t('blog.categories.all'), count: 12 },
+    { id: 'actualites', name: t('blog.categories.actualites'), count: 5 },
+    { id: 'evenements', name: t('blog.categories.evenements'), count: 3 },
+    { id: 'plaidoyer', name: t('blog.categories.plaidoyer'), count: 2 },
+    { id: 'temoignages', name: t('blog.categories.temoignages'), count: 2 }
   ]
 
   // Articles du blog
   const articles = [
     {
       id: 1,
-      title: 'Rapport Annuel 2024 : Une année de résilience et d\'adaptation stratégique',
+      title: "Rapport Annuel 2024 : Une année de résilience et d'adaptation stratégique",
       excerpt: 'Découvrez les réalisations marquantes de J-GEN en 2024 et notre vision pour 2025 dans ce rapport annuel complet.',
-      content: 'L\'année 2024 a été marquée par un rétrécissement préoccupant de l\'espace civique, tant au niveau national qu\'international. Dans ce contexte particulièrement contraint, J-GEN Sénégal a su faire preuve d\'une résilience remarquable...',
+      content: "L'année 2024 a été marquée par un rétrécissement préoccupant de l'espace civique, tant au niveau national qu'international. Dans ce contexte particulièrement contraint, J-GEN Sénégal a su faire preuve d'une résilience remarquable...",
       date: '15 Décembre 2024',
       author: 'Maimouna YADE',
       category: 'actualites',
@@ -44,8 +46,8 @@ export default function BlogPage() {
     {
       id: 2,
       title: 'Forum National sur la Justice Reproductive : Un pas vers le changement',
-      excerpt: '150 participants ont discuté des avortements clandestins et de l\'application du Protocole de Maputo lors de notre forum.',
-      content: 'Organisé en septembre 2024, le premier Forum de JGEN sur les avortements clandestins et l\'application du Protocole de Maputo a rassemblé 150 participant·es issues des réseaux constitués par le programme PAS À PAS...',
+      excerpt: "150 participants ont discuté des avortements clandestins et de l'application du Protocole de Maputo lors de notre forum.",
+      content: "Organisé en septembre 2024, le premier Forum de JGEN sur les avortements clandestins et l'application du Protocole de Maputo a rassemblé 150 participant·es issues des réseaux constitués par le programme PAS À PAS...",
       date: '30 Septembre 2024',
       author: 'Équipe J-GEN',
       category: 'evenements',
@@ -54,9 +56,9 @@ export default function BlogPage() {
     },
     {
       id: 3,
-      title: 'Lancement du projet LIGGEEYAL ËLËG pour l\'autonomisation économique',
-      excerpt: 'Un nouveau projet de 3 ans pour l\'autonomisation économique des jeunes filles et femmes vulnérables à Kaolack et Fatick.',
-      content: 'LIGGEEYAL ËLËG est un projet qui s\'allie à la mission de J-GEN. En partenariat avec l\'Organisation Internationale de la Francophonie (OIF), ce projet vise l\'autonomisation économique des jeunes filles et femmes vulnérables...',
+      title: "Lancement du projet LIGGEEYAL ËLËG pour l'autonomisation économique",
+      excerpt: "Un nouveau projet de 3 ans pour l'autonomisation économique des jeunes filles et femmes vulnérables à Kaolack et Fatick.",
+      content: "LIGGEEYAL ËLËG est un projet qui s'allie à la mission de J-GEN. En partenariat avec l'Organisation Internationale de la Francophonie (OIF), ce projet vise l'autonomisation économique des jeunes filles et femmes vulnérables...",
       date: '15 Novembre 2024',
       author: 'Équipe J-GEN',
       category: 'actualites',
@@ -65,9 +67,9 @@ export default function BlogPage() {
     },
     {
       id: 4,
-      title: 'Université d\'Été Féministe 2024 : Un espace de savoir et de résistance',
-      excerpt: 'Retour sur la deuxième édition de l\'UEF qui a réuni 275 militantes féministes d\'Afrique francophone.',
-      content: 'En 2024, JGEN Sénégal, en partenariat avec le Collectif des Féministes du Sénégal, a marqué un nouveau tournant dans le leadership féministe régional en organisant la deuxième édition de l\'Université d\'Été Féministe...',
+      title: "Université d'Été Féministe 2024 : Un espace de savoir et de résistance",
+      excerpt: "Retour sur la deuxième édition de l'UEF qui a réuni 275 militantes féministes d'Afrique francophone.",
+      content: "En 2024, JGEN Sénégal, en partenariat avec le Collectif des Féministes du Sénégal, a marqué un nouveau tournant dans le leadership féministe régional en organisant la deuxième édition de l'Université d'Été Féministe...",
       date: '10 Août 2024',
       author: 'Équipe J-GEN',
       category: 'evenements',
@@ -77,8 +79,8 @@ export default function BlogPage() {
     {
       id: 5,
       title: 'Témoignage : Aminata, survivante et militante',
-      excerpt: 'Aminata partage son parcours de survivante et son engagement dans la lutte contre les violences faites aux filles.',
-      content: '« Avant de rencontrer J-GEN, je me sentais seule et perdue. Les séances de guérison m\'ont aidée à retrouver ma force. Aujourd\'hui, je suis militante et j\'aide d\'autres filles comme moi... »',
+      excerpt: "Aminata partage son parcours de survivante et son engagement dans la lutte contre les violences faites aux filles.",
+      content: "« Avant de rencontrer J-GEN, je me sentais seule et perdue. Les séances de guérison m'ont aidée à retrouver ma force. Aujourd'hui, je suis militante et j'aide d'autres filles comme moi... »",
       date: '5 Juillet 2024',
       author: 'Aminata Diop',
       category: 'temoignages',
@@ -87,9 +89,9 @@ export default function BlogPage() {
     },
     {
       id: 6,
-      title: 'Plaidoyer pour la dépénalisation de l\'avortement en cas de viol',
-      excerpt: 'Notre position et nos arguments en faveur de la dépénalisation de l\'avortement en cas de viol et d\'inceste au Sénégal.',
-      content: 'Le programme PAS À PAS de J-GEN défend la dépénalisation de l\'avortement en cas de viol et d\'inceste comme une mesure de justice reproductive essentielle. Cette position s\'appuie sur plusieurs arguments...',
+      title: "Plaidoyer pour la dépénalisation de l'avortement en cas de viol",
+      excerpt: "Notre position et nos arguments en faveur de la dépénalisation de l'avortement en cas de viol et d'inceste au Sénégal.",
+      content: "Le programme PAS À PAS de J-GEN défend la dépénalisation de l'avortement en cas de viol et d'inceste comme une mesure de justice reproductive essentielle. Cette position s'appuie sur plusieurs arguments...",
       date: '20 Juin 2024',
       author: 'Équipe Plaidoyer J-GEN',
       category: 'plaidoyer',
@@ -120,8 +122,8 @@ export default function BlogPage() {
       <main className="flex-grow">
         {/* Hero Section */}
         <Hero
-          title="Blog & Actualités"
-          description="Restez informé de nos actions, événements et prises de position pour les droits des femmes et des filles."
+          title={t('blog.title')}
+          description={t('blog.description')}
           backgroundImage="https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/a9e12dc2-7eb5-417c-9194-a8605c2c38ed.jpg"
         />
 
@@ -136,7 +138,7 @@ export default function BlogPage() {
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder="Rechercher des articles..."
+                      placeholder={t('blog.searchPlaceholder')}
                       className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -210,7 +212,7 @@ export default function BlogPage() {
                               </div>
                               <Button asChild variant="ghost" className="text-pink-600 hover:text-pink-700 hover:bg-pink-50 p-0">
                                 <Link to={`/blog/${article.id}`} className="flex items-center">
-                                  Lire la suite <ArrowRight className="ml-2 h-4 w-4" />
+                                  {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                               </Button>
                             </CardContent>
@@ -220,7 +222,7 @@ export default function BlogPage() {
                     ))
                   ) : (
                     <div className="text-center py-12">
-                      <p className="text-gray-500 text-lg">Aucun article trouvé pour votre recherche.</p>
+                      <p className="text-gray-500 text-lg">{t('blog.noneFound')}</p>
                       <Button 
                         variant="outline" 
                         className="mt-4"
@@ -229,7 +231,7 @@ export default function BlogPage() {
                           setSelectedCategory('all')
                         }}
                       >
-                        Réinitialiser les filtres
+                        {t('common.resetFilters')}
                       </Button>
                     </div>
                   )}
@@ -239,7 +241,7 @@ export default function BlogPage() {
                 <div className="mt-12 flex justify-center">
                   <div className="flex space-x-2">
                     <Button variant="outline" disabled>
-                      Précédent
+                      {t('common.previous')}
                     </Button>
                     <Button className="bg-gradient-to-r from-pink-500 to-purple-600">
                       1
@@ -248,7 +250,7 @@ export default function BlogPage() {
                       2
                     </Button>
                     <Button variant="outline">
-                      Suivant
+                      {t('common.next')}
                     </Button>
                   </div>
                 </div>
