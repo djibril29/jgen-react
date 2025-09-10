@@ -232,7 +232,7 @@ export default function HomePage() {
         </section>
 
          {/* Notre mission (layout inspired by provided image) */}
-         <section className="py-16 md:py-20" style={{ backgroundColor: '#f9dded' }}>
+         <section className="py-16 md:py-20" style={{ backgroundColor: '#ffffff' }}>
           
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-10 md:mb-12">
@@ -245,7 +245,7 @@ export default function HomePage() {
               la sensibilisation communautaire à la justice sociale et l’autonomisation économique.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 m-30">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 bg-gray-50">
               {/* WHO WE ARE */}
               <div className="text-center">
                 <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
