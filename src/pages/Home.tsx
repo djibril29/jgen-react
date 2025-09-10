@@ -308,7 +308,7 @@ export default function HomePage() {
         </section>
 
         {/* Programmes phares */}
-        <section className="py-12 md:py-16" style={{ backgroundColor: '#ffffff' }}>
+        <section className="py-12 md:py-16" style={{ backgroundColor: '#f9dded' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{t('home.programsHeadline')}</h2>
@@ -323,7 +323,7 @@ export default function HomePage() {
               {featuredPrograms.map((program) => (
                     <CarouselItem key={program.id} className="basis-[90%] sm:basis-[70%] md:basis-[48%] lg:basis-[31%]">
                       <Card className="border-0 shadow-lg overflow-hidden bg-white h-full">
-                        <div className={`h-1 bg-gradient-to-r ${program.color}`}></div>
+                        <div className={`h-1`}></div>
                         {program.image && (
                           <div className="h-40 md:h-44 w-full overflow-hidden">
                             <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
@@ -331,7 +331,7 @@ export default function HomePage() {
                         )}
                   <CardHeader>
                     <div className="flex items-center space-x-3">
-                      <div className={`p-2 rounded-lg bg-gradient-to-r ${program.color} text-white`}>
+                      <div className={`p-2 rounded-lg text-white`}>
                         {program.icon}
                       </div>
                             <CardTitle className="text-base md:text-xl">{program.title}</CardTitle>
