@@ -207,7 +207,7 @@ export default function ProgramsPage() {
             <div className="grid grid-cols-1 gap-12">
               {filteredPrograms.map((program) => (
                 <div key={program.id} id={program.id} className="scroll-mt-24">
-                  <Card className="overflow-hidden border-0 shadow-lg">
+                  <Card className="overflow-hidden border-0 shadow-lg rounded-xl max-w-4xl mx-auto">
                     {/* Image illustrative */}
                     <div className="h-48 md:h-56 w-full overflow-hidden">
                       <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
@@ -287,12 +287,12 @@ export default function ProgramsPage() {
                               {t('programsPage.sidebarText')}
                             </p>
                             <div className="space-y-3">
-                              <Button asChild className="w-full bg-gray-900 text-white hover:bg-gray-800">
+                              <Button asChild className="w-full rounded-full border-pink-600 text-white bg-pink-600 hover:bg-pink-700 transition-colors">
                                 <Link to={program.route}>
                                   Voir le programme
                                 </Link>
                               </Button>
-                              <Button asChild variant="outline" className="bg-transparent w-full">
+                              <Button asChild variant="outline" className="bg-transparent w-full rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
                                 <Link to="/ressources">
                                   {t('programsPage.viewResources')}
                                 </Link>

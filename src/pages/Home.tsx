@@ -76,7 +76,7 @@ export default function HomePage() {
       description: "Programme pionnier en soutien au plaidoyer pour l'avortement sécurisé en cas de viol et d'inceste.",
       color: 'from-orange-500 to-red-500',
       icon: <Heart className="h-8 w-8" />,
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
+      image: heroBg as string,
     },
     {
       id: 'elles-aussi',
@@ -84,7 +84,7 @@ export default function HomePage() {
       description: "Projet d'intervention communautaire contre les violences sexuelles à l'égard des filles.",
       color: 'from-green-500 to-teal-500',
       icon: <Users className="h-8 w-8" />,
-      image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',
+      image: proscidesImg as string,
     },
     {
       id: 'proscides',
@@ -111,21 +111,21 @@ export default function HomePage() {
       title: 'Rapport Annuel 2024 publié',
       date: '15 Décembre 2024',
       excerpt: "Découvrez nos réalisations et l'impact de nos actions tout au long de l'année 2024.",
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/36408d98-48eb-4f40-b6c0-5521359ae9c1.jpg'
+      image: uefImg as string
     },
     {
       id: 2,
       title: 'Forum National sur la Justice Reproductive',
       date: '30 Septembre 2024',
       excerpt: "150 participants ont discuté des avortements clandestins et de l'application du Protocole de Maputo.",
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/e6d101e4-0e4c-4038-9fc9-080fa240aa9b.jpg'
+      image: proscidesImg as string
     },
     {
       id: 3,
       title: 'Lancement du projet LIGGEEYAL ËLËG',
       date: '15 Novembre 2024',
       excerpt: "Un nouveau projet pour l'autonomisation économique des jeunes filles et femmes vulnérables.",
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/20f3a980-af34-4acd-849f-41702537edd8.jpg'
+      image: jvImg as string
     }
   ]
 
@@ -321,9 +321,8 @@ export default function HomePage() {
               <Carousel opts={{ loop: true }} className="w-full">
                 <CarouselContent>
               {featuredPrograms.map((program) => (
-                    <CarouselItem key={program.id} className="basis-[90%] sm:basis-[70%] md:basis-[48%] lg:basis-[31%]">
-                      <Card className="border-0 shadow-lg overflow-hidden bg-white h-full">
-                        <div className={`h-1`}></div>
+                    <CarouselItem key={program.id} className="basis-[90%] sm:basis-[68%] md:basis-[42%] lg:basis-[28%]">
+                      <Card className="border-0 shadow-lg overflow-hidden bg-white h-full rounded-xl max-w-sm mx-auto">
                         {program.image && (
                           <div className="h-40 md:h-44 w-full overflow-hidden">
                             <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
@@ -343,7 +342,7 @@ export default function HomePage() {
                     </CardDescription>
                   </CardContent>
                         <CardFooter className="mt-auto">
-                    <Button asChild variant="outline" className="bg-transparent w-full">
+                    <Button asChild variant="outline" className="w-full rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
                       <Link to={`/nos-programmes#${program.id}`}>
                               {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -359,7 +358,7 @@ export default function HomePage() {
             </div>
 
             <div className="text-center mt-10 md:mt-12">
-              <Button asChild className="bg-[#E81F74] hover:bg-[#E81F74]/90">
+              <Button asChild className="bg-[#E81F74] hover:bg-[#E81F74]/90 rounded-full">
                 <Link to="/nos-programmes">
                   {t('common.seeAllPrograms')}
                 </Link>
@@ -380,7 +379,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {news.map((item) => (
-                <Card key={item.id} className="overflow-hidden shadow-md h-full">
+                <Card key={item.id} className="overflow-hidden shadow-md h-full rounded-xl max-w-sm mx-auto">
                   <div className="h-44 md:h-48 overflow-hidden">
                     <img 
                       src={item.image} 
@@ -401,7 +400,7 @@ export default function HomePage() {
                     </CardDescription>
                   </CardContent>
                   <CardFooter>
-                    <Button asChild variant="ghost" className="text-pink-600 hover:text-pink-700 hover:bg-pink-50 p-0">
+                    <Button asChild variant="outline" className="rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
                       <Link to={`/blog/${item.id}`} className="flex items-center">
                         {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -412,7 +411,7 @@ export default function HomePage() {
             </div>
 
             <div className="text-center mt-10 md:mt-12">
-              <Button asChild variant="outline" className="bg-transparent">
+              <Button asChild variant="outline" className="bg-transparent rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
                 <Link to="/blog">
                   {t('common.viewAll')} {t('home.news')}
                 </Link>

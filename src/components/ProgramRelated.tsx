@@ -3,6 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Calendar, FileText, ArrowRight } from 'lucide-react'
 
+import uefImg from '@/assets/images/projects/uef/uef1.png'
+import forumImg from '@/assets/images/projects/proscides/proscide1.jpeg'
+
 type RelatedItem = {
   id: number
   title: string
@@ -20,7 +23,7 @@ const relatedByProgram: Record<string, { news: RelatedItem[]; resources: Related
         title: "Rapport Annuel 2024 : Une année de résilience",
         date: '15 Décembre 2024',
         excerpt: "Découvrez les réalisations marquantes de J-GEN en 2024...",
-        image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/c59e67c0-6fd2-4195-b00d-765d6e28fc84.jpg',
+        image: uefImg as string,
         link: '/#/blog/1',
       },
       {
@@ -28,7 +31,7 @@ const relatedByProgram: Record<string, { news: RelatedItem[]; resources: Related
         title: 'Forum National sur la Justice Reproductive',
         date: '30 Septembre 2024',
         excerpt: '150 participants ont discuté du Protocole de Maputo...',
-        image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/f6625d97-a7ab-4406-b3ff-9162a29e20cd.jpg',
+        image: forumImg as string,
         link: '/#/blog/2',
       },
     ],
@@ -54,7 +57,7 @@ const relatedByProgram: Record<string, { news: RelatedItem[]; resources: Related
         title: 'Forum National sur la Justice Reproductive',
         date: '30 Septembre 2024',
         excerpt: 'Premier forum sur les avortements clandestins...',
-        image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/f6625d97-a7ab-4406-b3ff-9162a29e20cd.jpg',
+        image: forumImg as string,
         link: '/#/blog/2',
       },
     ],
