@@ -60,16 +60,31 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
       {/* INTRO + STICKY SIDEBAR */}
       <section className="py-10 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2">
               <div className="prose prose-p:leading-relaxed max-w-none">
                 {intro}
                 {description}
+                {objectives.length > 0 && (
+                  <div className="mt-8">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Nos objectifs</h2>
+                    <div className="space-y-6">
+                      {objectives.map((o, i) => (
+                        <div key={i}>
+                          <h3 className="text-lg font-semibold text-gray-900">{o.title}</h3>
+                          {o.description && (
+                            <p className="text-gray-700 mt-1">{o.description}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
             <aside className="lg:col-span-1">
-              <div className="lg:sticky lg:top-24 space-y-6">
+              <div className="sticky top-24 space-y-6">
                 {stats.length > 0 && (
                   <Card className="border-0 shadow-md">
                     <CardHeader>
@@ -128,27 +143,6 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
                     <Play className="h-12 w-12 text-white/90" />
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* OBJECTIFS: texte simple */}
-      {objectives.length > 0 && (
-        <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Nos objectifs</h2>
-              <div className="space-y-6">
-                {objectives.map((o, i) => (
-                  <div key={i}>
-                    <h3 className="text-lg font-semibold text-gray-900">{o.title}</h3>
-                    {o.description && (
-                      <p className="text-gray-700 mt-1">{o.description}</p>
-                    )}
-                  </div>
-                ))}
               </div>
             </div>
           </div>
