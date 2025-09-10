@@ -291,7 +291,7 @@ export default function HomePage() {
         {/* Statistiques */}
         <section className="py-12 md:py-16 bg-[#8A1036] text-white">
           <div className='container mx-auto px-4'>
-            <h2 className='text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4'> NOTRE IMPACT EN 2024 </h2>
+            <h2 className='text-2xl md:text-4xl font-bold text-white mb-3 md:mb-4 text-center flex justify-center'> NOTRE IMPACT EN 2024 </h2>
 
           </div>
           <div className="container mx-auto px-4">
