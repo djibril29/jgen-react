@@ -58,10 +58,25 @@ module.exports = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        // New brand palette
         brand: {
-          primary: '#9B153E',
-          dark: '#1B2A31',
-          sand: '#F3D3B7',
+          // Principales
+          pink: '#eb679e',
+          black: '#1b1719',
+          blush: '#f9dded',
+          magenta: '#a42c64',
+          // Complémentaires
+          grayDark: '#2e2e2e',
+          grayLight: '#f5f5f5',
+          grayMid: '#7a7a7a',
+          // Accents dynamiques
+          green: '#4caf50',
+          violet: '#8c80f7',
+          orange: '#ff9800',
+          // Legacy keys kept for compatibility
+          primary: '#a42c64',
+          dark: '#1b1719',
+          sand: '#f9dded',
         },
       },
       borderRadius: {
