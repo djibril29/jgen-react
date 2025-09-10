@@ -320,7 +320,7 @@ export default function HomePage() {
             <div className="relative">
               <Carousel opts={{ loop: true }} className="w-full">
                 <CarouselContent>
-                  {featuredPrograms.map((program) => (
+              {featuredPrograms.map((program) => (
                     <CarouselItem key={program.id} className="basis-[90%] sm:basis-[70%] md:basis-[48%] lg:basis-[31%]">
                       <Card className="border-0 shadow-lg overflow-hidden bg-white h-full">
                         <div className={`h-1 bg-gradient-to-r ${program.color}`}></div>
@@ -329,29 +329,29 @@ export default function HomePage() {
                             <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
                           </div>
                         )}
-                        <CardHeader>
-                          <div className="flex items-center space-x-3">
-                            <div className={`p-2 rounded-lg bg-gradient-to-r ${program.color} text-white`}>
-                              {program.icon}
-                            </div>
+                  <CardHeader>
+                    <div className="flex items-center space-x-3">
+                      <div className={`p-2 rounded-lg bg-gradient-to-r ${program.color} text-white`}>
+                        {program.icon}
+                      </div>
                             <CardTitle className="text-base md:text-xl">{program.title}</CardTitle>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
                           <CardDescription className="text-gray-600 text-sm md:text-base">
-                            {program.description}
-                          </CardDescription>
-                        </CardContent>
+                      {program.description}
+                    </CardDescription>
+                  </CardContent>
                         <CardFooter className="mt-auto">
-                          <Button asChild variant="outline" className="bg-transparent w-full">
-                            <Link to={`/nos-programmes#${program.id}`}>
+                    <Button asChild variant="outline" className="bg-transparent w-full">
+                      <Link to={`/nos-programmes#${program.id}`}>
                               {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                          </Button>
-                        </CardFooter>
-                      </Card>
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
                     </CarouselItem>
-                  ))}
+              ))}
                 </CarouselContent>
                 <CarouselPrevious className="-left-3 md:-left-8" />
                 <CarouselNext className="-right-3 md:-right-8" />
