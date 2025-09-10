@@ -37,7 +37,9 @@ export default function ProgramsPage() {
         "Production d'outils pratiques sur les droits sexuels et reproductifs",
         "Renforcement de l'infrastructure du mouvement féministe régional"
       ],
-      partners: ['FJS', 'Fondation HEWLETT', 'CENTRE ODAS', 'AWDF', 'PPG GLOBAL']
+      partners: ['FJS', 'Fondation HEWLETT', 'CENTRE ODAS', 'AWDF', 'PPG GLOBAL'],
+      route: '/programme/universite-ete-feministe',
+      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/7c790be6-1d62-40d1-bd21-675869ca7f39.jpg'
     },
     {
       id: 'pas-a-pas',
@@ -57,7 +59,9 @@ export default function ProgramsPage() {
         'Création de réseaux multi-acteurs pour la justice reproductive',
         'Formation des journalistes à la justice reproductive'
       ],
-      partners: ['PP Global', 'FJS', 'Amplify Change', 'Marie Stopes International']
+      partners: ['PP Global', 'FJS', 'Amplify Change', 'Marie Stopes International'],
+      route: '/programme/pas-a-pas',
+      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/e3ef8d34-9675-4c44-b90d-9beeb45b42ff.jpg'
     },
     {
       id: 'elles-aussi',
@@ -77,7 +81,9 @@ export default function ProgramsPage() {
         'Mise en place de mécanismes communautaires de protection',
         'Renforcement des liens avec les communautés locales'
       ],
-      partners: ['African Women Development Fund (AWDF)', 'Initiative KASA']
+      partners: ['African Women Development Fund (AWDF)', 'Initiative KASA'],
+      route: '/programme/elles-aussi',
+      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/634dff46-38cb-42c1-80b8-84b059055e87.jpg'
     },
     {
       id: 'proscides',
@@ -97,7 +103,9 @@ export default function ProgramsPage() {
         'Renforcement des capacités programmatiques',
         "Élargissement du réseau de partenaires"
       ],
-      partners: ['Save the Children Suède']
+      partners: ['Save the Children Suède'],
+      route: '/programme/proscides',
+      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/26c49af7-4aa8-4702-987c-f0eda492f31b.jpg'
     },
     {
       id: 'jeunes-volontaires',
@@ -117,7 +125,9 @@ export default function ProgramsPage() {
         'Mobilisation communautaire',
         'Engagement des autorités locales'
       ],
-      partners: ['Voix Essentielles']
+      partners: ['Voix Essentielles'],
+      route: '/programme/jeunes-volontaires',
+      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/3a14a18f-2a99-41d5-a3cd-b11a3b288231.jpg'
     },
     {
       id: 'liggeeyal-eleg',
@@ -137,7 +147,9 @@ export default function ProgramsPage() {
         'Rencontre avec les autorités locales',
         'Préparation de la mise en œuvre'
       ],
-      partners: ['Organisation Internationale de la Francophonie (OIF)']
+      partners: ['Organisation Internationale de la Francophonie (OIF)'],
+      route: '/programme/liggeeyal-eleg',
+      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/46d8f3a7-eda1-47a4-a71e-bff8b6641581.jpg'
     }
   ]
 
@@ -196,7 +208,10 @@ export default function ProgramsPage() {
               {filteredPrograms.map((program) => (
                 <div key={program.id} id={program.id} className="scroll-mt-24">
                   <Card className="overflow-hidden border-0 shadow-lg">
-                    <div className={`h-2 bg-gradient-to-r ${program.color}`}></div>
+                    {/* Image illustrative */}
+                    <div className="h-48 md:h-56 w-full overflow-hidden">
+                      <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+                    </div>
                     
                     <div className="p-6 md:p-8">
                       <div className="flex flex-col md:flex-row gap-8">
@@ -272,9 +287,9 @@ export default function ProgramsPage() {
                               {t('programsPage.sidebarText')}
                             </p>
                             <div className="space-y-3">
-                              <Button asChild className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
-                                <Link to="/contact">
-                                  {t('programsPage.participate')}
+                              <Button asChild className="w-full bg-gray-900 text-white hover:bg-gray-800">
+                                <Link to={program.route}>
+                                  Voir le programme
                                 </Link>
                               </Button>
                               <Button asChild variant="outline" className="bg-transparent w-full">
