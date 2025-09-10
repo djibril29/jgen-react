@@ -39,7 +39,7 @@ export default function JeunesVolontairesProgram() {
   const partners = ['Voix Essentielles', 'UDEFY', 'Badiene Gokh', 'Services de santé']
 
   const nextSteps = [
-    "Signature du protocole d'accord avec la mairie de Yoff",
+      "Signature du protocole d'accord avec la mairie de Yoff",
     'Mise en place des espaces jeunes dans les structures de santé',
     'Formation continue et extension du réseau de volontaires',
     'Développement d’AGR pour les jeunes filles',
