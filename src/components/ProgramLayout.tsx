@@ -103,18 +103,14 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Nos objectifs</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-6">
                 {objectives.map((o, i) => (
-                  <Card key={i} className="border-l-4" style={{ borderLeftColor: '#a42c64' }}>
-                    <CardHeader>
-                      <CardTitle className="text-lg">{o.title}</CardTitle>
-                    </CardHeader>
+                  <div key={i}>
+                    <h3 className="text-lg font-semibold text-gray-900">{o.title}</h3>
                     {o.description && (
-                      <CardContent>
-                        <p className="text-gray-600">{o.description}</p>
-                      </CardContent>
+                      <p className="text-gray-700 mt-1">{o.description}</p>
                     )}
-                  </Card>
+                  </div>
                 ))}
               </div>
             </div>
