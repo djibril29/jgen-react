@@ -245,7 +245,7 @@ export default function HomePage() {
               la sensibilisation communautaire à la justice sociale et l’autonomisation économique.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 bg-gray-50">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 bg-[#ff9800] p-10">
               {/* WHO WE ARE */}
               <div className="text-center">
                 <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
