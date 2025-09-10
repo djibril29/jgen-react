@@ -14,6 +14,7 @@ import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import uefImg from '@/assets/images/projects/uef/uef1.png'
 import proscidesImg from '@/assets/images/projects/proscides/proscide1.jpeg'
 import jvImg from '@/assets/images/projects/jeunes-volontaires/jeunevolontaire.jpeg'
+import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 
 import InterventionMap from '@/components/InterventionMap'
 
@@ -200,7 +201,7 @@ export default function HomePage() {
                 <div className="md:w-1/3">
                   <div className="aspect-square rounded-full overflow-hidden border-4" style={{ borderColor: '#F3D3B7' }}>
                     <img 
-                      src="https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/847298f4-d790-46cb-8256-7683454f55d6.jpg" 
+                      src={mayaImg} 
                       alt={t('about.welcomeName') as string}
                       className="w-full h-full object-cover"
                     />
