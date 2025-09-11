@@ -6,6 +6,7 @@ import ProgramLayout from '@/components/ProgramLayout'
 import { sanityClient } from '@/lib/sanity'
 import { programBySlug } from '@/lib/queries'
 import { urlFor } from '@/lib/image'
+import { PortableText } from '@portabletext/react'
 
 export default function ProgramDynamic() {
   const { slug } = useParams<{ slug: string }>()
@@ -58,7 +59,7 @@ export default function ProgramDynamic() {
           subtitle={doc.intro || ''}
           coverImage={coverImage}
           intro={doc.intro ? <p>{doc.intro}</p> : undefined}
-          description={doc.description}
+          description={doc.description ? <PortableText value={doc.description} /> : undefined}
           stats={doc.stats}
           objectives={doc.objectives}
           achievementsDetailed={doc.achievementsDetailed}

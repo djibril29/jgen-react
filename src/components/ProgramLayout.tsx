@@ -225,7 +225,7 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
                 </CarouselContent>
                 <CarouselPrevious className="-left-3 md:-left-8" />
                 <CarouselNext className="-right-3 md:-right-8" />
-              </Carousel>m
+              </Carousel>
             </div>
           </div>
         </section>
