@@ -47,7 +47,40 @@ export default function ProgramDynamic() {
     )
   }
 
-  const coverImage = doc.coverImage ? urlFor(doc.coverImage).width(1600).height(600).url() : ''
+  const safeCover = (() => {
+    try {
+      return doc.coverImage ? urlFor(doc.coverImage).width(1600).height(600).url() : ''
+    } catch {
+      return ''
+    }
+  })()
+
+  const safeStats = Array.isArray(doc.stats) ? doc.stats : []
+  const safeObjectives = Array.isArray(doc.objectives) ? doc.objectives : []
+  const safeAchievementsDetailed = Array.isArray(doc.achievementsDetailed) ? doc.achievementsDetailed : []
+  const safePartners = Array.isArray(doc.partners) ? doc.partners : []
+
+  const safePartnerLogos: string[] = Array.isArray(doc.partnerLogos)
+    ? doc.partnerLogos.map((img: any) => {
+        try {
+          return urlFor(img).width(160).height(80).url()
+        } catch {
+          return ''
+        }
+      }).filter(Boolean)
+    : []
+
+  const safeGallery: string[] = Array.isArray(doc.gallery)
+    ? doc.gallery.map((img: any) => {
+        try {
+          return urlFor(img).width(1200).height(675).url()
+        } catch {
+          return ''
+        }
+      }).filter(Boolean)
+    : []
+
+  const hasBlocks = Array.isArray(doc.description)
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -55,17 +88,17 @@ export default function ProgramDynamic() {
       <main className="flex-grow">
         <ProgramLayout
           programId={slug || ''}
-          title={doc.title}
-          subtitle={doc.intro || ''}
-          coverImage={coverImage}
-          intro={doc.intro ? <p>{doc.intro}</p> : undefined}
-          description={doc.description ? <PortableText value={doc.description} /> : undefined}
-          stats={doc.stats}
-          objectives={doc.objectives}
-          achievementsDetailed={doc.achievementsDetailed}
-          partners={doc.partners}
-          partnerLogos={(doc.partnerLogos || []).map((i: any) => urlFor(i).width(160).height(80).url())}
-          gallery={(doc.gallery || []).map((i: any) => urlFor(i).width(1200).height(675).url())}
+          title={doc.title || ''}
+          subtitle={typeof doc.intro === 'string' ? doc.intro : ''}
+          coverImage={safeCover}
+          intro={typeof doc.intro === 'string' ? <p>{doc.intro}</p> : undefined}
+          description={hasBlocks ? <PortableText value={doc.description} /> : undefined}
+          stats={safeStats}
+          objectives={safeObjectives}
+          achievementsDetailed={safeAchievementsDetailed}
+          partners={safePartners}
+          partnerLogos={safePartnerLogos}
+          gallery={safeGallery}
         />
       </main>
       <Footer />
