@@ -3,6 +3,9 @@ import { rimraf } from 'rimraf'
 import stylePlugin from 'esbuild-style-plugin'
 import autoprefixer from 'autoprefixer'
 import tailwindcss from 'tailwindcss'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const args = process.argv.slice(2)
 const isProd = args[0] === '--production'
@@ -24,6 +27,10 @@ const esbuildOpts = {
   minify: isProd,
   treeShaking: true,
   jsx: 'automatic',
+  define: {
+    'import.meta.env.VITE_SANITY_PROJECT_ID': JSON.stringify(process.env.VITE_SANITY_PROJECT_ID || ''),
+    'import.meta.env.VITE_SANITY_DATASET': JSON.stringify(process.env.VITE_SANITY_DATASET || 'production'),
+  },
   loader: {
     '.html': 'copy',
     '.png': 'file',
