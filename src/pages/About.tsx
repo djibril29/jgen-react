@@ -151,23 +151,67 @@ JGEN Sénégal travaille aussi dans la co construction du mouvement féministe a
         </section>
 
         {/* Domaines d'intervention */}
-        <section className="py-16" style={{ backgroundColor: '#a42c64' }}>
+        <section className="py-16 md:py-20" style={{ backgroundColor: '#1B2A31' }}>
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-10">Domaines d'intervention</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {axes.map((axis, i) => (
-                <Card key={i} className="overflow-hidden border-0 shadow-lg bg-white rounded-xl">
-                  <div className="aspect-[4/3] w-full overflow-hidden">
-                    <img src={axis.image} alt={axis.title} className="w-full h-full object-cover" />
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-12">Domaines d'intervention</h2>
+            <div className="space-y-16">
+              {axes.map((axis, i) => {
+                const tags = (
+                  i === 0 ? ['Plaidoyer', 'Égalité des sexes'] :
+                  i === 1 ? ['Communautaire', 'Droits des femmes'] :
+                  i === 2 ? ['Formation', 'Renforcement des capacités'] :
+                  ['Partenariat', 'Réseautage']
+                )
+                return (
+                  <div key={i} className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    {/* Texte à gauche pour pairs, sinon à droite */}
+                    {i % 2 === 0 ? (
+                      <div>
+                        <div className="text-white">
+                          <div className="uppercase tracking-tight text-3xl md:text-6xl font-extrabold leading-tight">
+                            <span className="inline-block border-b-4 border-pink-500 pb-1">{axis.title}</span>
+                          </div>
+                          <p className="mt-4 md:mt-6 text-base md:text-lg text-white/90 max-w-2xl">{axis.text}</p>
+                          <div className="mt-5 flex flex-wrap gap-2">
+                            {tags.map((t, k) => (
+                              <span key={k} className="px-3 py-1 rounded-full text-xs md:text-sm border border-white/30 text-white/90">{t}</span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="order-2 lg:order-1">
+                        <div className="aspect-[16/9] w-full overflow-hidden rounded-xl">
+                          <img src={axis.image} alt={axis.title} className="w-full h-full object-cover" />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Image complémentaire */}
+                    {i % 2 === 0 ? (
+                      <div>
+                        <div className="aspect-[16/9] w-full overflow-hidden rounded-xl">
+                          <img src={axis.image} alt={axis.title} className="w-full h-full object-cover" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="order-1 lg:order-2">
+                        <div className="text-white">
+                          <div className="uppercase tracking-tight text-3xl md:text-6xl font-extrabold leading-tight">
+                            <span className="inline-block border-b-4 border-pink-500 pb-1">{axis.title}</span>
+                          </div>
+                          <p className="mt-4 md:mt-6 text-base md:text-lg text-white/90 max-w-2xl">{axis.text}</p>
+                          <div className="mt-5 flex flex-wrap gap-2">
+                            {tags.map((t, k) => (
+                              <span key={k} className="px-3 py-1 rounded-full text-xs md:text-sm border border-white/30 text-white/90">{t}</span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-[#1B2A31]">{axis.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-[#1B2A31]">{axis.text}</p>
-                  </CardContent>
-                </Card>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>

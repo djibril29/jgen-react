@@ -290,7 +290,7 @@ export default function HomePage() {
 
         {/* Statistiques */}
         <section className="py-12 md:py-16 bg-[#8A1036] text-white">
-          <div className='container mx-auto px-4'>
+          <div className='container mx-auto px-4 mb-10'>
             <h2 className='text-2xl md:text-4xl font-bold text-white mb-3 md:mb-4 text-center flex justify-center'> NOTRE IMPACT EN 2024 </h2>
 
           </div>
@@ -312,7 +312,7 @@ export default function HomePage() {
         </section>
 
         {/* Programmes phares */}
-        <section className="py-12 md:py-16" style={{ backgroundColor: '#f9dded' }}>
+        <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f5f5' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{t('home.programsHeadline')}</h2>
