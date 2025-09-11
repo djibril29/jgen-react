@@ -6,6 +6,13 @@ import { Play, ChevronRight, Award, Star } from 'lucide-react'
 import ProgramRelated from '@/components/ProgramRelated'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 
+export type AchievementItem = {
+  value: string
+  title: string
+  description?: string
+  icon?: ReactNode
+}
+
 export type ProgramLayoutProps = {
   programId: string
   title: string
@@ -17,6 +24,7 @@ export type ProgramLayoutProps = {
   videoUrl?: string
   objectives?: { title: string; description?: string }[]
   achievements?: string[]
+  achievementsDetailed?: AchievementItem[]
   partners?: string[]
   nextSteps?: string[]
   partnerLogos?: string[]
@@ -35,6 +43,7 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
     videoUrl,
     objectives = [],
     achievements = [],
+    achievementsDetailed = [],
     partners = [],
     nextSteps = [],
     partnerLogos = [],
@@ -151,26 +160,39 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
         </section>
       )}
 
-      {/* RÉALISATIONS: cards colorées */}
-      {achievements.length > 0 && (
-        <section className="py-12" style={{ backgroundColor: '#f9dded' }}>
+      {/* RÉALISATIONS: layout type 2x2 avec gros chiffres */}
+      {(achievementsDetailed.length > 0 || achievements.length > 0) && (
+        <section className="py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Réalisations</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {achievements.map((a, i) => (
-                  <Card key={i} className="shadow-md rounded-xl border-0">
-                    <CardContent className="pt-6">
-                      <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#a42c64' }}>
-                          <Star className="h-5 w-5 text-white" />
+              {(() => {
+                const normalized: AchievementItem[] = achievementsDetailed.length > 0
+                  ? achievementsDetailed
+                  : achievements.map((text): AchievementItem => ({ value: '', title: text }))
+                return (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {normalized.map((item, i) => (
+                      <div key={i} className="rounded-2xl p-6 md:p-8 shadow-md" style={{ backgroundColor: '#ff9800' }}>
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#a42c64' }}>
+                            {item.icon || <Star className="h-6 w-6 text-white" />}
+                          </div>
+                          <div className="flex-1">
+                            {item.value && (
+                              <div className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8c80f7' }}>{item.value}</div>
+                            )}
+                            <div className="text-xl md:text-2xl font-bold text-[#1b1719] mt-1">{item.title}</div>
+                            {item.description && (
+                              <p className="text-[#1b1719]/90 mt-2 text-sm md:text-base">{item.description}</p>
+                            )}
+                          </div>
                         </div>
-                        <p className="text-gray-800 font-medium">{a}</p>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                    ))}
+                  </div>
+                )
+              })()}
             </div>
           </div>
         </section>
@@ -209,7 +231,7 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
                 {nextSteps.map((s, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="w-7 h-7 md:w-8 md:h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 md:w-8 md:h-8 bg:white/20 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>
                       <ChevronRight className="h-4 w-4" />
                     </div>
                     <p>{s}</p>
