@@ -10,3 +10,15 @@ export const resourcesList = groq`*[_type == "resource"]{ _id, title, "slug": sl
 export const resourceBySlug = groq`*[_type == "resource" && slug.current == $slug][0]{ _id, title, date, type, url, description, file, category }`
 
 export const homeDoc = groq`*[_type == "home"][0]{ heroSlides[], stats[], featuredPrograms[]->, news[]-> }`
+
+export const relatedBlogByProgramSlug = groq`
+  *[_type == "blogPost" && references(*[_type == "program" && slug.current == $slug]._id)]{
+    _id, title, "slug": slug.current, date, excerpt, coverImage
+  } | order(date desc)[0..5]
+`
+
+export const relatedResourcesByProgramSlug = groq`
+  *[_type == "resource" && references(*[_type == "program" && slug.current == $slug]._id)]{
+    _id, title, "slug": slug.current, date, type, url, description
+  } | order(date desc)[0..5]
+`

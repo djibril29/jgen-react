@@ -44,6 +44,14 @@ export default function HomePage() {
   }, [])
 
   const stats = home?.stats || []
+  const statsList = (Array.isArray(stats) && stats.length > 0)
+    ? stats
+    : [
+        { number: '1447+', label: 'Bénéficiaires' },
+        { number: '801', label: 'Formations' },
+        { number: '646', label: 'Sensibilisés' },
+        { number: '6', label: 'Projets actifs' },
+      ]
   const featuredPrograms = ((home?.featuredPrograms && home.featuredPrograms.length > 0)
     ? home.featuredPrograms
     : fallbackPrograms
@@ -275,8 +283,9 @@ export default function HomePage() {
           </div>
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {stats.map((stat: any, index: number) => {
-                const match = String(stat.number).match(/^(\d+)(.*)$/)
+              {statsList.map((stat: any, index: number) => {
+                const raw = (stat.number ?? stat.value ?? '') as string
+                const match = String(raw).match(/^(\d+)(.*)$/)
                 const end = match ? parseInt(match[1], 10) : 0
                 const suffix = match ? match[2] : ''
                 return (
