@@ -36,14 +36,16 @@ export default function ProgramsPage() {
     details: [],
     achievements: [],
     partners: [],
-    category: 'all',
+    category: p.category || 'Autres',
   }))
 
-  const filteredPrograms = activeTab === 'all' ? normalized : normalized.filter(p => p.category === activeTab)
-
+  const categoriesFromData = Array.from(new Set(normalized.map((p) => p.category).filter(Boolean)))
   const categories = [
-    { id: 'all', name: t('programsPage.filters.all'), color: 'from-gray-500 to-gray-600' },
+    { id: 'all', name: t('programsPage.filters.all') },
+    ...categoriesFromData.map((c) => ({ id: c, name: c })),
   ]
+
+  const filteredPrograms = activeTab === 'all' ? normalized : normalized.filter(p => p.category === activeTab)
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -67,7 +69,7 @@ export default function ProgramsPage() {
                   onClick={() => setActiveTab(category.id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     activeTab === category.id
-                      ? `bg-gradient-to-r ${category.color} text-white shadow-md`
+                      ? `bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md`
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
@@ -108,6 +110,7 @@ export default function ProgramsPage() {
                               {program.description && (
                                 <p className="text-lg text-gray-600">{program.description}</p>
                               )}
+                              <div className="mt-1 text-sm text-gray-500">{program.category}</div>
                             </div>
                           </div>
                         </div>

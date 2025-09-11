@@ -13,5 +13,16 @@ export default defineType({
     defineField({ name: 'url', title: 'URL externe (optionnel)', type: 'url' }),
     defineField({ name: 'description', title: 'Description', type: 'text' }),
     defineField({ name: 'programs', title: 'Programmes liés', type: 'array', of: [{ type: 'reference', to: [{ type: 'program' }] }] }),
+    defineField({
+      name: 'category',
+      title: 'Catégorie',
+      type: 'string',
+      options: { list: [
+        { title: 'outils de formation', value: 'outils de formation' },
+        { title: 'rapport annuel', value: 'rapport annuel' },
+        { title: 'guide pratique', value: 'guide pratique' },
+        { title: 'outils de plaidoyer', value: 'outils de plaidoyer' },
+      ]},
+    }),
   ],
 }) 

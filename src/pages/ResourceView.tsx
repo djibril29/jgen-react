@@ -9,19 +9,19 @@ import { sanityClient } from '@/lib/sanity'
 import { resourceBySlug } from '@/lib/queries'
 
 export default function ResourceView() {
-  const { id } = useParams<{ id: string }>()
+  const { slug } = useParams<{ slug: string }>()
   const { t } = useTranslation()
   const [resource, setResource] = useState<any | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    if (!id) return
+    if (!slug) return
     setLoading(true)
     sanityClient
-      .fetch(resourceBySlug, { slug: id })
+      .fetch(resourceBySlug, { slug })
       .then((res) => setResource(res || null))
       .finally(() => setLoading(false))
-  }, [id])
+  }, [slug])
 
   const renderViewer = () => {
     const url: string = resource?.url || ''

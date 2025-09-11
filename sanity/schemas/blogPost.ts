@@ -13,5 +13,15 @@ export default defineType({
     defineField({ name: 'tags', title: 'Tags', type: 'array', of: [{ type: 'string' }] }),
     defineField({ name: 'body', title: 'Contenu', type: 'array', of: [{ type: 'block' }] }),
     defineField({ name: 'programs', title: 'Programmes liés', type: 'array', of: [{ type: 'reference', to: [{ type: 'program' }] }] }),
+    defineField({
+      name: 'category',
+      title: 'Catégorie',
+      type: 'string',
+      options: { list: [
+        { title: 'Actualités', value: 'Actualités' },
+        { title: 'evenements', value: 'evenements' },
+        { title: 'témoignages', value: 'témoignages' },
+      ]},
+    }),
   ],
 }) 

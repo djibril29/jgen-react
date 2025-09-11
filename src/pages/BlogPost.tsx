@@ -73,17 +73,17 @@ export default function BlogPost() {
                   {t('blogPost.backToBlog')}
                 </Link>
               </Button>
-
+              
               <div className="mb-5 text-gray-600 text-sm flex items-center flex-wrap gap-x-3 gap-y-2">
                 {date && (
                   <span className="inline-flex items-center"><Calendar className="h-4 w-4 mr-1" /> {date}</span>
                 )}
-              </div>
-
+                </div>
+                
               <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
                 {post.title}
-              </h1>
-
+                </h1>
+                
               {post.excerpt && (
                 <p className="text-base md:text-lg text-gray-600 max-w-3xl mb-6">
                   {post.excerpt}

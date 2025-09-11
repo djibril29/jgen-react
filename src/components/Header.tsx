@@ -5,6 +5,9 @@ import { Menu, X, ChevronDown, Search, Facebook, Instagram, Linkedin } from 'luc
 import jgenLogo from '@/assets/images/logos/logo-jgen.png'
 import i18n from '@/i18n'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { sanityClient } from '@/lib/sanity'
+import { programsList } from '@/lib/queries'
 
 /**
  * Composant Header - Barre de navigation principale du site
@@ -17,6 +20,19 @@ export default function Header() {
   const [searchText, setSearchText] = useState('')
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const [programLinks, setProgramLinks] = useState<{ slug: string; title: string }[]>([])
+
+  useEffect(() => {
+    sanityClient.fetch(programsList)
+      .then((res: any[]) => {
+        const items = (res || []).map((p: any) => ({ slug: p.slug, title: p.title }))
+        setProgramLinks(items)
+      })
+      .catch((err) => {
+        console.error('Failed to load programs for header', err)
+        setProgramLinks([])
+      })
+  }, [])
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -74,42 +90,26 @@ export default function Header() {
               </button>
               
               {isProgramsOpen && (
-                <div className="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2 z-10">
-                  <Link 
-                    to="/programme/universite-ete-feministe" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
-                    onClick={() => setIsProgramsOpen(false)}
-                  >
-                    Université d'Été Féministe
-                  </Link>
-                  <Link 
-                    to="/programme/pas-a-pas" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
-                    onClick={() => setIsProgramsOpen(false)}
-                  >
-                    PAS À PAS
-                  </Link>
-                  <Link 
-                    to="/programme/elles-aussi" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
-                    onClick={() => setIsProgramsOpen(false)}
-                  >
-                    ELLES AUSSI
-                  </Link>
-                  <Link 
-                    to="/programme/proscides" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
-                    onClick={() => setIsProgramsOpen(false)}
-                  >
-                    PROSCIDES
-                  </Link>
-                  <Link 
-                    to="/programme/liggeeyal-eleg" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
-                    onClick={() => setIsProgramsOpen(false)}
-                  >
-                    LIGGEEYAL ËLËG
-                  </Link>
+                <div className="absolute left-0 mt-2 w-72 bg-white rounded-md shadow-lg py-2 z-10">
+                  {programLinks.length === 0 && (
+                    <Link 
+                      to="/nos-programmes" 
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
+                      onClick={() => setIsProgramsOpen(false)}
+                    >
+                      {t('nav.programs')}
+                    </Link>
+                  )}
+                  {programLinks.map((p) => (
+                    <Link 
+                      key={p.slug}
+                      to={`/programme/${p.slug}`} 
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
+                      onClick={() => setIsProgramsOpen(false)}
+                    >
+                      {p.title}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>

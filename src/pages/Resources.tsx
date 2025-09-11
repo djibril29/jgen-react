@@ -23,6 +23,7 @@ export default function ResourcesPage() {
   const [searchTerm, setSearchTerm] = useState(initialQ)
   const [selectedType, setSelectedType] = useState('all')
   const [selectedYear, setSelectedYear] = useState('all')
+  const [selectedCategory, setSelectedCategory] = useState('all')
   const [items, setItems] = useState<any[]>([])
   const { t } = useTranslation()
 
@@ -40,6 +41,7 @@ export default function ResourcesPage() {
     thumb: r.coverImage ? urlFor(r.coverImage).width(800).height(600).url() : undefined,
     fileUrl: r.url || '',
     format: r.type?.toUpperCase() || '',
+    category: r.category || 'Autres',
   }))
 
   const filteredResources = resources.filter(resource => {
@@ -48,10 +50,12 @@ export default function ResourcesPage() {
                          resource.description.toLowerCase().includes(q)
     const matchesType = selectedType === 'all' || resource.type === selectedType
     const matchesYear = selectedYear === 'all' || resource.year === selectedYear
-    return matchesSearch && matchesType && matchesYear
+    const matchesCategory = selectedCategory === 'all' || resource.category === selectedCategory
+    return matchesSearch && matchesType && matchesYear && matchesCategory
   })
 
   const years = [{ id: 'all', name: t('resourcesPage.yearsAll') }, ...Array.from(new Set(resources.map(r => r.year))).filter(Boolean).map(y => ({ id: y, name: y }))]
+  const categories = [{ id: 'all', name: t('resourcesPage.filterTypeAll') }, ...Array.from(new Set(resources.map(r => r.category))).filter(Boolean).map(c => ({ id: c, name: c }))]
 
   const resourceTypes = [
     { id: 'all', name: t('resourcesPage.filterTypeAll'), icon: <FileText className="h-5 w-5" /> },
@@ -99,6 +103,21 @@ export default function ResourcesPage() {
                   {resourceTypes.map((type) => (
                     <option key={type.id} value={type.id}>
                       {type.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Filtre par catégorie */}
+              <div className="flex items-center space-x-2">
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                >
+                  {categories.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
                     </option>
                   ))}
                 </select>
@@ -155,6 +174,7 @@ export default function ResourcesPage() {
                     <CardDescription className="line-clamp-2">
                       {resource.description}
                     </CardDescription>
+                    <div className="mt-1 text-xs text-gray-500">{resource.category}</div>
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
@@ -190,6 +210,7 @@ export default function ResourcesPage() {
                     setSearchTerm('')
                     setSelectedType('all')
                     setSelectedYear('all')
+                    setSelectedCategory('all')
                   }}
                 >
                   {t('common.resetFilters')}

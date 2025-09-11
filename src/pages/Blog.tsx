@@ -29,12 +29,6 @@ export default function BlogPage() {
     sanityClient.fetch(blogList).then((res) => setPosts(res)).catch(() => setPosts([]))
   }, [])
 
-  // Catégories (placeholder jusqu'à taxonomie Sanity)
-  const categories = [
-    { id: 'all', name: t('blog.categories.all'), count: posts?.length || 0 },
-  ]
-
-  // Source d'articles: Sanity si dispo, sinon fallback local
   const articles = (posts && posts.length > 0 ? posts.map(p => ({
     slug: p.slug,
     title: p.title,
@@ -42,16 +36,22 @@ export default function BlogPage() {
     content: '',
     date: new Date(p.date || Date.now()).toLocaleDateString('fr-FR'),
     author: 'J-GEN',
-    category: 'all',
+    category: p.category || 'Autres',
     image: p.coverImage ? urlFor(p.coverImage).width(1200).height(630).url() : undefined,
     tags: [],
   })) : [])
+
+  const uniqueCats = Array.from(new Set(articles.map(a => a.category).filter(Boolean)))
+  const categories = [
+    { id: 'all', name: t('blog.categories.all'), count: articles.length },
+    ...uniqueCats.map((c) => ({ id: c, name: c, count: articles.filter(a => a.category === c).length })),
+  ]
 
   const filteredArticles = articles.filter(article => {
     const q = searchTerm.toLowerCase()
     const matchesSearch = article.title.toLowerCase().includes(q) ||
                          article.excerpt.toLowerCase().includes(q)
-    const matchesCategory = selectedCategory === 'all'
+    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory
     return matchesSearch && matchesCategory
   })
 
@@ -141,11 +141,14 @@ export default function BlogPage() {
                               </CardDescription>
                             </CardHeader>
                             <CardContent>
+                              <div className="flex flex-wrap gap-2 mb-2">
+                                <span className="px-2 py-1 bg-pink-100 text-pink-800 rounded-full text-xs">{article.category}</span>
+                              </div>
                               <div className="flex flex-wrap gap-2 mb-4">
                                 {(article.tags || []).map((tag: string, index: number) => (
                                   <span 
                                     key={index} 
-                                    className="px-2 py-1 bg-pink-100 text-pink-800 rounded-full text-xs"
+                                    className="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs"
                                   >
                                     <Tag className="h-3 w-3 inline mr-1" />
                                     {tag}
@@ -185,7 +188,7 @@ export default function BlogPage() {
                     <Button variant="outline" disabled>
                       {t('common.previous')}
                     </Button>
-                    <Button className="bg-gradient-to-r from-pink-500 to-purple-600">
+                    <Button className="bg-gradient-to-r from-purple-600 to-pink-500">
                       1
                     </Button>
                     <Button variant="outline">

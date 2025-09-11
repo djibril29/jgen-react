@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/ressources" element={<ResourcesPage />} />
-        <Route path="/ressources/:id" element={<ResourceView />} />
+        <Route path="/ressources/:slug" element={<ResourceView />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/programme/:slug" element={<ProgramDynamic />} />
       </Routes>

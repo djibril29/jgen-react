@@ -15,7 +15,7 @@ import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 
 import { sanityClient } from '@/lib/sanity'
-import { homeDoc } from '@/lib/queries'
+import { homeDoc, blogList, programsList } from '@/lib/queries'
 import { urlFor } from '@/lib/image'
 
 /**
@@ -26,24 +26,38 @@ export default function HomePage() {
   const { t } = useTranslation()
   const [home, setHome] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
+  const [latestPosts, setLatestPosts] = useState<any[]>([])
+  const [fallbackPrograms, setFallbackPrograms] = useState<any[]>([])
 
   useEffect(() => {
-    sanityClient
-      .fetch(homeDoc)
-      .then((res) => setHome(res))
-      .catch(() => setHome(null))
+    Promise.all([
+      sanityClient.fetch(homeDoc).catch(() => null),
+      sanityClient.fetch(blogList).catch(() => []),
+      sanityClient.fetch(programsList).catch(() => []),
+    ])
+      .then(([homeRes, postsRes, progsRes]) => {
+        setHome(homeRes)
+        setLatestPosts(Array.isArray(postsRes) ? postsRes : [])
+        setFallbackPrograms(Array.isArray(progsRes) ? progsRes : [])
+      })
       .finally(() => setLoading(false))
   }, [])
 
   const stats = home?.stats || []
-  const featuredPrograms = (home?.featuredPrograms || []).map((p: any) => ({
+  const featuredPrograms = ((home?.featuredPrograms && home.featuredPrograms.length > 0)
+    ? home.featuredPrograms
+    : fallbackPrograms
+  ).slice(0, 8).map((p: any) => ({
     slug: p.slug,
     title: p.title,
     description: p.intro || '',
     image: p.coverImage ? urlFor(p.coverImage).width(400).height(300).url() : '',
     icon: <Users className="h-8 w-8" />,
   }))
-  const news = (home?.news || []).map((n: any) => ({
+  const news = ((home?.news && home.news.length > 0)
+    ? home.news
+    : latestPosts
+  ).slice(0, 6).map((n: any) => ({
     slug: n.slug,
     title: n.title,
     date: n.date ? new Date(n.date).toLocaleDateString('fr-FR') : '',
@@ -122,7 +136,7 @@ export default function HomePage() {
             <div className="relative">
               <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]} className="w-full">
                 <CarouselContent>
-                  {news.map((item) => (
+                  {news.map((item: any) => (
                     <CarouselItem key={item.slug} className="min-h-[360px] md:min-h-[320px]">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
                         <div className="aspect-video w-full overflow-hidden rounded-lg">
@@ -261,7 +275,7 @@ export default function HomePage() {
           </div>
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {stats.map((stat, index) => {
+              {stats.map((stat: any, index: number) => {
                 const match = String(stat.number).match(/^(\d+)(.*)$/)
                 const end = match ? parseInt(match[1], 10) : 0
                 const suffix = match ? match[2] : ''
@@ -291,7 +305,7 @@ export default function HomePage() {
             <div className="relative">
               <Carousel opts={{ loop: true }} className="w-full">
                 <CarouselContent>
-              {featuredPrograms.map((program) => (
+              {featuredPrograms.map((program: any) => (
                     <CarouselItem key={program.slug} className="basis-[90%] sm:basis-[68%] md:basis-[42%] lg:basis-[28%]">
                       <Reveal animation="fade-up">
                         <Card className="border-0 shadow-lg overflow-hidden bg-white h-full rounded-xl max-w-sm mx-auto">
@@ -351,36 +365,36 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {news.map((item) => (
+              {news.map((item: any) => (
                 <Reveal key={item.slug} animation="fade-up">
                   <Card className="overflow-hidden shadow-md h-full rounded-xl max-w-sm mx-auto">
                     <div className="h-44 md:h-48 overflow-hidden">
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
-                    </div>
-                    <CardHeader>
+                    <img 
+                      src={item.image} 
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <CardHeader>
                       <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        {item.date}
-                      </div>
+                      <Calendar className="h-4 w-4 mr-1" />
+                      {item.date}
+                    </div>
                       <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
+                  </CardHeader>
+                  <CardContent>
                       <CardDescription className="text-gray-600 text-sm md:text-base">
-                        {item.excerpt}
-                      </CardDescription>
-                    </CardContent>
-                    <CardFooter>
+                      {item.excerpt}
+                    </CardDescription>
+                  </CardContent>
+                  <CardFooter>
                       <Button asChild variant="outline" className="rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
                         <Link to={`/blog/${item.slug}`} className="flex items-center">
                           {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
                 </Reveal>
               ))}
             </div>

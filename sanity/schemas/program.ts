@@ -42,5 +42,16 @@ export default defineType({
     defineField({ name: 'partners', title: 'Partenaires (noms)', type: 'array', of: [{ type: 'string' }] }),
     defineField({ name: 'partnerLogos', title: 'Logos partenaires', type: 'array', of: [{ type: 'image', options: { hotspot: true } }] }),
     defineField({ name: 'gallery', title: 'Galerie', type: 'array', of: [{ type: 'image', options: { hotspot: true } }] }),
+    defineField({
+      name: 'category',
+      title: 'Catégorie',
+      type: 'string',
+      options: { list: [
+        { title: 'Plaidoyer', value: 'Plaidoyer' },
+        { title: 'Sensibilisation', value: 'Sensibilisation' },
+        { title: 'Renforcement des Capacités', value: 'Renforcement des Capacités' },
+        { title: 'Réseautage et Partenariat', value: 'Réseautage et Partenariat' },
+      ]},
+    }),
   ],
 }) 
