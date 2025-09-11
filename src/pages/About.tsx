@@ -74,19 +74,25 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
               <div>
-                <h1 className="text-3xl md:text-4xl font-extrabold text-[#1B2A31] mb-4">Notre vision et mission</h1>
-                <p className="text-xl font-semibold text-[#1B2A31] mb-4">
-                  L'obstacle majeur à l'égalité est la persistance du manque d'autonomie et d'intégrité des filles et des femmes.
-                </p>
+                <h1 className="text-3xl md:text-4xl font-extrabold text-[#1B2A31] mb-4"> QUI-SOMMES-NOUS ?</h1>
+                
                 <p className="text-gray-700">
-                  J-GEN est une association à but non lucratif créée en 2016 avec pour mission de contribuer à l'égalité des sexes
-                  à travers l'autonomisation des femmes et des filles. Nous menons une approche holistique qui combine
-                  renforcement de capacités, plaidoyer, mobilisation communautaire et soutien psychologique.
+                JGEN Sénégal est une association féministe à but non lucratif créée en 2016, elle œuvre pour l’abandon des violences basées sur le genre et entend contribuer efficacement à mettre fin aux violences sexuelles et sexistes à l’égard des femmes et des enfants.
+
+JGEN Sénégal travaille aussi dans la co construction du mouvement féministe au Sénégal et en Afrique francophone.Elle intègre aussi un volet entrepreneuriat social qui travaille spécifiquement dans la mise en réseau des femmes entrepreneures et dans le partage de connaissances et pratiques entrepreneuriales solidaires innovantes à haut impact socioéconomique.
                 </p>
               </div>
               <div className="hidden lg:block">
                 <div className="border-8" style={{ borderColor: '#F3D3B7' }}>
-                  <div className="h-48 bg-[#1B2A31]" />
+                  <div className="aspect-video bg-[#1B2A31]">
+                    <iframe
+                      className="w-full h-full"
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      title="YouTube video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
               </div>
             </div>

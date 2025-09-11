@@ -60,73 +60,75 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
       {/* INTRO + STICKY SIDEBAR */}
       <section className="py-10 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            <div className="lg:col-span-2">
-              <div className="prose prose-p:leading-relaxed max-w-none">
-                {intro}
-                {description}
-                {objectives.length > 0 && (
-                  <div className="mt-8">
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Nos objectifs</h2>
-                    <div className="space-y-6">
-                      {objectives.map((o, i) => (
-                        <div key={i}>
-                          <h3 className="text-lg font-semibold text-gray-900">{o.title}</h3>
-                          {o.description && (
-                            <p className="text-gray-700 mt-1">{o.description}</p>
-                          )}
-                        </div>
-                      ))}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+              <div className="lg:col-span-2">
+                <div className="prose prose-p:leading-relaxed max-w-none space-y-6">
+                  {intro}
+                  {description}
+                  {objectives.length > 0 && (
+                    <div className="mt-2">
+                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Nos objectifs</h2>
+                      <div className="space-y-6">
+                        {objectives.map((o, i) => (
+                          <div key={i}>
+                            <h3 className="text-lg font-semibold text-gray-900">{o.title}</h3>
+                            {o.description && (
+                              <p className="text-gray-700 mt-1">{o.description}</p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
 
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24 space-y-6">
-                {stats.length > 0 && (
+              <aside className="lg:col-span-1">
+                <div className="sticky top-24 space-y-6">
+                  {stats.length > 0 && (
+                    <Card className="border-0 shadow-md">
+                      <CardHeader>
+                        <CardTitle className="text-lg">Chiffres clés</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid grid-cols-2 gap-4">
+                          {stats.map((s, i) => (
+                            <div key={i} className="text-center">
+                              <div className="text-2xl font-extrabold" style={{ color: '#a42c64' }}>{s.value}</div>
+                              <div className="text-gray-600 text-xs mt-1">{s.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
                   <Card className="border-0 shadow-md">
                     <CardHeader>
-                      <CardTitle className="text-lg">Chiffres clés</CardTitle>
+                      <CardTitle className="text-lg">Partenaires</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="grid grid-cols-2 gap-4">
-                        {stats.map((s, i) => (
-                          <div key={i} className="text-center">
-                            <div className="text-2xl font-extrabold" style={{ color: '#a42c64' }}>{s.value}</div>
-                            <div className="text-gray-600 text-xs mt-1">{s.label}</div>
-                          </div>
-                        ))}
-                      </div>
+                      {partnerLogos.length > 0 ? (
+                        <div className="flex flex-wrap gap-3">
+                          {partnerLogos.map((src, i) => (
+                            <div key={i} className="w-20 h-12 rounded-md bg-white border flex items-center justify-center overflow-hidden">
+                              <img src={src} alt={`Partenaire ${i + 1}`} className="max-h-10 object-contain" />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="flex flex-wrap gap-2">
+                          {partners.map((p, i) => (
+                            <span key={i} className="px-3 py-1 rounded-full text-xs" style={{ backgroundColor: '#f9dded', color: '#a42c64' }}>{p}</span>
+                          ))}
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
-                )}
-
-                <Card className="border-0 shadow-md">
-                  <CardHeader>
-                    <CardTitle className="text-lg">Partenaires</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {partnerLogos.length > 0 ? (
-                      <div className="flex flex-wrap gap-3">
-                        {partnerLogos.map((src, i) => (
-                          <div key={i} className="w-20 h-12 rounded-md bg-white border flex items-center justify-center overflow-hidden">
-                            <img src={src} alt={`Partenaire ${i + 1}`} className="max-h-10 object-contain" />
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="flex flex-wrap gap-2">
-                        {partners.map((p, i) => (
-                          <span key={i} className="px-3 py-1 rounded-full text-xs" style={{ backgroundColor: '#f9dded', color: '#a42c64' }}>{p}</span>
-                        ))}
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </div>
-            </aside>
+                </div>
+              </aside>
+            </div>
           </div>
         </div>
       </section>
@@ -135,7 +137,7 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
       {videoUrl && (
         <section className="py-12 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <div className="aspect-video rounded-xl overflow-hidden relative bg-black/10">
                 <video className="w-full h-full" controls src={videoUrl} />
                 {!videoUrl.endsWith('.mp4') && (
@@ -178,7 +180,7 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
       {gallery.length > 0 && (
         <section className="py-12 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Galerie</h2>
               <Carousel className="w-full">
                 <CarouselContent>
@@ -202,7 +204,7 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
       {nextSteps.length > 0 && (
         <section className="py-12 text-white" style={{ backgroundColor: '#a42c64' }}>
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">Prochaines étapes</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
                 {nextSteps.map((s, i) => (
