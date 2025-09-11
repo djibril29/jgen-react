@@ -36,7 +36,7 @@ export default function BlogPage() {
 
   // Source d'articles: Sanity si dispo, sinon fallback local
   const articles = (posts && posts.length > 0 ? posts.map(p => ({
-    id: p.slug,
+    slug: p.slug,
     title: p.title,
     excerpt: p.excerpt || '',
     content: '',
@@ -113,7 +113,7 @@ export default function BlogPage() {
                 <div className="space-y-8">
                   {filteredArticles.length > 0 ? (
                     filteredArticles.map((article) => (
-                      <Card key={article.id} className="overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                      <Card key={article.slug} className="overflow-hidden shadow-md hover:shadow-lg transition-shadow">
                         <div className="md:flex">
                           <div className="md:w-1/3">
                             <div className="h-48 md:h-full">
@@ -153,7 +153,7 @@ export default function BlogPage() {
                                 ))}
                               </div>
                               <Button asChild variant="ghost" className="text-pink-600 hover:text-pink-700 hover:bg-pink-50 p-0">
-                                <Link to={`/blog/${article.id}`} className="flex items-center">
+                                <Link to={`/blog/${article.slug}`} className="flex items-center">
                                   {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                               </Button>
@@ -208,7 +208,7 @@ export default function BlogPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {popularArticles.map((article) => (
-                        <div key={article.id} className="flex space-x-3">
+                        <div key={article.slug} className="flex space-x-3">
                           <div className="w-20 h-20 flex-shrink-0">
                             {article.image ? (
                               <img src={article.image} alt={article.title} className="w-full h-full object-cover rounded" />
@@ -218,8 +218,8 @@ export default function BlogPage() {
                           </div>
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-1 line-clamp-2">
-                              <Link 
-                                to={`/blog/${article.id}`} 
+                              <Link
+                                to={`/blog/${article.slug}`}
                                 className="hover:text-pink-600 transition-colors"
                               >
                                 {article.title}
