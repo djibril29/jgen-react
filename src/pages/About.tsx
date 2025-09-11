@@ -6,6 +6,10 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Users, Target, Award, Globe, Heart, Star, Shield, Hand, Megaphone } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import uefImg from '@/assets/images/projects/uef/uef1.png'
+import proscidesImg from '@/assets/images/projects/proscides/proscide1.jpeg'
+import jvImg from '@/assets/images/projects/jeunes-volontaires/jeunevolontaire.jpeg'
+import heroBg from '@/assets/images/backgrounds/herobg1.png'
 
 /**
  * Page À propos - Présentation détaillée de l'organisation J-GEN
@@ -63,10 +67,57 @@ export default function AboutPage() {
     "Le plaidoyer doit être guidé par leurs voix et besoins.",
     "La lutte contre les rapports de pouvoir exige un engagement anti-raciste et anti-colonial."
   ]
+  const axes = [
+    {
+      title: 'LE PLAIDOYER',
+      image: uefImg as string,
+      text:
+        "Le Plaidoyer est l’un de nos moyens d’intervention les plus efficaces, avec nos cibles, nos bénéficiaires et nos partenaires. Nous portons des plaidoyer forts en direction des décideurs et sur les sujets liés aux grands défis et enjeux en matière d’égalité des sexes au Sénégal .",
+    },
+    {
+      title: 'LA SENSIBILISATION COMMUNAUTAIRE',
+      image: heroBg as string,
+      text:
+        "Nous intervenons également à travers la sensibilisation des communautés sur différentes thématiques liées au droit des femmes. JGEN SENEGAL se définit comme une organisation communautaire de base mettant en avant une approche féministe communautaire et populaire. La sensibilisation communautaire est un moyen efficace de partager, avec les populations particulièrement les cibles directes et indirectes des informations cruciales sur nos différents domaines d’intervention et nos objectifs.",
+    },
+    {
+      title: "LE RENFORCEMENT DES CAPACITÉS",
+      image: jvImg as string,
+      text:
+        "La formation et le renforcement des capacités sont pour nous un puissant levier de développement au plan individuel comme au plan collectif : c’est pour cela que nous les mettons au cœur de notre intervention. Nous renforçons les capacités de nos jeunes cibles et bénéficiaires dans les zones où interviennent nos projets. nous privilégions la formation la capitale l’apprentissage pour assurer un suivi efficace et efficient de notre investissement sur le capital humain des femmes et des jeunes filles..",
+    },
+    {
+      title: 'RÉSEAUTAGE ET PARTENARIAT',
+      image: proscidesImg as string,
+      text:
+        "Nous croyons à la force du réseautage et au pouvoir du partenariat, ainsi JGEN se positionne comme un véritable catalyseur qui crée et offre des opportunités de réalisation d’actions collectives pour les jeunes organisations féministes, les alliés du mouvement et les partenaires de base. Nous créons des espaces sûrs, militants et inclusifs, des espaces qui donnent la parole aux femmes et aux alliés. JGEN participe également à des initiatives qui renforce les liens sociaux et professionnels des femmes et des communautés progressistes engagées pour créer ensemble des sociétés plus justes, plus équitables et plus égalitaires.",
+    },
+  ]
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
+
+      <section className="relative bg-[#F3D3B7] py-12">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1B2A31] mb-4">
+              Ensemble, pour l'égalité et la justice
+            </h2>
+            <p className="text-lg text-[#1B2A31]">
+              JGEN Sénégal s'engage à bâtir une société inclusive où chaque femme et chaque fille peut s'épanouir, libre de toute violence et discrimination.
+            </p>
+          </div>
+          <div className="flex-1 flex justify-center">
+            <img
+              src="/hero-jgen.jpg"
+              alt="Membres de JGEN Sénégal"
+              className="rounded-xl shadow-lg object-cover w-full max-w-md h-64"
+            />
+          </div>
+        </div>
+      </section>
+      
       
       <main className="flex-grow">
         {/* Vision & Mission */}
@@ -83,7 +134,7 @@ JGEN Sénégal travaille aussi dans la co construction du mouvement féministe a
                 </p>
               </div>
               <div className="hidden lg:block">
-                <div className="border-8" style={{ borderColor: '#F3D3B7' }}>
+                <div className="border-8">
                   <div className="aspect-video bg-[#1B2A31]">
                     <iframe
                       className="w-full h-full"
@@ -99,27 +150,21 @@ JGEN Sénégal travaille aussi dans la co construction du mouvement féministe a
           </div>
         </section>
 
-        {/* Mot de la directrice exécutive */}
-       
-        
-        {/* Goals / Objectifs */}
-        <section className="py-16" style={{ backgroundColor: '#1B2A31' }}>
+        {/* Domaines d'intervention */}
+        <section className="py-16" style={{ backgroundColor: '#a42c64' }}>
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-10">Nos objectifs</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-10">Domaines d'intervention</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {interventionAreas.slice(0,4).map((area, i) => (
-                <Card key={i} className="overflow-hidden border-0 shadow-lg" style={{ backgroundColor: '#F3D3B7' }}>
-                  <CardHeader className="pb-3 flex flex-row items-center justify-between">
-                    <CardTitle className="text-[#1B2A31]">Objectif {i+1}</CardTitle>
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#1B2A31', color: '#F3D3B7' }}>
-                      {i===0 && <Shield className="h-5 w-5" />}
-                      {i===1 && <Hand className="h-5 w-5" />}
-                      {i===2 && <Megaphone className="h-5 w-5" />}
-                      {i===3 && <Target className="h-5 w-5" />}
-                    </div>
+              {axes.map((axis, i) => (
+                <Card key={i} className="overflow-hidden border-0 shadow-lg bg-white rounded-xl">
+                  <div className="aspect-[4/3] w-full overflow-hidden">
+                    <img src={axis.image} alt={axis.title} className="w-full h-full object-cover" />
+                  </div>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-[#1B2A31]">{axis.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-[#1B2A31]">{area}</p>
+                    <p className="text-[#1B2A31]">{axis.text}</p>
                   </CardContent>
                 </Card>
               ))}
