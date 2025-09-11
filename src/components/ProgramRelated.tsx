@@ -5,6 +5,7 @@ import { Calendar, FileText, ArrowRight } from 'lucide-react'
 
 import uefImg from '@/assets/images/projects/uef/uef1.png'
 import forumImg from '@/assets/images/projects/proscides/proscide1.jpeg'
+import Reveal from '@/components/Reveal'
 
 type RelatedItem = {
   id: number
@@ -116,31 +117,33 @@ export default function ProgramRelated({ programId }: { programId: string }) {
                 <Link to="/blog" className="text-sm text-pink-600 hover:text-pink-700">Voir tout</Link>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data.news.map((item) => (
-                  <Card key={`news-${item.id}`} className="overflow-hidden shadow-md">
-                    {item.image && (
-                      <div className="h-40 overflow-hidden">
-                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                      </div>
-                    )}
-                    <CardHeader className="pb-2">
-                      <div className="flex items-center text-sm text-gray-500 mb-2">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        {item.date}
-                      </div>
-                      <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
-                    </CardHeader>
-                    {item.excerpt && (
-                      <CardContent className="pt-0">
-                        <p className="text-gray-600 text-sm line-clamp-2 mb-3">{item.excerpt}</p>
-                        <Button asChild variant="ghost" className="text-pink-600 hover:text-pink-700 hover:bg-pink-50 p-0 text-sm font-medium">
-                          <a href={item.link} className="flex items-center">
-                            Lire <ArrowRight className="ml-1 h-3 w-3" />
-                          </a>
-                        </Button>
-                      </CardContent>
-                    )}
-                  </Card>
+                {data.news.map((item, idx) => (
+                  <Reveal key={`news-reveal-${item.id}`} animation="fade-up" delayMs={idx * 80}>
+                    <Card className="overflow-hidden shadow-md">
+                      {item.image && (
+                        <div className="h-40 overflow-hidden">
+                          <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                      <CardHeader className="pb-2">
+                        <div className="flex items-center text-sm text-gray-500 mb-2">
+                          <Calendar className="h-4 w-4 mr-1" />
+                          {item.date}
+                        </div>
+                        <CardTitle className="text-lg line-clamp-2">{item.title}</CardTitle>
+                      </CardHeader>
+                      {item.excerpt && (
+                        <CardContent className="pt-0">
+                          <p className="text-gray-600 text-sm line-clamp-2 mb-3">{item.excerpt}</p>
+                          <Button asChild variant="ghost" className="text-pink-600 hover:text-pink-700 hover:bg-pink-50 p-0 text-sm font-medium">
+                            <a href={item.link} className="flex items-center">
+                              Lire <ArrowRight className="ml-1 h-3 w-3" />
+                            </a>
+                          </Button>
+                        </CardContent>
+                      )}
+                    </Card>
+                  </Reveal>
                 ))}
               </div>
             </div>
@@ -153,22 +156,24 @@ export default function ProgramRelated({ programId }: { programId: string }) {
                 <Link to="/ressources" className="text-sm text-pink-600 hover:text-pink-700">Voir tout</Link>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data.resources.map((item) => (
-                  <Card key={`res-${item.id}`} className="shadow-md">
-                    <CardHeader>
-                      <CardTitle className="text-lg flex items-center">
-                        <FileText className="h-4 w-4 mr-2 text-pink-600" /> {item.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-center justify-between text-sm text-gray-600">
-                        <span>{item.date}</span>
-                        <Button asChild variant="outline">
-                          <a href={item.link} className="flex items-center">Ouvrir <ArrowRight className="ml-1 h-3 w-3" /></a>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
+                {data.resources.map((item, idx) => (
+                  <Reveal key={`res-reveal-${item.id}`} animation="fade-up" delayMs={idx * 80}>
+                    <Card className="shadow-md">
+                      <CardHeader>
+                        <CardTitle className="text-lg flex items-center">
+                          <FileText className="h-4 w-4 mr-2 text-pink-600" /> {item.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex items-center justify-between text-sm text-gray-600">
+                          <span>{item.date}</span>
+                          <Button asChild variant="outline">
+                            <a href={item.link} className="flex items-center">Ouvrir <ArrowRight className="ml-1 h-3 w-3" /></a>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Reveal>
                 ))}
               </div>
             </div>

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Play, ChevronRight, Award, Star } from 'lucide-react'
 import ProgramRelated from '@/components/ProgramRelated'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import Reveal from '@/components/Reveal'
 
 export type AchievementItem = {
   value: string
@@ -73,22 +74,22 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
               <div className="lg:col-span-2">
                 <div className="prose prose-p:leading-relaxed max-w-none space-y-6">
-                  {intro}
-                  {description}
+                  <Reveal animation="fade-up">{intro}</Reveal>
+                  <Reveal animation="fade-up" delayMs={100}>{description}</Reveal>
                   {objectives.length > 0 && (
-                    <div className="mt-2">
+                    <Reveal animation="fade-up" delayMs={150} className="mt-2">
                       <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Nos objectifs</h2>
                       <div className="space-y-6">
                         {objectives.map((o, i) => (
-                          <div key={i}>
+                          <Reveal key={i} animation="fade-up" delayMs={200 + i * 60}>
                             <h3 className="text-lg font-semibold text-gray-900">{o.title}</h3>
                             {o.description && (
                               <p className="text-gray-700 mt-1">{o.description}</p>
                             )}
-                          </div>
+                          </Reveal>
                         ))}
                       </div>
-                    </div>
+                    </Reveal>
                   )}
                 </div>
               </div>
@@ -96,45 +97,49 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
               <aside className="lg:col-span-1">
                 <div className="sticky top-24 space-y-6">
                   {stats.length > 0 && (
-                    <Card className="border-0 shadow-md">
-                      <CardHeader>
-                        <CardTitle className="text-lg">Chiffres clés</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-2 gap-4">
-                          {stats.map((s, i) => (
-                            <div key={i} className="text-center">
-                              <div className="text-2xl font-extrabold" style={{ color: '#a42c64' }}>{s.value}</div>
-                              <div className="text-gray-600 text-xs mt-1">{s.label}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <Reveal animation="slide-left">
+                      <Card className="border-0 shadow-md">
+                        <CardHeader>
+                          <CardTitle className="text-lg">Chiffres clés</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="grid grid-cols-2 gap-4">
+                            {stats.map((s, i) => (
+                              <div key={i} className="text-center">
+                                <div className="text-2xl font-extrabold" style={{ color: '#a42c64' }}>{s.value}</div>
+                                <div className="text-gray-600 text-xs mt-1">{s.label}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Reveal>
                   )}
 
-                  <Card className="border-0 shadow-md">
-                    <CardHeader>
-                      <CardTitle className="text-lg">Partenaires</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      {partnerLogos.length > 0 ? (
-                        <div className="flex flex-wrap gap-3">
-                          {partnerLogos.map((src, i) => (
-                            <div key={i} className="w-20 h-12 rounded-md bg-white border flex items-center justify-center overflow-hidden">
-                              <img src={src} alt={`Partenaire ${i + 1}`} className="max-h-10 object-contain" />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="flex flex-wrap gap-2">
-                          {partners.map((p, i) => (
-                            <span key={i} className="px-3 py-1 rounded-full text-xs" style={{ backgroundColor: '#f9dded', color: '#a42c64' }}>{p}</span>
-                          ))}
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
+                  <Reveal animation="slide-left" delayMs={100}>
+                    <Card className="border-0 shadow-md">
+                      <CardHeader>
+                        <CardTitle className="text-lg">Partenaires</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        {partnerLogos.length > 0 ? (
+                          <div className="flex flex-wrap gap-3">
+                            {partnerLogos.map((src, i) => (
+                              <div key={i} className="w-20 h-12 rounded-md bg-white border flex items-center justify-center overflow-hidden">
+                                <img src={src} alt={`Partenaire ${i + 1}`} className="max-h-10 object-contain" />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="flex flex-wrap gap-2">
+                            {partners.map((p, i) => (
+                              <span key={i} className="px-3 py-1 rounded-full text-xs" style={{ backgroundColor: '#f9dded', color: '#a42c64' }}>{p}</span>
+                            ))}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </Reveal>
                 </div>
               </aside>
             </div>
@@ -173,22 +178,24 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
                 return (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {normalized.map((item, i) => (
-                      <div key={i} className="rounded-2xl p-6 md:p-8 shadow-md" style={{ backgroundColor: '#ff9800' }}>
-                        <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#a42c64' }}>
-                            {item.icon || <Star className="h-6 w-6 text-white" />}
-                          </div>
-                          <div className="flex-1">
-                            {item.value && (
-                              <div className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8c80f7' }}>{item.value}</div>
-                            )}
-                            <div className="text-xl md:text-2xl font-bold text-[#1b1719] mt-1">{item.title}</div>
-                            {item.description && (
-                              <p className="text-[#1b1719]/90 mt-2 text-sm md:text-base">{item.description}</p>
-                            )}
+                      <Reveal key={i} animation="fade-up" delayMs={i * 80}>
+                        <div className="rounded-2xl p-6 md:p-8 shadow-md" style={{ backgroundColor: '#ff9800' }}>
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#a42c64' }}>
+                              {item.icon || <Star className="h-6 w-6 text-white" />}
+                            </div>
+                            <div className="flex-1">
+                              {item.value && (
+                                <div className="text-3xl md:text-4xl font-extrabold" style={{ color: '#8c80f7' }}>{item.value}</div>
+                              )}
+                              <div className="text-xl md:text-2xl font-bold text-[#1b1719] mt-1">{item.title}</div>
+                              {item.description && (
+                                <p className="text-[#1b1719]/90 mt-2 text-sm md:text-base">{item.description}</p>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Reveal>
                     ))}
                   </div>
                 )
@@ -208,9 +215,11 @@ export default function ProgramLayout(props: ProgramLayoutProps) {
                 <CarouselContent>
                   {gallery.map((src, i) => (
                     <CarouselItem key={i} className="basis-[88%] md:basis-[46%] lg:basis-[31%]">
-                      <div className="aspect-video overflow-hidden rounded-xl">
-                        <img src={src} alt={`Galerie ${i + 1}`} className="w-full h-full object-cover" />
-                      </div>
+                      <Reveal animation="zoom">
+                        <div className="aspect-video overflow-hidden rounded-xl">
+                          <img src={src} alt={`Galerie ${i + 1}`} className="w-full h-full object-cover" />
+                        </div>
+                      </Reveal>
                     </CarouselItem>
                   ))}
                 </CarouselContent>

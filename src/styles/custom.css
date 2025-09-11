@@ -381,3 +381,12 @@ h3, .h3 {
 
 .icon-badge.lg { width: 7rem; height: 7rem; }
 .icon-badge.md { width: 3rem; height: 3rem; }
+
+/* --- Reveal animations --- */
+.reveal { transition: opacity .6s ease, transform .6s ease; }
+.reveal.fade-up { transform: translateY(16px); }
+.reveal.fade { transform: scale(0.98); }
+.reveal.slide-left { transform: translateX(24px); }
+.reveal.slide-right { transform: translateX(-24px); }
+.reveal.zoom { transform: scale(0.92); }
+.reveal-show { opacity: 1 !important; transform: none !important; }

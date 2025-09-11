@@ -9,6 +9,7 @@ import { Users, Heart, BookOpen, Calendar, ArrowRight, Star, Equal, Megaphone, H
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import { useTranslation } from 'react-i18next'
+import Reveal from '@/components/Reveal'
 
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import uefImg from '@/assets/images/projects/uef/uef1.png'
@@ -153,7 +154,7 @@ export default function HomePage() {
         >
           <div className="container mx-auto px-4 py-8 md:py-12">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl md:text-3xl font-bold">{t('home.news')}</h2>
+              <Reveal animation="fade-up"><h2 className="text-2xl md:text-3xl font-bold">{t('home.news')}</h2></Reveal>
               <Link to="/blog" className="text-sm underline hover:no-underline">{t('common.viewAll')}</Link>
             </div>
             <div className="relative">
@@ -163,19 +164,21 @@ export default function HomePage() {
                     <CarouselItem key={item.id} className="min-h-[360px] md:min-h-[320px]">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
                         <div className="aspect-video w-full overflow-hidden rounded-lg">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-full object-cover"
-                          />
+                          <Reveal animation="zoom">
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </Reveal>
                         </div>
                         <div>
                           <div className="flex items-center text-sm text-gray-200 mb-2">
                             <Calendar className="h-4 w-4 mr-1" />
                             {item.date}
                           </div>
-                          <h3 className="text-2xl md:text-3xl font-bold mb-3">{item.title}</h3>
-                          <p className="text-gray-100 mb-6">{item.excerpt}</p>
+                          <Reveal animation="fade-up"><h3 className="text-2xl md:text-3xl font-bold mb-3">{item.title}</h3></Reveal>
+                          <Reveal animation="fade-up" delayMs={80}><p className="text-gray-100 mb-6">{item.excerpt}</p></Reveal>
                           <Button asChild className="bg-white text-gray-900 hover:bg-gray-100">
                             <Link to={`/blog/${item.id}`} className="flex items-center">
                               {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
@@ -301,10 +304,12 @@ export default function HomePage() {
                 const end = match ? parseInt(match[1], 10) : 0
                 const suffix = match ? match[2] : ''
                 return (
-                  <div key={index} className="space-y-2">
-                    <CountUp end={end} suffix={suffix} className="text-3xl md:text-5xl font-bold" />
-                    <div className="text-sm md:text-lg">{stat.label}</div>
-                  </div>
+                  <Reveal key={index} animation="fade-up" delayMs={index * 80}>
+                    <div className="space-y-2">
+                      <CountUp end={end} suffix={suffix} className="text-3xl md:text-5xl font-bold" />
+                      <div className="text-sm md:text-lg">{stat.label}</div>
+                    </div>
+                  </Reveal>
                 )
               })}
             </div>
@@ -326,12 +331,13 @@ export default function HomePage() {
                 <CarouselContent>
               {featuredPrograms.map((program) => (
                     <CarouselItem key={program.id} className="basis-[90%] sm:basis-[68%] md:basis-[42%] lg:basis-[28%]">
-                      <Card className="border-0 shadow-lg overflow-hidden bg-white h-full rounded-xl max-w-sm mx-auto">
-                        {program.image && (
-                          <div className="h-40 md:h-44 w-full overflow-hidden">
-                            <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
-                          </div>
-                        )}
+                      <Reveal animation="fade-up">
+                        <Card className="border-0 shadow-lg overflow-hidden bg-white h-full rounded-xl max-w-sm mx-auto">
+                          {program.image && (
+                            <div className="h-40 md:h-44 w-full overflow-hidden">
+                              <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+                            </div>
+                          )}
                   <CardHeader>
                     <div className="flex items-center space-x-3">
                       <div className={`p-2 rounded-lg text-white`}>
@@ -345,7 +351,7 @@ export default function HomePage() {
                       {program.description}
                     </CardDescription>
                   </CardContent>
-                        <CardFooter className="mt-auto">
+                            <CardFooter className="mt-auto">
                     <Button asChild variant="outline" className="w-full rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
                       <Link to={`/nos-programmes#${program.id}`}>
                               {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
@@ -353,6 +359,7 @@ export default function HomePage() {
                     </Button>
                   </CardFooter>
                 </Card>
+                      </Reveal>
                     </CarouselItem>
               ))}
                 </CarouselContent>
@@ -383,34 +390,36 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {news.map((item) => (
-                <Card key={item.id} className="overflow-hidden shadow-md h-full rounded-xl max-w-sm mx-auto">
-                  <div className="h-44 md:h-48 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      {item.date}
+                <Reveal key={item.id} animation="fade-up">
+                  <Card className="overflow-hidden shadow-md h-full rounded-xl max-w-sm mx-auto">
+                    <div className="h-44 md:h-48 overflow-hidden">
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
                     </div>
-                    <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600 text-sm md:text-base">
-                      {item.excerpt}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                    <Button asChild variant="outline" className="rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
-                      <Link to={`/blog/${item.id}`} className="flex items-center">
-                        {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                    <CardHeader>
+                      <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2">
+                        <Calendar className="h-4 w-4 mr-1" />
+                        {item.date}
+                      </div>
+                      <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-gray-600 text-sm md:text-base">
+                        {item.excerpt}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter>
+                      <Button asChild variant="outline" className="rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
+                        <Link to={`/blog/${item.id}`} className="flex items-center">
+                          {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </Reveal>
               ))}
             </div>
 
