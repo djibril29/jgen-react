@@ -8,19 +8,22 @@ import { programBySlug } from '@/lib/queries'
 import { urlFor } from '@/lib/image'
 
 export default function ProgramDynamic() {
-  const { '*': slugCatchAll } = useParams()
-  // router path is /programme/:slug but HashRouter may pass wildcard when nested; normalize
-  const slug = (slugCatchAll || '').split('/').pop() || ''
+  const { slug } = useParams<{ slug: string }>()
 
   const [doc, setDoc] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!slug) return
-    sanityClient.fetch(programBySlug, { slug }).then((res) => {
-      setDoc(res)
+    if (!slug) {
       setLoading(false)
-    }).catch(() => setLoading(false))
+      return
+    }
+    setLoading(true)
+    sanityClient
+      .fetch(programBySlug, { slug })
+      .then((res) => setDoc(res))
+      .catch(() => setDoc(null))
+      .finally(() => setLoading(false))
   }, [slug])
 
   if (loading) {
@@ -50,7 +53,7 @@ export default function ProgramDynamic() {
       <Header />
       <main className="flex-grow">
         <ProgramLayout
-          programId={slug}
+          programId={slug || ''}
           title={doc.title}
           subtitle={doc.intro || ''}
           coverImage={coverImage}
