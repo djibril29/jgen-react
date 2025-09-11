@@ -5,19 +5,18 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { Users, Heart, BookOpen, Calendar, ArrowRight, Star, Equal, Megaphone, Hand } from 'lucide-react'
+import { Users, Calendar, ArrowRight, Equal, Megaphone, Hand } from 'lucide-react'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import { useTranslation } from 'react-i18next'
 import Reveal from '@/components/Reveal'
 
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
-import uefImg from '@/assets/images/projects/uef/uef1.png'
-import proscidesImg from '@/assets/images/projects/proscides/proscide1.jpeg'
-import jvImg from '@/assets/images/projects/jeunes-volontaires/jeunevolontaire.jpeg'
 import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 
-import InterventionMap from '@/components/InterventionMap'
+import { sanityClient } from '@/lib/sanity'
+import { homeDoc } from '@/lib/queries'
+import { urlFor } from '@/lib/image'
 
 /**
  * Page d'accueil - Page principale du site J-GEN Sénégal
@@ -25,6 +24,33 @@ import InterventionMap from '@/components/InterventionMap'
  */
 export default function HomePage() {
   const { t } = useTranslation()
+  const [home, setHome] = useState<any | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    sanityClient
+      .fetch(homeDoc)
+      .then((res) => setHome(res))
+      .catch(() => setHome(null))
+      .finally(() => setLoading(false))
+  }, [])
+
+  const stats = home?.stats || []
+  const featuredPrograms = (home?.featuredPrograms || []).map((p: any) => ({
+    slug: p.slug,
+    title: p.title,
+    description: p.intro || '',
+    image: p.coverImage ? urlFor(p.coverImage).width(400).height(300).url() : '',
+    icon: <Users className="h-8 w-8" />,
+  }))
+  const news = (home?.news || []).map((n: any) => ({
+    slug: n.slug,
+    title: n.title,
+    date: n.date ? new Date(n.date).toLocaleDateString('fr-FR') : '',
+    excerpt: n.excerpt || '',
+    image: n.coverImage ? urlFor(n.coverImage).width(1200).height(630).url() : '',
+  }))
+
   const CountUp = ({ end, durationMs = 1500, className, suffix = '' }: { end: number; durationMs?: number; className?: string; suffix?: string }) => {
     const [value, setValue] = useState(0)
     const containerRef = useRef<HTMLDivElement | null>(null)
@@ -61,82 +87,18 @@ export default function HomePage() {
       </div>
     )
   }
-  // Données des programmes phares
-  const featuredPrograms = [
-    {
-      id: 'uef',
-      title: "Université d'Été Féministe",
-      description: "Un espace de mobilisation, de savoir et de résistance pour les féministes d'Afrique de l'Ouest et du Centre.",
-      color: 'from-pink-500 to-purple-600',
-      icon: <BookOpen className="h-8 w-8" />,
-      image: uefImg as string,
-    },
-    {
-      id: 'pas-a-pas',
-      title: 'PAS À PAS',
-      description: "Programme pionnier en soutien au plaidoyer pour l'avortement sécurisé en cas de viol et d'inceste.",
-      color: 'from-orange-500 to-red-500',
-      icon: <Heart className="h-8 w-8" />,
-      image: heroBg as string,
-    },
-    {
-      id: 'elles-aussi',
-      title: 'ELLES AUSSI',
-      description: "Projet d'intervention communautaire contre les violences sexuelles à l'égard des filles.",
-      color: 'from-green-500 to-teal-500',
-      icon: <Users className="h-8 w-8" />,
-      image: proscidesImg as string,
-    },
-    {
-      id: 'proscides',
-      title: 'PROSCIDES',
-      description: "Programme de protection des droits de l'enfant et participation citoyenne.",
-      color: 'from-blue-500 to-indigo-600',
-      icon: <Users className="h-8 w-8" />,
-      image: proscidesImg as string,
-    },
-    {
-      id: 'jeunes-volontaires',
-      title: 'Jeunes Volontaires (SSR)',
-      description: 'Renforcement des capacités des jeunes sur la santé sexuelle et reproductive.',
-      color: 'from-yellow-500 to-orange-500',
-      icon: <Users className="h-8 w-8" />,
-      image: jvImg as string,
-    },
-  ]
 
-  // Données des actualités
-  const news = [
-    {
-      id: 1,
-      title: 'Rapport Annuel 2024 publié',
-      date: '15 Décembre 2024',
-      excerpt: "Découvrez nos réalisations et l'impact de nos actions tout au long de l'année 2024.",
-      image: uefImg as string
-    },
-    {
-      id: 2,
-      title: 'Forum National sur la Justice Reproductive',
-      date: '30 Septembre 2024',
-      excerpt: "150 participants ont discuté des avortements clandestins et de l'application du Protocole de Maputo.",
-      image: proscidesImg as string
-    },
-    {
-      id: 3,
-      title: 'Lancement du projet LIGGEEYAL ËLËG',
-      date: '15 Novembre 2024',
-      excerpt: "Un nouveau projet pour l'autonomisation économique des jeunes filles et femmes vulnérables.",
-      image: jvImg as string
-    }
-  ]
-
-  // Statistiques clés
-  const stats = [
-    { number: '1447+', label: 'Personnes touchées en 2024' },
-    { number: '801', label: 'Personnes formées' },
-    { number: '646', label: 'Personnes sensibilisées' },
-    { number: '6', label: 'Projets actifs' }
-  ]
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow">
+          <div className="container mx-auto px-4 py-20">Chargement…</div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -161,7 +123,7 @@ export default function HomePage() {
               <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]} className="w-full">
                 <CarouselContent>
                   {news.map((item) => (
-                    <CarouselItem key={item.id} className="min-h-[360px] md:min-h-[320px]">
+                    <CarouselItem key={item.slug} className="min-h-[360px] md:min-h-[320px]">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
                         <div className="aspect-video w-full overflow-hidden rounded-lg">
                           <Reveal animation="zoom">
@@ -180,7 +142,7 @@ export default function HomePage() {
                           <Reveal animation="fade-up"><h3 className="text-2xl md:text-3xl font-bold mb-3">{item.title}</h3></Reveal>
                           <Reveal animation="fade-up" delayMs={80}><p className="text-gray-100 mb-6">{item.excerpt}</p></Reveal>
                           <Button asChild className="bg-white text-gray-900 hover:bg-gray-100">
-                            <Link to={`/blog/${item.id}`} className="flex items-center">
+                            <Link to={`/blog/${item.slug}`} className="flex items-center">
                               {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                           </Button>
@@ -330,7 +292,7 @@ export default function HomePage() {
               <Carousel opts={{ loop: true }} className="w-full">
                 <CarouselContent>
               {featuredPrograms.map((program) => (
-                    <CarouselItem key={program.id} className="basis-[90%] sm:basis-[68%] md:basis-[42%] lg:basis-[28%]">
+                    <CarouselItem key={program.slug} className="basis-[90%] sm:basis-[68%] md:basis-[42%] lg:basis-[28%]">
                       <Reveal animation="fade-up">
                         <Card className="border-0 shadow-lg overflow-hidden bg-white h-full rounded-xl max-w-sm mx-auto">
                           {program.image && (
@@ -353,7 +315,7 @@ export default function HomePage() {
                   </CardContent>
                             <CardFooter className="mt-auto">
                     <Button asChild variant="outline" className="w-full rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
-                      <Link to={`/nos-programmes#${program.id}`}>
+                      <Link to={`/programme/${program.slug}`}>
                               {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
@@ -390,7 +352,7 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {news.map((item) => (
-                <Reveal key={item.id} animation="fade-up">
+                <Reveal key={item.slug} animation="fade-up">
                   <Card className="overflow-hidden shadow-md h-full rounded-xl max-w-sm mx-auto">
                     <div className="h-44 md:h-48 overflow-hidden">
                       <img 
@@ -413,7 +375,7 @@ export default function HomePage() {
                     </CardContent>
                     <CardFooter>
                       <Button asChild variant="outline" className="rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
-                        <Link to={`/blog/${item.id}`} className="flex items-center">
+                        <Link to={`/blog/${item.slug}`} className="flex items-center">
                           {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>

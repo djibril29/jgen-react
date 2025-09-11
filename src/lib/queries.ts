@@ -9,4 +9,9 @@ export const programBySlug = groq`*[_type == "program" && slug.current == $slug]
 export const resourcesList = groq`*[_type == "resource"]{ _id, title, "slug": slug.current, date, type, file, url, description } | order(date desc)`
 export const resourceBySlug = groq`*[_type == "resource" && slug.current == $slug][0]{ _id, title, date, type, url, description, file }`
 
-export const homeDoc = groq`*[_type == "home"][0]{ heroSlides[], stats[], featuredPrograms[]->, news[]-> }` 
+export const homeDoc = groq`*[_type == "home"][0]{
+  heroSlides[],
+  stats[],
+  featuredPrograms[]->{ _id, title, "slug": slug.current, intro, coverImage },
+  news[]->{ _id, title, "slug": slug.current, excerpt, coverImage, date }
+}`
