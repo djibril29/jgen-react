@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,6 +8,9 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { Calendar, User, Tag, Search, ArrowRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { sanityClient } from '@/lib/sanity'
+import { blogList } from '@/lib/queries'
+import { urlFor } from '@/lib/image'
 
 /**
  * Page Blog - Actualités et articles de J-GEN
@@ -19,100 +22,39 @@ export default function BlogPage() {
   const initialQ = params.get('q') || ''
   const [searchTerm, setSearchTerm] = useState(initialQ)
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [posts, setPosts] = useState<any[] | null>(null)
   const { t } = useTranslation()
 
-  // Catégories d'articles
+  useEffect(() => {
+    sanityClient.fetch(blogList).then((res) => setPosts(res)).catch(() => setPosts([]))
+  }, [])
+
+  // Catégories (placeholder jusqu'à taxonomie Sanity)
   const categories = [
-    { id: 'all', name: t('blog.categories.all'), count: 12 },
-    { id: 'actualites', name: t('blog.categories.actualites'), count: 5 },
-    { id: 'evenements', name: t('blog.categories.evenements'), count: 3 },
-    { id: 'plaidoyer', name: t('blog.categories.plaidoyer'), count: 2 },
-    { id: 'temoignages', name: t('blog.categories.temoignages'), count: 2 }
+    { id: 'all', name: t('blog.categories.all'), count: posts?.length || 0 },
   ]
 
-  // Articles du blog
-  const articles = [
-    {
-      id: 1,
-      title: "Rapport Annuel 2024 : Une année de résilience et d'adaptation stratégique",
-      excerpt: 'Découvrez les réalisations marquantes de J-GEN en 2024 et notre vision pour 2025 dans ce rapport annuel complet.',
-      content: "L'année 2024 a été marquée par un rétrécissement préoccupant de l'espace civique, tant au niveau national qu'international. Dans ce contexte particulièrement contraint, J-GEN Sénégal a su faire preuve d'une résilience remarquable...",
-      date: '15 Décembre 2024',
-      author: 'Maimouna YADE',
-      category: 'actualites',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/355cb97a-5311-4a9c-8061-e07bce34eeda.jpg',
-      tags: ['rapport annuel', '2024', 'résilience']
-    },
-    {
-      id: 2,
-      title: 'Forum National sur la Justice Reproductive : Un pas vers le changement',
-      excerpt: "150 participants ont discuté des avortements clandestins et de l'application du Protocole de Maputo lors de notre forum.",
-      content: "Organisé en septembre 2024, le premier Forum de JGEN sur les avortements clandestins et l'application du Protocole de Maputo a rassemblé 150 participant·es issues des réseaux constitués par le programme PAS À PAS...",
-      date: '30 Septembre 2024',
-      author: 'Équipe J-GEN',
-      category: 'evenements',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/154bb4ae-b9a8-4233-8529-ea3ff8ba416c.jpg',
-      tags: ['justice reproductive', 'forum', 'protocole de maputo']
-    },
-    {
-      id: 3,
-      title: "Lancement du projet LIGGEEYAL ËLËG pour l'autonomisation économique",
-      excerpt: "Un nouveau projet de 3 ans pour l'autonomisation économique des jeunes filles et femmes vulnérables à Kaolack et Fatick.",
-      content: "LIGGEEYAL ËLËG est un projet qui s'allie à la mission de J-GEN. En partenariat avec l'Organisation Internationale de la Francophonie (OIF), ce projet vise l'autonomisation économique des jeunes filles et femmes vulnérables...",
-      date: '15 Novembre 2024',
-      author: 'Équipe J-GEN',
-      category: 'actualites',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/3266672b-4de6-460c-9ac2-89561518a201.jpg',
-      tags: ['autonomisation économique', 'LIGGEEYAL ËLËG', 'OIF']
-    },
-    {
-      id: 4,
-      title: "Université d'Été Féministe 2024 : Un espace de savoir et de résistance",
-      excerpt: "Retour sur la deuxième édition de l'UEF qui a réuni 275 militantes féministes d'Afrique francophone.",
-      content: "En 2024, JGEN Sénégal, en partenariat avec le Collectif des Féministes du Sénégal, a marqué un nouveau tournant dans le leadership féministe régional en organisant la deuxième édition de l'Université d'Été Féministe...",
-      date: '10 Août 2024',
-      author: 'Équipe J-GEN',
-      category: 'evenements',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/491c689a-941a-49ff-b23b-a7ce598e02bd.jpg',
-      tags: ['UEF', 'féminisme', 'formation']
-    },
-    {
-      id: 5,
-      title: 'Témoignage : Aminata, survivante et militante',
-      excerpt: "Aminata partage son parcours de survivante et son engagement dans la lutte contre les violences faites aux filles.",
-      content: "« Avant de rencontrer J-GEN, je me sentais seule et perdue. Les séances de guérison m'ont aidée à retrouver ma force. Aujourd'hui, je suis militante et j'aide d'autres filles comme moi... »",
-      date: '5 Juillet 2024',
-      author: 'Aminata Diop',
-      category: 'temoignages',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/9ac25252-bea6-4ebb-bd59-ec5cb48911ea.jpg',
-      tags: ['témoignage', 'survivante', 'résilience']
-    },
-    {
-      id: 6,
-      title: "Plaidoyer pour la dépénalisation de l'avortement en cas de viol",
-      excerpt: "Notre position et nos arguments en faveur de la dépénalisation de l'avortement en cas de viol et d'inceste au Sénégal.",
-      content: "Le programme PAS À PAS de J-GEN défend la dépénalisation de l'avortement en cas de viol et d'inceste comme une mesure de justice reproductive essentielle. Cette position s'appuie sur plusieurs arguments...",
-      date: '20 Juin 2024',
-      author: 'Équipe Plaidoyer J-GEN',
-      category: 'plaidoyer',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/97bb2b4f-9952-44df-9e1e-43d1a1b29b5d.jpg',
-      tags: ['avortement', 'droits reproductifs', 'plaidoyer']
-    }
-  ]
+  // Source d'articles: Sanity si dispo, sinon fallback local
+  const articles = (posts && posts.length > 0 ? posts.map(p => ({
+    id: p.slug,
+    title: p.title,
+    excerpt: p.excerpt || '',
+    content: '',
+    date: new Date(p.date || Date.now()).toLocaleDateString('fr-FR'),
+    author: 'J-GEN',
+    category: 'all',
+    image: p.coverImage ? urlFor(p.coverImage).width(1200).height(630).url() : undefined,
+    tags: [],
+  })) : [])
 
-  // Filtrer les articles
   const filteredArticles = articles.filter(article => {
     const q = searchTerm.toLowerCase()
     const matchesSearch = article.title.toLowerCase().includes(q) ||
-                         article.excerpt.toLowerCase().includes(q) ||
-                         article.tags.some((tag: string) => tag.toLowerCase().includes(q))
-    
-    const matchesCategory = selectedCategory === 'all' || article.category === selectedCategory
-    
+                         article.excerpt.toLowerCase().includes(q)
+    const matchesCategory = selectedCategory === 'all'
     return matchesSearch && matchesCategory
   })
 
-  // Articles populaires
   const popularArticles = articles.slice(0, 3)
 
   return (
@@ -175,11 +117,11 @@ export default function BlogPage() {
                         <div className="md:flex">
                           <div className="md:w-1/3">
                             <div className="h-48 md:h-full">
-                              <img 
-                                src={article.image} 
-                                alt={article.title}
-                                className="w-full h-full object-cover"
-                              />
+                              {article.image ? (
+                                <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+                              ) : (
+                                <div className="w-full h-full bg-gray-200" />
+                              )}
                             </div>
                           </div>
                           <div className="md:w-2/3">
@@ -200,7 +142,7 @@ export default function BlogPage() {
                             </CardHeader>
                             <CardContent>
                               <div className="flex flex-wrap gap-2 mb-4">
-                                {article.tags.map((tag, index) => (
+                                {(article.tags || []).map((tag: string, index: number) => (
                                   <span 
                                     key={index} 
                                     className="px-2 py-1 bg-pink-100 text-pink-800 rounded-full text-xs"
@@ -237,7 +179,7 @@ export default function BlogPage() {
                   )}
                 </div>
 
-                {/* Pagination */}
+                {/* Pagination (placeholder) */}
                 <div className="mt-12 flex justify-center">
                   <div className="flex space-x-2">
                     <Button variant="outline" disabled>
@@ -268,11 +210,11 @@ export default function BlogPage() {
                       {popularArticles.map((article) => (
                         <div key={article.id} className="flex space-x-3">
                           <div className="w-20 h-20 flex-shrink-0">
-                            <img 
-                              src={article.image} 
-                              alt={article.title}
-                              className="w-full h-full object-cover rounded"
-                            />
+                            {article.image ? (
+                              <img src={article.image} alt={article.title} className="w-full h-full object-cover rounded" />
+                            ) : (
+                              <div className="w-full h-full bg-gray-200 rounded" />
+                            )}
                           </div>
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-1 line-clamp-2">
@@ -316,17 +258,14 @@ export default function BlogPage() {
                   </CardContent>
                 </Card>
 
-                {/* Tags */}
+                {/* Tags (placeholder) */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-xl">Tags</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-2">
-                      {[
-                        'féminisme', 'droits des femmes', 'VBG', 'santé reproductive', 
-                        'autonomisation', 'éducation', 'plaidoyer', 'justice sociale'
-                      ].map((tag, index) => (
+                      {['féminisme','droits des femmes','VBG','santé reproductive','autonomisation','éducation','plaidoyer','justice sociale'].map((tag, index) => (
                         <button
                           key={index}
                           onClick={() => setSearchTerm(tag)}

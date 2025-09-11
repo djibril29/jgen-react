@@ -138,7 +138,7 @@ JGEN Sénégal travaille aussi dans la co construction du mouvement féministe a
                   <div className="aspect-video bg-[#1B2A31]">
                     <iframe
                       className="w-full h-full"
-                      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                      src="https://www.youtube.com/watch?v=IOBwnXGW3co"
                       title="YouTube video"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen

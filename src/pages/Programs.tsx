@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,6 +8,9 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { Users, BookOpen, Heart, Target, Calendar, MapPin, Star, ArrowRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { sanityClient } from '@/lib/sanity'
+import { programsList } from '@/lib/queries'
+import { urlFor } from '@/lib/image'
 
 /**
  * Page Nos programmes - Présentation détaillée de tous les programmes de J-GEN
@@ -15,157 +18,31 @@ import { useTranslation } from 'react-i18next'
  */
 export default function ProgramsPage() {
   const [activeTab, setActiveTab] = useState('all')
+  const [programs, setPrograms] = useState<any[]>([])
   const { t } = useTranslation()
 
-  // Données des programmes
-  const programs = [
-    {
-      id: 'uef',
-      title: "Université d'Été Féministe (UEF)",
-      category: 'education',
-      color: 'from-pink-500 to-purple-600',
-      icon: <BookOpen className="h-8 w-8" />,
-      description: "Un espace stratégique de mobilisation, de formation et de réflexion féministe pour l'Afrique de l'Ouest et du Centre.",
-      details: [
-        '275 participantes engagées en 2024',
-        '18 panels et ateliers pratiques',
-        '10 militantes féministes honorées',
-        "10 outils pratiques produits sur les DSSR et l'avortement sécurisé"
-      ],
-      achievements: [
-        "Lancement du Hub d'excellence numérique de l'UEF",
-        "Production d'outils pratiques sur les droits sexuels et reproductifs",
-        "Renforcement de l'infrastructure du mouvement féministe régional"
-      ],
-      partners: ['FJS', 'Fondation HEWLETT', 'CENTRE ODAS', 'AWDF', 'PPG GLOBAL'],
-      route: '/programme/universite-ete-feministe',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/7c790be6-1d62-40d1-bd21-675869ca7f39.jpg'
-    },
-    {
-      id: 'pas-a-pas',
-      title: 'PAS À PAS',
-      category: 'sante',
-      color: 'from-orange-500 to-red-500',
-      icon: <Heart className="h-8 w-8" />,
-      description: "Programme pionnier en soutien au plaidoyer pour l'avortement sécurisé en cas de viol et d'inceste.",
-      details: [
-        'Création de 4 réseaux stratégiques nationaux',
-        'Forum national avec 150 participants',
-        'Focus groupes communautaires avec 60 jeunes filles leaders',
-        "Recommandations pour l'évolution du cadre juridique"
-      ],
-      achievements: [
-        "Dépénalisation de l'avortement en cas de viol et d'inceste",
-        'Création de réseaux multi-acteurs pour la justice reproductive',
-        'Formation des journalistes à la justice reproductive'
-      ],
-      partners: ['PP Global', 'FJS', 'Amplify Change', 'Marie Stopes International'],
-      route: '/programme/pas-a-pas',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/e3ef8d34-9675-4c44-b90d-9beeb45b42ff.jpg'
-    },
-    {
-      id: 'elles-aussi',
-      title: 'ELLES AUSSI',
-      category: 'protection',
-      color: 'from-green-500 to-teal-500',
-      icon: <Users className="h-8 w-8" />,
-      description: "Projet d'intervention communautaire contre les violences sexuelles à l'égard des filles dans la région de Fatick.",
-      details: [
-        '60 jeunes filles survivantes accompagnées',
-        "3 Comités de Veilles et d'Alerte Communautaires créés",
-        'Sensibilisation des communautés sur les VBG',
-        "Formation à l'alerte précoce"
-      ],
-      achievements: [
-        'Accompagnement psychologique des survivantes',
-        'Mise en place de mécanismes communautaires de protection',
-        'Renforcement des liens avec les communautés locales'
-      ],
-      partners: ['African Women Development Fund (AWDF)', 'Initiative KASA'],
-      route: '/programme/elles-aussi',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/634dff46-38cb-42c1-80b8-84b059055e87.jpg'
-    },
-    {
-      id: 'proscides',
-      title: 'PROSCIDES',
-      category: 'enfance',
-      color: 'from-blue-500 to-indigo-600',
-      icon: <Target className="h-8 w-8" />,
-      description: "Programme de renforcement des organisations de la société civile pour la promotion et la protection des droits de l'enfant.",
-      details: [
-        "4 cadres d'enfants créés à Pikine et Kaolack",
-        '2 établissements scolaires partenaires',
-        'Plus de 2000 personnes sensibilisées',
-        'Partenariats avec autorités locales'
-      ],
-      achievements: [
-        'Consolidation de la gouvernance organisationnelle',
-        'Renforcement des capacités programmatiques',
-        "Élargissement du réseau de partenaires"
-      ],
-      partners: ['Save the Children Suède'],
-      route: '/programme/proscides',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/26c49af7-4aa8-4702-987c-f0eda492f31b.jpg'
-    },
-    {
-      id: 'jeunes-volontaires',
-      title: 'Jeunes Volontaires pour la Santé Sexuelle et Reproductive',
-      category: 'sante',
-      color: 'from-yellow-500 to-orange-500',
-      icon: <Users className="h-8 w-8" />,
-      description: 'Projet de renforcement des capacités des adolescentes et jeunes sur la santé sexuelle et reproductive.',
-      details: [
-        '84 adolescentes et jeunes formées',
-        "3 cadres de discussion sur l'hygiène menstruelle",
-        '3 visites de plaidoyer auprès des autorités',
-        'Engagement des autorités municipales'
-      ],
-      achievements: [
-        "Amélioration de l'accès à l'information",
-        'Mobilisation communautaire',
-        'Engagement des autorités locales'
-      ],
-      partners: ['Voix Essentielles'],
-      route: '/programme/jeunes-volontaires',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/3a14a18f-2a99-41d5-a3cd-b11a3b288231.jpg'
-    },
-    {
-      id: 'liggeeyal-eleg',
-      title: 'LIGGEEYAL ËLËG',
-      category: 'economique',
-      color: 'from-purple-500 to-pink-600',
-      icon: <Star className="h-8 w-8" />,
-      description: 'Projet d\'autonomisation économique des jeunes filles et femmes vulnérables dans les régions de Kaolack et Fatick.',
-      details: [
-        'Durée de 3 ans (novembre 2024 – octobre 2027)',
-        'Ciblage des filles et femmes vulnérables',
-        "Focus sur l'autonomisation économique",
-        "Partenariat avec l'OIF"
-      ],
-      achievements: [
-        "Missions d'introduction dans les régions",
-        'Rencontre avec les autorités locales',
-        'Préparation de la mise en œuvre'
-      ],
-      partners: ['Organisation Internationale de la Francophonie (OIF)'],
-      route: '/programme/liggeeyal-eleg',
-      image: 'https://pub-cdn.sider.ai/u/U08XHO6GEO7/web-coder/68bd045dd4f5bb9dcd3ca6f0/resource/46d8f3a7-eda1-47a4-a71e-bff8b6641581.jpg'
-    }
-  ]
+  useEffect(() => {
+    sanityClient.fetch(programsList).then((res) => setPrograms(res)).catch(() => setPrograms([]))
+  }, [])
 
-  // Filtrer les programmes par catégorie
-  const filteredPrograms = activeTab === 'all' 
-    ? programs 
-    : programs.filter(program => program.category === activeTab)
+  const normalized = programs.map((p) => ({
+    id: p.slug,
+    title: p.title,
+    route: `/programme/${p.slug}`,
+    image: p.coverImage ? urlFor(p.coverImage).width(1600).height(900).url() : undefined,
+    color: 'from-pink-500 to-purple-600',
+    icon: <BookOpen className="h-8 w-8" />,
+    description: '',
+    details: [],
+    achievements: [],
+    partners: [],
+    category: 'all',
+  }))
 
-  // Catégories de programmes
+  const filteredPrograms = activeTab === 'all' ? normalized : normalized.filter(p => p.category === activeTab)
+
   const categories = [
     { id: 'all', name: t('programsPage.filters.all'), color: 'from-gray-500 to-gray-600' },
-    { id: 'education', name: t('programsPage.filters.education'), color: 'from-pink-500 to-purple-600' },
-    { id: 'sante', name: t('programsPage.filters.health'), color: 'from-orange-500 to-red-500' },
-    { id: 'protection', name: t('programsPage.filters.protection'), color: 'from-green-500 to-teal-500' },
-    { id: 'enfance', name: t('programsPage.filters.childhood'), color: 'from-blue-500 to-indigo-600' },
-    { id: 'economique', name: t('programsPage.filters.economic'), color: 'from-purple-500 to-pink-600' }
   ]
 
   return (
@@ -210,7 +87,11 @@ export default function ProgramsPage() {
                   <Card className="overflow-hidden border-0 shadow-lg rounded-xl max-w-4xl mx-auto">
                     {/* Image illustrative */}
                     <div className="h-48 md:h-56 w-full overflow-hidden">
-                      <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+                      {program.image ? (
+                        <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full bg-gray-200" />
+                      )}
                     </div>
                     
                     <div className="p-6 md:p-8">
@@ -224,58 +105,9 @@ export default function ProgramsPage() {
                               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                                 {program.title}
                               </h2>
-                              <p className="text-lg text-gray-600">
-                                {program.description}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="space-y-6">
-                            <div>
-                              <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                                <Target className="h-5 w-5 mr-2 text-pink-500" />
-                                {t('programsPage.keyPoints')}
-                              </h3>
-                              <ul className="space-y-2">
-                                {program.details.map((detail, index) => (
-                                  <li key={index} className="flex items-start space-x-2">
-                                    <div className="w-2 h-2 rounded-full bg-pink-500 mt-2"></div>
-                                    <span className="text-gray-700">{detail}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-
-                            <div>
-                              <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                                <Star className="h-5 w-5 mr-2 text-orange-500" />
-                                {t('programsPage.achievements')}
-                              </h3>
-                              <ul className="space-y-2">
-                                {program.achievements.map((achievement, index) => (
-                                  <li key={index} className="flex items-start space-x-2">
-                                    <div className="w-2 h-2 rounded-full bg-orange-500 mt-2"></div>
-                                    <span className="text-gray-700">{achievement}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-
-                            <div>
-                              <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                                <Users className="h-5 w-5 mr-2 text-green-500" />
-                                {t('programsPage.partners')}
-                              </h3>
-                              <div className="flex flex-wrap gap-2">
-                                {program.partners.map((partner, index) => (
-                                  <span 
-                                    key={index} 
-                                    className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
-                                  >
-                                    {partner}
-                                  </span>
-                                ))}
-                              </div>
+                              {program.description && (
+                                <p className="text-lg text-gray-600">{program.description}</p>
+                              )}
                             </div>
                           </div>
                         </div>

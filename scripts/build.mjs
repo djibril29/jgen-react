@@ -19,7 +19,7 @@ const esbuildOpts = {
   entryNames: '[name]',
   write: true,
   bundle: true,
-  format: 'iife',
+  format: 'esm',
   sourcemap: isProd ? false : 'linked',
   minify: isProd,
   treeShaking: true,
@@ -48,7 +48,7 @@ if (isProd) {
 } else {
   const ctx = await esbuild.context(esbuildOpts)
   await ctx.watch()
-  const { hosts, port } = await ctx.serve()
+  const { hosts, port } = await ctx.serve({ host: 'localhost', port: 5173 })
   console.log(`Running on:`)
   hosts.forEach((host) => {
     console.log(`http://${host}:${port}`)
