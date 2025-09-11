@@ -98,22 +98,22 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <section className="relative bg-[#F3D3B7] py-12">
+      <section
+        className="relative py-12"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url(${heroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1B2A31] mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
               Ensemble, pour l'égalité et la justice
             </h2>
-            <p className="text-lg text-[#1B2A31]">
+            <p className="text-lg text-white/95 max-w-2xl">
               JGEN Sénégal s'engage à bâtir une société inclusive où chaque femme et chaque fille peut s'épanouir, libre de toute violence et discrimination.
             </p>
-          </div>
-          <div className="flex-1 flex justify-center">
-            <img
-              src="/hero-jgen.jpg"
-              alt="Membres de JGEN Sénégal"
-              className="rounded-xl shadow-lg object-cover w-full max-w-md h-64"
-            />
           </div>
         </div>
       </section>
@@ -133,7 +133,7 @@ export default function AboutPage() {
 JGEN Sénégal travaille aussi dans la co construction du mouvement féministe au Sénégal et en Afrique francophone.Elle intègre aussi un volet entrepreneuriat social qui travaille spécifiquement dans la mise en réseau des femmes entrepreneures et dans le partage de connaissances et pratiques entrepreneuriales solidaires innovantes à haut impact socioéconomique.
                 </p>
               </div>
-              <div className="hidden lg:block">
+              <div className=" lg:block">
                 <div className="border-8">
                   <div className="aspect-video bg-[#1B2A31]">
                     <iframe
