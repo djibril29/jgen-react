@@ -137,7 +137,7 @@ export default function HomePage() {
         {/* Hero Section - Layout inspiré de l'image */}
         <section className="h-screen flex flex-col lg:flex-row relative overflow-hidden">
           {/* Section gauche - Contenu textuel */}
-          <div className="w-full lg:w-2/3 bg-[#A42C64] flex items-center justify-center p-6 md:p-8 lg:p-12 relative min-h-[50vh] lg:min-h-screen">
+          <div className="w-full lg:w-3/5 bg-[#A42C64] flex items-center justify-center p-6 md:p-8 lg:p-12 relative min-h-[50vh] lg:min-h-screen">
             <div className="max-w-lg text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tight">
                 WEBSITE
@@ -152,7 +152,7 @@ export default function HomePage() {
           </div>
 
           {/* Section droite - Image et éléments graphiques */}
-          <div className="w-full lg:w-1/3 bg-white relative flex items-center justify-center min-h-[50vh] lg:min-h-screen">
+          <div className="w-full lg:w-2/5 bg-white relative flex items-center justify-center min-h-[50vh] lg:min-h-screen">
             {/* Image principale */}
             <div className="relative z-10">
               <img 
@@ -176,7 +176,7 @@ export default function HomePage() {
             <div className="max-w-6xl mx-auto">
               <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
                 {/* Section gauche - Image avec formes géométriques */}
-                <div className="w-full lg:w-1/3 relative">
+                <div className="w-full lg:w-2/5 relative">
                   {/* Formes géométriques en arrière-plan */}
                   <div className="absolute -top-4 -left-4 w-32 h-32 bg-[#8A1036] rounded-full opacity-20"></div>
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#E81F74] rounded-full opacity-20"></div>
@@ -204,7 +204,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Section droite - Contenu textuel */}
-                <div className="w-full lg:w-2/3">
+                <div className="w-full lg:w-3/5">
                   <div className="max-w-2xl">
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#8A1036] mb-6">
                       Mot de bienvenue de la directrice exécutive
@@ -262,7 +262,7 @@ export default function HomePage() {
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24">
                 {/* Section gauche - Titre et texte de mission */}
-                <div className="w-full lg:w-1/3 relative">
+                <div className="w-full lg:w-2/5 relative">
                   {/* Image de fond subtile */}
                   <div 
                     className="absolute inset-0 opacity-10 bg-cover bg-center bg-no-repeat"
@@ -291,7 +291,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Section droite - Trois piliers de la mission */}
-                <div className="w-full lg:w-2/3">
+                <div className="w-full lg:w-3/5">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* Pilier 1 - Renforcement des capacités */}
                     <div className="bg-white border-2 border-orange-400 rounded-lg p-6 relative shadow-lg">
@@ -413,7 +413,7 @@ export default function HomePage() {
 
                 {/* Section droite - Titre et image */}
                 <div className="w-full lg:w-3/5 relative">
-                  {/* Titre et Image */}
+                  {/* Titre */}
                   <div className="mb-8">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#8A1036] leading-tight">
                       <span className="block">NOTRE IMPACT</span>
@@ -441,116 +441,64 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>        {/* Programmes phares - Layout inspiré de l'image */}
-        <section className="py-16 md:py-20 bg-white">
+        </section>        {/* Programmes phares */}
+        <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f5f5' }}>
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-12 md:mb-16">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#8A1036] mb-4">
-                  NOS PROGRAMMES PHARES
-                </h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Découvrez nos initiatives principales pour l'autonomisation des femmes et la promotion de l'égalité des genres.
-                </p>
-              </div>
+            <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{t('home.programsHeadline')}</h2>
+              <p className="text-base md:text-lg text-gray-600">
+                {t('home.programsSub')}
+              </p>
+            </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                {/* Programme 1 - Jeunes Volontaires */}
-                <div className="text-center group">
-                  <div className="relative mb-6">
-                    {/* Image circulaire avec overlay */}
-                    <div className="relative w-48 h-48 mx-auto">
-                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
-                        <img 
-                          src={jeunesVolontairesImg} 
-                          alt="Jeunes Volontaires" 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+            <div className="relative">
+              <Carousel opts={{ loop: true }} className="w-full">
+                <CarouselContent>
+              {featuredPrograms.map((program: any) => (
+                    <CarouselItem key={program.slug} className="basis-[90%] sm:basis-[68%] md:basis-[42%] lg:basis-[28%]">
+                      <Reveal animation="fade-up">
+                        <Card className="border-0 shadow-lg overflow-hidden bg-white h-full rounded-xl max-w-sm mx-auto">
+                          {program.image && (
+                            <div className="h-40 md:h-44 w-full overflow-hidden">
+                              <img src={program.image} alt={program.title} className="w-full h-full object-cover" />
+                            </div>
+                          )}
+                  <CardHeader>
+                    <div className="flex items-center space-x-3">
+                      <div className={`p-2 rounded-lg text-white`}>
+                        {program.icon}
                       </div>
-                      {/* Overlay décoratif */}
-                      <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-8 h-16 bg-black rounded-full opacity-60"></div>
+                            <CardTitle className="text-base md:text-xl">{program.title}</CardTitle>
                     </div>
-                  </div>
-                  
-                  <h3 className="text-lg md:text-xl font-bold text-[#8A1036] mb-4 uppercase leading-tight">
-                    JEUNE VOLONTAIRE POUR LA SANTÉ SEXUELLE ET REPRODUCTIVE
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet purus gravida quis blandit turpis.
-                  </p>
-                  
-                  <Button asChild className="bg-[#8A1036] hover:bg-[#8A1036]/90 text-white px-8 py-3 rounded-none font-semibold">
-                    <Link to="/programme/jeunes-volontaires">
-                      En savoir plus
-                    </Link>
-                  </Button>
-                </div>
+                  </CardHeader>
+                  <CardContent>
+                          <CardDescription className="text-gray-600 text-sm md:text-base">
+                      {program.description}
+                    </CardDescription>
+                  </CardContent>
+                            <CardFooter className="mt-auto">
+                    <Button asChild variant="outline" className="w-full rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
+                      <Link to={`/programme/${program.slug}`}>
+                              {t('common.learnMore')} <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+                      </Reveal>
+                    </CarouselItem>
+              ))}
+                </CarouselContent>
+                <CarouselPrevious className="-left-3 md:-left-8" />
+                <CarouselNext className="-right-3 md:-right-8" />
+              </Carousel>
+            </div>
 
-                {/* Programme 2 - Liggeeyal Eleg */}
-                <div className="text-center group">
-                  <div className="relative mb-6">
-                    {/* Image circulaire avec overlay */}
-                    <div className="relative w-48 h-48 mx-auto">
-                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
-                        <img 
-                          src={liggeeyalImg} 
-                          alt="Liggeeyal Eleg" 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      {/* Overlay décoratif */}
-                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-[#8A1036] rounded-full opacity-60"></div>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-lg md:text-xl font-bold text-[#8A1036] mb-4 uppercase leading-tight">
-                    LIGGEEYAL ELEG
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet purus gravida quis blandit turpis.
-                  </p>
-                  
-                  <Button asChild className="bg-[#8A1036] hover:bg-[#8A1036]/90 text-white px-8 py-3 rounded-none font-semibold">
-                    <Link to="/programme/liggeeyal-eleg">
-                      En savoir plus
-                    </Link>
-                  </Button>
-                </div>
-
-                {/* Programme 3 - UEF */}
-                <div className="text-center group">
-                  <div className="relative mb-6">
-                    {/* Image circulaire avec overlay */}
-                    <div className="relative w-48 h-48 mx-auto">
-                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
-                        <img 
-                          src={uefImg} 
-                          alt="Université Féministe d'Été" 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      {/* Overlay décoratif */}
-                      <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-16 bg-[#E8C4A0] rounded-full opacity-60"></div>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-lg md:text-xl font-bold text-[#8A1036] mb-4 uppercase leading-tight">
-                    UNIVERSITÉ FÉMINISTE D'ÉTÉ D'AFRIQUE DE L'OUEST ET DU CENTRE
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-6 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet purus gravida quis blandit turpis.
-                  </p>
-                  
-                  <Button asChild className="bg-[#8A1036] hover:bg-[#8A1036]/90 text-white px-8 py-3 rounded-none font-semibold">
-                    <Link to="/programme/universite-ete-feministe">
-                      En savoir plus
-                    </Link>
-                  </Button>
-                </div>
-              </div>
+            <div className="text-center mt-10 md:mt-12">
+              <Button asChild className="bg-[#E81F74] hover:bg-[#E81F74]/90 rounded-full">
+                <Link to="/nos-programmes">
+                  {t('common.seeAllPrograms')}
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
