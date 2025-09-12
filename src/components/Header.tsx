@@ -140,14 +140,6 @@ export default function Header() {
                 <Linkedin className="h-4 w-4" />
               </a>
             </div>
-            
-            {/* DONATE button */}
-            <button 
-              onClick={scrollToNewsletter}
-              className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
-            >
-              DONATE
-            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -246,12 +238,6 @@ export default function Header() {
               >
                 {t('nav.contact')}
               </Link>
-              <button 
-                onClick={() => { scrollToNewsletter(); toggleMenu(); }}
-                className="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded text-sm font-medium transition-colors text-center"
-              >
-                DONATE
-              </button>
 
               {/* Socials (mobile) */}
               <div className="flex items-center space-x-4 pt-2">
