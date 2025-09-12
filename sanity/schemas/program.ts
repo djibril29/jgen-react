@@ -53,5 +53,24 @@ export default defineType({
         { title: 'Réseautage et Partenariat', value: 'Réseautage et Partenariat' },
       ]},
     }),
+    defineField({
+      name: 'themes',
+      title: 'Thèmes',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags',
+        list: [
+          { title: 'féminisme', value: 'féminisme' },
+          { title: 'droits des femmes', value: 'droits des femmes' },
+          { title: 'VBG', value: 'VBG' },
+          { title: 'santé reproductive', value: 'santé reproductive' },
+          { title: 'autonomisation', value: 'autonomisation' },
+          { title: 'éducation', value: 'éducation' },
+          { title: 'plaidoyer', value: 'plaidoyer' },
+          { title: 'justice sociale', value: 'justice sociale' },
+        ],
+      },
+    }),
   ],
 }) 

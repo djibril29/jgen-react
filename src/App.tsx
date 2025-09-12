@@ -8,7 +8,12 @@ import BlogPost from './pages/BlogPost'
 import ResourcesPage from './pages/Resources'
 import ContactPage from './pages/Contact'
 import ResourceView from './pages/ResourceView'
-import ProgramDynamic from './pages/programs/ProgramDynamic'
+import UEFProgram from './pages/programs/UEFProgram'
+import JeunesVolontairesProgram from './pages/programs/JeunesVolontairesProgram'
+import LiggeeyalElegProgram from './pages/programs/LiggeeyalElegProgram'
+import PasAPasProgram from './pages/programs/PasAPasProgram'
+import ProscidesProgram from './pages/programs/ProscidesProgram'
+import EllesAussiProgram from './pages/programs/EllesAussiProgram'
 
 export default function App() {
   return (
@@ -22,7 +27,13 @@ export default function App() {
         <Route path="/ressources" element={<ResourcesPage />} />
         <Route path="/ressources/:slug" element={<ResourceView />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/programme/:slug" element={<ProgramDynamic />} />
+        {/* Programmes (statiques) */}
+        <Route path="/programme/universite-ete-feministe" element={<UEFProgram />} />
+        <Route path="/programme/jeunes-volontaires" element={<JeunesVolontairesProgram />} />
+        <Route path="/programme/liggeeyal-eleg" element={<LiggeeyalElegProgram />} />
+        <Route path="/programme/pas-a-pas" element={<PasAPasProgram />} />
+        <Route path="/programme/proscides" element={<ProscidesProgram />} />
+        <Route path="/programme/elles-aussi" element={<EllesAussiProgram />} />
       </Routes>
     </HashRouter>
   )

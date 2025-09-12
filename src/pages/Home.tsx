@@ -15,7 +15,8 @@ import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 
 import { sanityClient } from '@/lib/sanity'
-import { homeDoc, blogList, programsList } from '@/lib/queries'
+import { homeDoc, blogList } from '@/lib/queries'
+import { PROGRAMS } from '@/data/programs'
 import { urlFor } from '@/lib/image'
 
 /**
@@ -27,18 +28,16 @@ export default function HomePage() {
   const [home, setHome] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
   const [latestPosts, setLatestPosts] = useState<any[]>([])
-  const [fallbackPrograms, setFallbackPrograms] = useState<any[]>([])
+  
 
   useEffect(() => {
     Promise.all([
       sanityClient.fetch(homeDoc).catch(() => null),
       sanityClient.fetch(blogList).catch(() => []),
-      sanityClient.fetch(programsList).catch(() => []),
     ])
-      .then(([homeRes, postsRes, progsRes]) => {
+      .then(([homeRes, postsRes]) => {
         setHome(homeRes)
         setLatestPosts(Array.isArray(postsRes) ? postsRes : [])
-        setFallbackPrograms(Array.isArray(progsRes) ? progsRes : [])
       })
       .finally(() => setLoading(false))
   }, [])
@@ -52,14 +51,11 @@ export default function HomePage() {
         { number: '646', label: 'Sensibilisés' },
         { number: '6', label: 'Projets actifs' },
       ]
-  const featuredPrograms = ((home?.featuredPrograms && home.featuredPrograms.length > 0)
-    ? home.featuredPrograms
-    : fallbackPrograms
-  ).slice(0, 8).map((p: any) => ({
+  const featuredPrograms = PROGRAMS.slice(0, 8).map((p: any) => ({
     slug: p.slug,
     title: p.title,
-    description: p.intro || '',
-    image: p.coverImage ? urlFor(p.coverImage).width(400).height(300).url() : '',
+    description: '',
+    image: '',
     icon: <Users className="h-8 w-8" />,
   }))
   const news = ((home?.news && home.news.length > 0)

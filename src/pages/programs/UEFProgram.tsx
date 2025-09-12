@@ -46,7 +46,7 @@ export default function UEFProgram() {
       <Header />
       <main className="flex-grow">
         <ProgramLayout
-          programId="uef"
+          programId="universite-ete-feministe"
           title={data.title}
           subtitle={data.subtitle}
           coverImage={data.coverImage}

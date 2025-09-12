@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,9 +8,7 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import { Users, BookOpen, Heart, Target, Calendar, MapPin, Star, ArrowRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { sanityClient } from '@/lib/sanity'
-import { programsList } from '@/lib/queries'
-import { urlFor } from '@/lib/image'
+import { PROGRAMS } from '@/data/programs'
 
 /**
  * Page Nos programmes - Présentation détaillée de tous les programmes de J-GEN
@@ -18,25 +16,23 @@ import { urlFor } from '@/lib/image'
  */
 export default function ProgramsPage() {
   const [activeTab, setActiveTab] = useState('all')
-  const [programs, setPrograms] = useState<any[]>([])
+  const programs = PROGRAMS
   const { t } = useTranslation()
 
-  useEffect(() => {
-    sanityClient.fetch(programsList).then((res) => setPrograms(res)).catch(() => setPrograms([]))
-  }, [])
+  
 
   const normalized = programs.map((p) => ({
     id: p.slug,
     title: p.title,
-    route: `/programme/${p.slug}`,
-    image: p.coverImage ? urlFor(p.coverImage).width(1600).height(900).url() : undefined,
+    route: p.route,
+    image: undefined,
     color: 'from-pink-500 to-purple-600',
     icon: <BookOpen className="h-8 w-8" />,
     description: '',
     details: [],
     achievements: [],
     partners: [],
-    category: p.category || 'Autres',
+    category: 'Autres',
   }))
 
   const categoriesFromData = Array.from(new Set(normalized.map((p) => p.category).filter(Boolean)))
