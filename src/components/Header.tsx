@@ -47,7 +47,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-gray-800 shadow-md sticky top-0 z-50">
+    <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -57,10 +57,10 @@ export default function Header() {
 
           {/* Navigation Desktop - Style NOW */}
           <nav className="hidden lg:flex items-center space-x-6">
-            <Link to="/" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
+            <Link to="/" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">
               {t('nav.home')}
             </Link>
-            <Link to="/a-propos" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
+            <Link to="/a-propos" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">
               {t('nav.about')}
             </Link>
             
@@ -68,7 +68,7 @@ export default function Header() {
             <div className="relative">
               <button 
                 onClick={togglePrograms}
-                className="flex items-center text-white hover:text-gray-200 font-medium transition-colors text-sm"
+                className="flex items-center text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg"
               >
                 {t('nav.programs')}
                 <ChevronDown className="ml-1 h-3 w-3" />
@@ -90,13 +90,13 @@ export default function Header() {
               )}
             </div>
             
-            <Link to="/blog" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
+            <Link to="/blog" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">
               {t('nav.blog')}
             </Link>
-            <Link to="/ressources" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
+            <Link to="/ressources" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">
               {t('nav.resources')}
             </Link>
-            <Link to="/contact" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
+            <Link to="/contact" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">
               {t('nav.contact')}
             </Link>
           </nav>
@@ -105,14 +105,14 @@ export default function Header() {
           <div className="hidden lg:flex items-center space-x-4">
             {/* Language switcher */}
             <div className="flex items-center space-x-1 mr-2">
-              <button onClick={() => changeLang('fr')} className="text-xs text-white/80 hover:text-white">FR</button>
-              <span className="text-white/60">|</span>
-              <button onClick={() => changeLang('en')} className="text-xs text-white/80 hover:text-white">EN</button>
+              <button onClick={() => changeLang('fr')} className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">FR</button>
+              <span className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">|</span>
+              <button onClick={() => changeLang('en')} className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg">EN</button>
             </div>
             
             {/* Search icon */}
             <button 
-              className="text-white hover:text-gray-200 transition-colors" 
+              className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg" 
               aria-label="Recherche" 
               onClick={() => setShowSearch((v) => !v)}
             >
@@ -121,7 +121,7 @@ export default function Header() {
             
             {/* Contact icon */}
             <button 
-              className="text-white hover:text-gray-200 transition-colors" 
+              className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg" 
               aria-label="Contact"
               onClick={scrollToNewsletter}
             >
@@ -130,13 +130,13 @@ export default function Header() {
             
             {/* Social icons */}
             <div className="flex items-center space-x-3 ml-2">
-              <a href="#" className="text-white/80 hover:text-white" aria-label="Facebook">
+              <a href="#" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg" aria-label="Facebook">
                 <Facebook className="h-4 w-4" />
               </a>
-              <a href="#" className="text-white/80 hover:text-white" aria-label="Instagram">
+              <a href="#" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg" aria-label="Instagram">
                 <Instagram className="h-4 w-4" />
               </a>
-              <a href="#" className="text-white/80 hover:text-white" aria-label="LinkedIn">
+              <a href="#" className="text-gray-800 hover:text-rose-500 font-medium transition-colors text-lg" aria-label="LinkedIn">
                 <Linkedin className="h-4 w-4" />
               </a>
             </div>
@@ -145,7 +145,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <button 
             onClick={toggleMenu}
-            className="lg:hidden text-white focus:outline-none"
+            className="lg:hidden text-rose-500 focus:outline-none"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -153,7 +153,7 @@ export default function Header() {
 
         {/* Search dropdown (desktop) */}
         {showSearch && (
-          <div className="hidden lg:block absolute right-4 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w-md">
+          <div className="hidden lg:block absolute right-4 top-full mt-2 bg-gray-200 border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w-md">
             <div className="flex items-center gap-2">
               <Search className="h-4 w-4 text-gray-500" />
               <input
@@ -175,7 +175,7 @@ export default function Header() {
 
         {/* Navigation Mobile */}
         {isMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4">
+          <nav className="lg:hidden mt-4 pb-4 bg-[#A42C64] backdrop-blur-sm rounded-lgmx-2">
             <div className="flex flex-col space-y-3">
               <div className="flex items-center gap-2 rounded-md border border-white/20 px-3 py-2">
                 <Search className="h-4 w-4 text-white/80" />

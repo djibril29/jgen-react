@@ -10,12 +10,14 @@ import Autoplay from 'embla-carousel-autoplay'
 import { useTranslation } from 'react-i18next'
 import Reveal from '@/components/Reveal'
 import TypewriterSignature from '@/components/TypewriterSignature'
+import StaggeredReveal from '@/components/StaggeredReveal'
 
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 import heroBg3 from '@/assets/images/backgrounds/herobg3.png'
 import presidenteImg from '@/assets/images/backgrounds/presidente.png'
-import heroBg4 from '@/assets/images/backgrounds/herobg4.png'
+import herobg4 from '@/assets/images/backgrounds/herobg4.png'
+import herobg5 from '@/assets/images/backgrounds/herobg5.png'
 import icon1 from '@/assets/images/icone/1.svg'
 import icon2 from '@/assets/images/icone/2.svg'
 import icon3 from '@/assets/images/icone/3.svg'
@@ -249,64 +251,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* News Carousel */}
-        <section
-          className="text-white"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${heroBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="container mx-auto px-4 py-8 md:py-12">
-            <div className="flex items-center justify-between mb-4">
-              <Reveal animation="fade-up"><h2 className="text-2xl md:text-3xl font-bold">{t('home.news')}</h2></Reveal>
-              <Link to="/blog" className="text-sm underline hover:no-underline">{t('common.viewAll')}</Link>
-            </div>
-            <div className="relative">
-              <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]} className="w-full">
-                <CarouselContent>
-                  {news.map((item: any) => (
-                    <CarouselItem key={item.slug} className="min-h-[360px] md:min-h-[320px]">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-                        <div className="aspect-video w-full overflow-hidden rounded-lg">
-                          <Reveal animation="zoom">
-                            <img
-                              src={item.image}
-                              alt={item.title}
-                              className="w-full h-full object-cover"
-                            />
-                          </Reveal>
-                        </div>
-                        <div>
-                          <div className="flex items-center text-sm text-gray-200 mb-2">
-                            <Calendar className="h-4 w-4 mr-1" />
-                            {item.date}
-                          </div>
-                          <Reveal animation="fade-up"><h3 className="text-2xl md:text-3xl font-bold mb-3">{item.title}</h3></Reveal>
-                          <Reveal animation="fade-up" delayMs={80}><p className="text-gray-100 mb-6">{item.excerpt}</p></Reveal>
-                          <Button asChild className="bg-white text-gray-900 hover:bg-gray-100">
-                            <Link to={`/blog/${item.slug}`} className="flex items-center">
-                              {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                          </Button>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="-left-4 md:-left-8" />
-                <CarouselNext className="-right-4 md:-right-8" />
-              </Carousel>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Notre mission - Layout inspiré de l'image */}
         <section className="py-16 md:py-20 bg-white relative overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+              <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24">
                 {/* Section gauche - Titre et texte de mission */}
                 <div className="w-full lg:w-2/5 relative">
                   {/* Image de fond subtile */}
@@ -331,8 +282,8 @@ export default function HomePage() {
                       
                       <p className="text-lg md:text-xl font-medium">
                         Accompagner le développement du mouvement féministe en Afrique francophone.
-                      </p>
-                    </div>
+              </p>
+            </div>
                   </div>
                 </div>
 
@@ -357,8 +308,8 @@ export default function HomePage() {
                       
                       <p className="text-sm text-gray-600 text-center leading-relaxed">
                         Formations sur le leadership féministe, le consentement, les violences basées sur le genre et les droits en santé sexuelle et reproductive (DSSR).
-                      </p>
-                    </div>
+                </p>
+              </div>
 
                     {/* Pilier 2 - Sensibilisation à la justice sociale */}
                     <div className="bg-white border-2 border-purple-400 rounded-lg p-6 relative shadow-lg">
@@ -370,7 +321,7 @@ export default function HomePage() {
                         <div className="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center">
                           <img src={icon2} alt="Sensibilisation à la justice sociale" className="w-10 h-10" />
                         </div>
-                      </div>
+                </div>
                       
                       <h3 className="text-lg font-bold text-gray-900 mb-3 text-center">
                         Sensibilisation à la justice sociale
@@ -378,8 +329,8 @@ export default function HomePage() {
                       
                       <p className="text-sm text-gray-600 text-center leading-relaxed">
                         Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l'égalité des droits et réduire les inégalités socioéconomiques.
-                      </p>
-                    </div>
+                </p>
+              </div>
 
                     {/* Pilier 3 - Autonomisation socioéconomique */}
                     <div className="bg-white border-2 border-pink-600 rounded-lg p-6 relative shadow-lg">
@@ -407,33 +358,87 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Statistiques */}
-        <section className="py-12 md:py-16 bg-[#8A1036] text-white">
-          <div className='container mx-auto px-4 mb-10'>
-            <h2 className='text-2xl md:text-4xl font-bold text-white mb-3 md:mb-4 text-center flex justify-center'> NOTRE IMPACT EN 2024 </h2>
-          </div>
+        {/* Notre Impact en 2024 - Layout inspiré de l'image */}
+        <section className="py-16 md:py-20 bg-white relative overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {statsList.map((stat: any, index: number) => {
-                const raw = (stat.number ?? stat.value ?? '') as string
-                const match = String(raw).match(/^(\d+)(.*)$/)
-                const end = match ? parseInt(match[1], 10) : 0
-                const suffix = match ? match[2] : ''
-                return (
-                  <Reveal key={index} animation="fade-up" delayMs={index * 80}>
-                    <div className="space-y-2">
-                      <CountUp end={end} suffix={suffix} className="text-3xl md:text-5xl font-bold" />
-                      <div className="text-sm md:text-lg">{stat.label}</div>
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16 lg:gap-24">
+                {/* Section gauche - Cartes de statistiques */}
+                <div className="w-full lg:w-2/5">
+                  <div className="space-y-6">
+                    {/* Carte 1 - Bénéficiaires */}
+                    <StaggeredReveal delayMs={0}>
+                      <div className="bg-white border-2 border-orange-400 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div className="text-center">
+                          <CountUp 
+                            end={1447} 
+                            suffix="+" 
+                            className="text-4xl md:text-5xl font-bold text-orange-400 mb-2" 
+                          />
+                          <p className="text-lg font-semibold text-gray-900">Bénéficiaires</p>
+                        </div>
+                      </div>
+                    </StaggeredReveal>
+
+                    {/* Carte 2 - Formations */}
+                    <StaggeredReveal delayMs={200}>
+                      <div className="bg-white border-2 border-teal-400 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div className="text-center">
+                          <CountUp 
+                            end={801} 
+                            className="text-4xl md:text-5xl font-bold text-teal-400 mb-2" 
+                          />
+                          <p className="text-lg font-semibold text-gray-900">Formations</p>
+                        </div>
+                      </div>
+                    </StaggeredReveal>
+
+                    {/* Carte 3 - Sensibilisés */}
+                    <StaggeredReveal delayMs={400}>
+                      <div className="bg-white border-2 border-pink-400 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div className="text-center">
+                          <CountUp 
+                            end={646} 
+                            className="text-4xl md:text-5xl font-bold text-pink-400 mb-2" 
+                          />
+                          <p className="text-lg font-semibold text-gray-900">Sensibilisés</p>
+                        </div>
+                      </div>
+                    </StaggeredReveal>
+                  </div>
+                </div>
+
+                {/* Section droite - Titre et image */}
+                <div className="w-full lg:w-3/5 relative">
+                  {/* Titre */}
+                  <div className="mb-8">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#8A1036] leading-tight">
+                      <span className="block">NOTRE IMPACT</span>
+                      <span className="block">EN 2024</span>
+                    </h2>
+                  </div>
+
+                  {/* Image avec cercles décoratifs */}
+                  <div className="relative">
+                    {/* Image principale */}
+                    <div className="relative z-10">
+                      <img 
+                        src={herobg5} 
+                        alt="Impact JGEN 2024"
+                        className="w-full max-w-md mx-auto lg:mx-0 rounded-lg shadow-2xl"
+                      />
                     </div>
-                  </Reveal>
-                )
-              })}
+
+                    {/* Cercles décoratifs */}
+                    <div className="absolute -top-4 -left-4 w-6 h-6 bg-pink-400 rounded-full z-20"></div>
+                    <div className="absolute top-8 -right-8 w-4 h-4 bg-orange-400 rounded-full z-20"></div>
+                    <div className="absolute -bottom-4 -right-4 w-5 h-5 bg-teal-400 rounded-full z-20"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-
-        {/* Programmes phares */}
+        </section>        {/* Programmes phares */}
         <section className="py-12 md:py-16" style={{ backgroundColor: '#f5f5f5' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">

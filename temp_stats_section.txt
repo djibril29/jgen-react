@@ -1,0 +1,81 @@
+        {/* Notre Impact en 2024 - Layout inspiré de l'image */}
+        <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                {/* Section gauche - Cartes de statistiques */}
+                <div className="w-full lg:w-2/5">
+                  <div className="space-y-6">
+                    {/* Carte 1 - Bénéficiaires */}
+                    <StaggeredReveal delayMs={0}>
+                      <div className="bg-white border-2 border-orange-400 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div className="text-center">
+                          <CountUp 
+                            end={1447} 
+                            suffix="+" 
+                            className="text-4xl md:text-5xl font-bold text-orange-400 mb-2" 
+                          />
+                          <p className="text-lg font-semibold text-gray-900">Bénéficiaires</p>
+                        </div>
+                      </div>
+                    </StaggeredReveal>
+
+                    {/* Carte 2 - Formations */}
+                    <StaggeredReveal delayMs={200}>
+                      <div className="bg-white border-2 border-teal-400 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div className="text-center">
+                          <CountUp 
+                            end={801} 
+                            className="text-4xl md:text-5xl font-bold text-teal-400 mb-2" 
+                          />
+                          <p className="text-lg font-semibold text-gray-900">Formations</p>
+                        </div>
+                      </div>
+                    </StaggeredReveal>
+
+                    {/* Carte 3 - Sensibilisés */}
+                    <StaggeredReveal delayMs={400}>
+                      <div className="bg-white border-2 border-pink-400 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div className="text-center">
+                          <CountUp 
+                            end={646} 
+                            className="text-4xl md:text-5xl font-bold text-pink-400 mb-2" 
+                          />
+                          <p className="text-lg font-semibold text-gray-900">Sensibilisés</p>
+                        </div>
+                      </div>
+                    </StaggeredReveal>
+                  </div>
+                </div>
+
+                {/* Section droite - Titre et image */}
+                <div className="w-full lg:w-3/5 relative">
+                  {/* Titre */}
+                  <div className="mb-8">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#8A1036] leading-tight">
+                      <span className="block">NOTRE IMPACT</span>
+                      <span className="block">EN 2024</span>
+                    </h2>
+                  </div>
+
+                  {/* Image avec cercles décoratifs */}
+                  <div className="relative">
+                    {/* Image principale */}
+                    <div className="relative z-10">
+                      <img 
+                        src={herobg5} 
+                        alt="Impact JGEN 2024"
+                        className="w-full max-w-md mx-auto lg:mx-0 rounded-lg shadow-2xl"
+                      />
+                    </div>
+
+                    {/* Cercles décoratifs */}
+                    <div className="absolute -top-4 -left-4 w-6 h-6 bg-pink-400 rounded-full z-20"></div>
+                    <div className="absolute top-8 -right-8 w-4 h-4 bg-orange-400 rounded-full z-20"></div>
+                    <div className="absolute -bottom-4 -right-4 w-5 h-5 bg-teal-400 rounded-full z-20"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
