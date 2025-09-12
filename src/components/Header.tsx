@@ -1,7 +1,6 @@
-
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, ChevronDown, Search, Facebook, Instagram, Linkedin } from 'lucide-react'
+import { Menu, X, ChevronDown, Search, Mail, Facebook, Instagram, Linkedin } from 'lucide-react'
 import jgenLogo from '@/assets/images/logos/logo-jgen.png'
 import i18n from '@/i18n'
 import { useTranslation } from 'react-i18next'
@@ -48,21 +47,20 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4 relative">
-        <div className="flex justify-between items-center relative">
+    <header className="bg-[#8A1036] shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            
-            <img src={jgenLogo} alt="J-GEN Sénégal" className="h-8 w-auto" />
+            <img src={jgenLogo} alt="J-GEN Sénégal" className="h-10 w-auto" />
           </Link>
 
-          {/* Navigation Desktop */}
-          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
-            <Link to="/" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
+          {/* Navigation Desktop - Style NOW */}
+          <nav className="hidden lg:flex items-center space-x-6">
+            <Link to="/" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
               {t('nav.home')}
             </Link>
-            <Link to="/a-propos" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
+            <Link to="/a-propos" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
               {t('nav.about')}
             </Link>
             
@@ -70,23 +68,14 @@ export default function Header() {
             <div className="relative">
               <button 
                 onClick={togglePrograms}
-                className="flex items-center text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
+                className="flex items-center text-white hover:text-gray-200 font-medium transition-colors text-sm"
               >
                 {t('nav.programs')}
-                <ChevronDown className="ml-1 h-4 w-4" />
+                <ChevronDown className="ml-1 h-3 w-3" />
               </button>
               
               {isProgramsOpen && (
-                <div className="absolute left-0 mt-2 w-72 bg-white rounded-md shadow-lg py-2 z-10">
-                  {programLinks.length === 0 && (
-                    <Link 
-                      to="/nos-programmes" 
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#FDE8F0] hover:text-[#E81F74]"
-                      onClick={() => setIsProgramsOpen(false)}
-                    >
-                      {t('nav.programs')}
-                    </Link>
-                  )}
+                <div className="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2 z-10">
                   {programLinks.map((p) => (
                     <Link 
                       key={p.slug}
@@ -101,50 +90,70 @@ export default function Header() {
               )}
             </div>
             
-            <Link to="/blog" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
+            <Link to="/blog" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
               {t('nav.blog')}
             </Link>
-            <Link to="/ressources" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
+            <Link to="/ressources" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
               {t('nav.resources')}
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors">
+            <Link to="/contact" className="text-white hover:text-gray-200 font-medium transition-colors text-sm">
               {t('nav.contact')}
             </Link>
           </nav>
 
-          {/* Bouton CTA + Icons (Desktop) */}
-          <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
-            <div className="hidden md:flex items-center space-x-2 mr-1 lg:mr-2">
-              <button onClick={() => changeLang('fr')} className="text-sm text-gray-600 hover:text-[#E81F74]">FR</button>
-              <span className="text-gray-300">|</span>
-              <button onClick={() => changeLang('en')} className="text-sm text-gray-600 hover:text-[#E81F74]">EN</button>
+          {/* Icons + CTA (Desktop) - Style NOW */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {/* Language switcher */}
+            <div className="flex items-center space-x-1 mr-2">
+              <button onClick={() => changeLang('fr')} className="text-xs text-white/80 hover:text-white">FR</button>
+              <span className="text-white/60">|</span>
+              <button onClick={() => changeLang('en')} className="text-xs text-white/80 hover:text-white">EN</button>
             </div>
+            
+            {/* Search icon */}
             <button 
-              onClick={scrollToNewsletter}
-              className="bg-[#E81F74] text-white px-4 md:px-5 lg:px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity text-sm md:text-sm lg:text-base"
+              className="text-white hover:text-gray-200 transition-colors" 
+              aria-label="Recherche" 
+              onClick={() => setShowSearch((v) => !v)}
             >
-              {t('nav.newsletter')}
-            </button>
-            <button className="text-gray-600 hover:text-[#E81F74]" aria-label="Recherche" onClick={() => setShowSearch((v) => !v)}>
               <Search className="h-5 w-5" />
             </button>
-            <div className="hidden lg:flex items-center space-x-4">
-              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
+            
+            {/* Contact icon */}
+            <button 
+              className="text-white hover:text-gray-200 transition-colors" 
+              aria-label="Contact"
+              onClick={scrollToNewsletter}
+            >
+              <Mail className="h-5 w-5" />
+            </button>
+            
+            {/* Social icons */}
+            <div className="flex items-center space-x-3 ml-2">
+              <a href="#" className="text-white/80 hover:text-white" aria-label="Facebook">
+                <Facebook className="h-4 w-4" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
+              <a href="#" className="text-white/80 hover:text-white" aria-label="Instagram">
+                <Instagram className="h-4 w-4" />
               </a>
-              <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
+              <a href="#" className="text-white/80 hover:text-white" aria-label="LinkedIn">
+                <Linkedin className="h-4 w-4" />
               </a>
             </div>
+            
+            {/* DONATE button */}
+            <button 
+              onClick={scrollToNewsletter}
+              className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded text-sm font-medium transition-colors"
+            >
+              DONATE
+            </button>
           </div>
 
-          {/* Bouton menu mobile */}
+          {/* Mobile menu button */}
           <button 
             onClick={toggleMenu}
-            className="md:hidden text-gray-700 focus:outline-none"
+            className="lg:hidden text-white focus:outline-none"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -152,7 +161,7 @@ export default function Header() {
 
         {/* Search dropdown (desktop) */}
         {showSearch && (
-          <div className="hidden md:block absolute right-4 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w-md">
+          <div className="hidden lg:block absolute right-4 top-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg p-3 w-full max-w-md">
             <div className="flex items-center gap-2">
               <Search className="h-4 w-4 text-gray-500" />
               <input
@@ -174,85 +183,85 @@ export default function Header() {
 
         {/* Navigation Mobile */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4">
+          <nav className="lg:hidden mt-4 pb-4">
             <div className="flex flex-col space-y-3">
-              <div className="flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2">
-                <Search className="h-4 w-4 text-gray-500" />
+              <div className="flex items-center gap-2 rounded-md border border-white/20 px-3 py-2">
+                <Search className="h-4 w-4 text-white/80" />
                 <input
                   type="text"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') { doSearch('blog'); toggleMenu() } }}
                   placeholder="Rechercher..."
-                  className="flex-1 outline-none text-sm"
+                  className="flex-1 outline-none text-sm bg-transparent text-white placeholder-white/60"
                 />
-                <button onClick={() => { doSearch('blog'); toggleMenu() }} className="text-xs text-[#E81F74]">OK</button>
+                <button onClick={() => { doSearch('blog'); toggleMenu() }} className="text-xs text-white">OK</button>
               </div>
 
               <div className="flex items-center gap-3 pt-1">
-                <button onClick={() => changeLang('fr')} className="text-xs text-gray-700">FR</button>
-                <span className="text-gray-300">|</span>
-                <button onClick={() => changeLang('en')} className="text-xs text-gray-700">EN</button>
+                <button onClick={() => changeLang('fr')} className="text-xs text-white/80">FR</button>
+                <span className="text-white/60">|</span>
+                <button onClick={() => changeLang('en')} className="text-xs text-white/80">EN</button>
               </div>
 
               <Link 
                 to="/" 
-                className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
+                className="text-white hover:text-gray-200 font-medium transition-colors"
                 onClick={toggleMenu}
               >
                 {t('nav.home')}
               </Link>
               <Link 
                 to="/a-propos" 
-                className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
+                className="text-white hover:text-gray-200 font-medium transition-colors"
                 onClick={toggleMenu}
               >
                 {t('nav.about')}
               </Link>
               <Link 
                 to="/nos-programmes" 
-                className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
+                className="text-white hover:text-gray-200 font-medium transition-colors"
                 onClick={toggleMenu}
               >
                 {t('nav.programs')}
               </Link>
               <Link 
                 to="/blog" 
-                className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
+                className="text-white hover:text-gray-200 font-medium transition-colors"
                 onClick={toggleMenu}
               >
                 {t('nav.blog')}
               </Link>
               <Link 
                 to="/ressources" 
-                className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
+                className="text-white hover:text-gray-200 font-medium transition-colors"
                 onClick={toggleMenu}
               >
                 {t('nav.resources')}
               </Link>
               <Link 
                 to="/contact" 
-                className="text-gray-700 hover:text-[#E81F74] font-medium transition-colors"
+                className="text-white hover:text-gray-200 font-medium transition-colors"
                 onClick={toggleMenu}
               >
                 {t('nav.contact')}
               </Link>
               <button 
                 onClick={() => { scrollToNewsletter(); toggleMenu(); }}
-                className="bg-[#E81F74] text-white px-6 py-2 rounded-full font-medium hover:bg-[#E81F74]/90 transition-opacity text-center"
+                className="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded text-sm font-medium transition-colors text-center"
               >
-                {t('nav.newsletter')}
+                DONATE
               </button>
 
               {/* Socials (mobile) */}
               <div className="flex items-center space-x-4 pt-2">
-                <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Facebook">
+                <a href="#" className="text-white/80 hover:text-white" aria-label="Facebook">
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="Instagram">
+                <a href="#" className="text-white/80 hover:text-white" aria-label="Instagram">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href="#" className="text-gray-600 hover:text-[#E81F74]" aria-label="LinkedIn">
+                <a href="#" className="text-white/80 hover:text-white" aria-label="LinkedIn">
                   <Linkedin className="h-5 w-5" />
                 </a>
               </div>
