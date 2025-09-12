@@ -13,7 +13,7 @@ import Reveal from '@/components/Reveal'
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 import heroBg3 from '@/assets/images/backgrounds/herobg3.png'
-import presidentaImg from '@/assets/images/backgrounds/presidenta.png'
+import presidenteImg from '@/assets/images/backgrounds/presidente.png'
 
 import { sanityClient } from '@/lib/sanity'
 import { homeDoc, blogList } from '@/lib/queries'
@@ -178,7 +178,7 @@ export default function HomePage() {
                       <div className="w-80 h-80 rounded-full bg-gradient-to-br from-[#F3D3B7] to-[#E8C4A0] p-2 shadow-2xl">
                         <div className="w-full h-full rounded-full overflow-hidden">
                           <img 
-                            src={presidentaImg} 
+                            src={presidenteImg} 
                             alt="Directrice exécutive"
                             className="w-full h-full object-cover"
                           />
