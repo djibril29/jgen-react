@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
@@ -12,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import Reveal from '@/components/Reveal'
 
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
+import heroBg3 from '@/assets/images/backgrounds/herobg3.png'
 import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 
 import { sanityClient } from '@/lib/sanity'
@@ -123,7 +123,43 @@ export default function HomePage() {
       <Header />
       
       <main className="flex-grow">
-        {/* News Carousel (replaces Hero) */}
+        {/* Hero Section - Layout inspiré de l'image */}
+        <section className="h-screen flex relative overflow-hidden">
+          {/* Section gauche - Contenu textuel */}
+          <div className="w-3/5 bg-[#A42C64] flex items-center justify-center p-12 relative">
+            <div className="max-w-lg">
+              <h1 className="text-6xl font-black text-white mb-4 tracking-tight">
+                WEBSITE
+              </h1>
+              <h2 className="text-2xl font-bold text-black mb-8 tracking-widest">
+                LAUNCH PLAN
+              </h2>
+              <p className="text-lg text-white italic leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet purus gravida quis blandit turpis.
+              </p>
+            </div>
+          </div>
+
+          {/* Section droite - Image et éléments graphiques */}
+          <div className="w-2/5 bg-white relative flex items-center justify-center">
+            {/* Image principale */}
+            <div className="relative z-10">
+              <img 
+                src={heroBg3} 
+                alt="Portrait" 
+                className="w-80 h-96 object-cover rounded-lg shadow-2xl"
+              />
+            </div>
+            
+            {/* Cercle vert en haut à droite */}
+            <div className="absolute top-8 right-8 w-16 h-16 bg-green-400 rounded-full z-20"></div>
+            
+            {/* Cercle rouge en bas à droite */}
+            <div className="absolute bottom-8 right-8 w-16 h-16 bg-red-400 rounded-full z-20"></div>
+          </div>
+        </section>
+
+        {/* News Carousel */}
         <section
           className="text-white"
           style={{
@@ -223,9 +259,9 @@ export default function HomePage() {
                 {t('home.mission')}
               </h2>
               <p className="text-base md:text-lg" style={{ color: '#1B2A31' }}>
-              L’association JGEN œuvre pour l’émancipation des jeunes femmes et des militantes féministes 
+              L'association JGEN œuvre pour l'émancipation des jeunes femmes et des militantes féministes 
               en les accompagnant à travers le renforcement de leurs compétences,
-              la sensibilisation communautaire à la justice sociale et l’autonomisation économique.
+              la sensibilisation communautaire à la justice sociale et l'autonomisation économique.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 bg-[#ff9800] p-10">
@@ -251,7 +287,7 @@ export default function HomePage() {
                 <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
                 Sensibilisation à la justice sociale
                 </h3>
-                <p className="text-sm md:text-base">Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l’égalité des droits et réduire les inégalités socioéconomiques.</p>
+                <p className="text-sm md:text-base">Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l'égalité des droits et réduire les inégalités socioéconomiques.</p>
                  
               </div>
 
@@ -264,7 +300,7 @@ export default function HomePage() {
                 <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
                 Autonomisation socioéconomique
                 </h3>
-                <p className="text-sm md:text-base">Soutien à la formation professionnelle, à la création d’emplois décents et à l’insertion des jeunes femmes vulnérables.</p>
+                <p className="text-sm md:text-base">Soutien à la formation professionnelle, à la création d'emplois décents et à l'insertion des jeunes femmes vulnérables.</p>
                
               </div>
             </div>
