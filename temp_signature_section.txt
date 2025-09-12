@@ -1,0 +1,29 @@
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p className="text-base md:text-lg">
+                        <span className="font-semibold">Chers ami.e.s</span>
+                      </p>
+                      
+                      <p className="text-sm md:text-base">
+                        Je vous souhaite une cordiale bienvenue sur le site de l'association JGEN SÉNÉGAL, Women Global Entrepreneurship. Créée en Octobre 2016, JGEN est une association féministe à but non lucratif qui travaille essentiellement à contribuer à l'élimination des violences basées sur le genre notamment les violences sexuelles et sexistes contre les femmes et les filles et la promotion de la santé sexuelle et reproductive des femmes.
+                      </p>
+                      
+                      <p className="text-sm md:text-base">
+                        JGEN est également engagée à accompagner l'entrepreneuriat féminin des jeunes femmes et des jeunes filles sénégalaises, à promouvoir les droits des enfants, la justice climatique de genre et la justice économique.
+                      </p>
+                    </div>
+
+                    {/* Signature de la directrice */}
+                    <div className="mt-8 pt-6 border-t border-gray-200">
+                      <div className="flex flex-col items-end">
+                        <div className="mb-2">
+                          <TypewriterSignature 
+                            text="Maimouna Astou Yade"
+                            speed={150}
+                            className="text-right"
+                          />
+                        </div>
+                        <p className="text-sm text-gray-600 italic">
+                          Directrice Exécutive
+                        </p>
+                      </div>
+                    </div>

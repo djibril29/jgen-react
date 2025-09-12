@@ -1,0 +1,83 @@
+        {/* Mot de la directrice exécutive - Layout inspiré de l'image */}
+        <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                {/* Section gauche - Image avec formes géométriques */}
+                <div className="w-full lg:w-2/5 relative">
+                  {/* Formes géométriques en arrière-plan */}
+                  <div className="absolute -top-4 -left-4 w-32 h-32 bg-[#8A1036] rounded-full opacity-20"></div>
+                  <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#E81F74] rounded-full opacity-20"></div>
+                  
+                  {/* Image principale dans un cercle */}
+                  <div className="relative z-10 flex justify-center lg:justify-start">
+                    <div className="relative">
+                      {/* Cercle de fond */}
+                      <div className="w-80 h-80 rounded-full bg-gradient-to-br from-[#F3D3B7] to-[#E8C4A0] p-2 shadow-2xl">
+                        <div className="w-full h-full rounded-full overflow-hidden">
+                          <img 
+                            src={presidenteImg} 
+                            alt="Directrice exécutive"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Formes décoratives */}
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-400 rounded-full"></div>
+                      <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-orange-400 rounded-full"></div>
+                      <div className="absolute top-1/2 -right-4 w-4 h-4 bg-pink-400 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section droite - Contenu textuel */}
+                <div className="w-full lg:w-3/5">
+                  <div className="max-w-2xl">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#8A1036] mb-6">
+                      Mot de bienvenue de la directrice exécutive
+                    </h2>
+                    
+                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                      <p className="text-base md:text-lg">
+                        <span className="font-semibold">Chers ami.e.s</span>
+                      </p>
+                      
+                      <p className="text-sm md:text-base">
+                        Je vous souhaite une cordiale bienvenue sur le site de l'association JGEN SÉNÉGAL, Women Global Entrepreneurship. Créée en Octobre 2016, JGEN est une association féministe à but non lucratif qui travaille essentiellement à contribuer à l'élimination des violences basées sur le genre notamment les violences sexuelles et sexistes contre les femmes et les filles et la promotion de la santé sexuelle et reproductive des femmes.
+                      </p>
+                      
+                      <p className="text-sm md:text-base">
+                        JGEN est également engagée à accompagner l'entrepreneuriat féminin des jeunes femmes et des jeunes filles sénégalaises, à promouvoir les droits des enfants, la justice climatique de genre et la justice économique.
+                      </p>
+                    </div>
+
+                    {/* Signature de la directrice */}
+                    <div className="mt-8 pt-6 border-t border-gray-200">
+                      <div className="flex flex-col items-end">
+                        <div className="mb-2">
+                          <TypewriterSignature 
+                            text="Maimouna Astou Yade"
+                            speed={150}
+                            className="text-right"
+                          />
+                        </div>
+                        <p className="text-sm text-gray-600 italic">
+                          Directrice Exécutive
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-8">
+                      <Button asChild size="lg" className="bg-[#8A1036] hover:bg-[#8A1036]/90 text-white rounded-full">
+                        <Link to="/a-propos">
+                          En savoir plus
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>

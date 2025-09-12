@@ -9,11 +9,16 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from 'embla-carousel-autoplay'
 import { useTranslation } from 'react-i18next'
 import Reveal from '@/components/Reveal'
+import TypewriterSignature from '@/components/TypewriterSignature'
 
 import heroBg from '@/assets/images/backgrounds/herobg1.png'
 import mayaImg from '@/assets/images/backgrounds/MAYA.jpeg'
 import heroBg3 from '@/assets/images/backgrounds/herobg3.png'
 import presidenteImg from '@/assets/images/backgrounds/presidente.png'
+import heroBg4 from '@/assets/images/backgrounds/herobg4.png'
+import icon1 from '@/assets/images/icone/1.svg'
+import icon2 from '@/assets/images/icone/2.svg'
+import icon3 from '@/assets/images/icone/3.svg'
 
 import { sanityClient } from '@/lib/sanity'
 import { homeDoc, blogList } from '@/lib/queries'
@@ -214,6 +219,22 @@ export default function HomePage() {
                       </p>
                     </div>
 
+                    {/* Signature de la directrice */}
+                    <div className="mt-8 pt-6 border-t border-gray-200">
+                      <div className="flex flex-col items-end">
+                        <div className="mb-2">
+                          <TypewriterSignature 
+                            text="Maimouna Astou Yade"
+                            speed={150}
+                            className="text-right"
+                          />
+                        </div>
+                        <p className="text-sm text-gray-600 italic">
+                          Directrice Exécutive
+                        </p>
+                      </div>
+                    </div>
+
                     <div className="mt-8">
                       <Button asChild size="lg" className="bg-[#8A1036] hover:bg-[#8A1036]/90 text-white rounded-full">
                         <Link to="/a-propos">
@@ -281,48 +302,107 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Notre mission */}
-        <section className="py-16 md:py-20" style={{ backgroundColor: '#ffffff' }}>
+        {/* Notre mission - Layout inspiré de l'image */}
+        <section className="py-16 md:py-20 bg-white relative overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-10 md:mb-12">
-              <h2 className="text-2xl md:text-4xl font-extrabold mb-4" style={{ color: '#1B2A31' }}>
-                {t('home.mission')}
-              </h2>
-              <p className="text-base md:text-lg" style={{ color: '#1B2A31' }}>
-              L'association JGEN œuvre pour l'émancipation des jeunes femmes et des militantes féministes 
-              en les accompagnant à travers le renforcement de leurs compétences,
-              la sensibilisation communautaire à la justice sociale et l'autonomisation économique.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12 bg-[#ff9800] p-10">
-              <div className="text-center">
-                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
-                  <Equal className="h-10 w-10 md:h-12 md:w-12" style={{ color: '#F3D3B7' }} />
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+                {/* Section gauche - Titre et texte de mission */}
+                <div className="w-full lg:w-2/5 relative">
+                  {/* Image de fond subtile */}
+                  <div 
+                    className="absolute inset-0 opacity-10 bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: `url(${herobg4})`,
+                      backgroundPosition: 'left center',
+                    }}
+                  ></div>
+                  
+                  <div className="relative z-10">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#8A1036] mb-8 leading-tight">
+                      <span className="block">NOTRE</span>
+                      <span className="block">MISSION</span>
+                    </h2>
+                    
+                    <div className="space-y-6 text-gray-700 leading-relaxed">
+                      <p className="text-lg md:text-xl font-medium">
+                        Renforcer le pouvoir d'agir des femmes et des filles pour une meilleure prise en charge holistique de leurs besoins pratiques et stratégiques.
+                      </p>
+                      
+                      <p className="text-lg md:text-xl font-medium">
+                        Accompagner le développement du mouvement féministe en Afrique francophone.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
-                Renforcement des capacités
-                </h3>
-                <p className="text-sm md:text-base">Formations sur le leadership féministe, le consentement, les violences basées sur le genre et les droits en santé sexuelle et reproductive (DSSR).</p>
-              </div>
 
-              <div className="text-center">
-                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
-                  <Hand className="h-10 w-10 md:h-12 md:w-12" style={{ color: '#F3D3B7' }} />
-                </div>
-                <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
-                Sensibilisation à la justice sociale
-                </h3>
-                <p className="text-sm md:text-base">Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l'égalité des droits et réduire les inégalités socioéconomiques.</p>
-              </div>
+                {/* Section droite - Trois piliers de la mission */}
+                <div className="w-full lg:w-3/5">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Pilier 1 - Renforcement des capacités */}
+                    <div className="bg-white border-2 border-orange-400 rounded-lg p-6 relative shadow-lg">
+                      {/* Cercle coloré en haut */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-orange-400 rounded-full"></div>
+                      
+                      {/* Icône */}
+                      <div className="flex justify-center mb-4">
+                        <div className="w-16 h-16 bg-orange-400 rounded-full flex items-center justify-center">
+                          <img src={icon1} alt="Renforcement des capacités" className="w-10 h-10" />
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 text-center">
+                        Renforcement des capacités
+                      </h3>
+                      
+                      <p className="text-sm text-gray-600 text-center leading-relaxed">
+                        Formations sur le leadership féministe, le consentement, les violences basées sur le genre et les droits en santé sexuelle et reproductive (DSSR).
+                      </p>
+                    </div>
 
-              <div className="text-center">
-                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: '#1B2A31' }}>
-                  <Megaphone className="h-10 w-10 md:h-12 md:w-12" style={{ color: '#F3D3B7' }} />
+                    {/* Pilier 2 - Sensibilisation à la justice sociale */}
+                    <div className="bg-white border-2 border-purple-400 rounded-lg p-6 relative shadow-lg">
+                      {/* Cercle coloré en haut */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-purple-400 rounded-full"></div>
+                      
+                      {/* Icône */}
+                      <div className="flex justify-center mb-4">
+                        <div className="w-16 h-16 bg-purple-400 rounded-full flex items-center justify-center">
+                          <img src={icon2} alt="Sensibilisation à la justice sociale" className="w-10 h-10" />
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 text-center">
+                        Sensibilisation à la justice sociale
+                      </h3>
+                      
+                      <p className="text-sm text-gray-600 text-center leading-relaxed">
+                        Actions éducatives auprès des femmes, jeunes et communautés pour promouvoir l'égalité des droits et réduire les inégalités socioéconomiques.
+                      </p>
+                    </div>
+
+                    {/* Pilier 3 - Autonomisation socioéconomique */}
+                    <div className="bg-white border-2 border-pink-600 rounded-lg p-6 relative shadow-lg">
+                      {/* Cercle coloré en haut */}
+                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-pink-600 rounded-full"></div>
+                      
+                      {/* Icône */}
+                      <div className="flex justify-center mb-4">
+                        <div className="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center">
+                          <img src={icon3} alt="Autonomisation socioéconomique" className="w-10 h-10" />
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 text-center">
+                        Autonomisation socioéconomique
+                      </h3>
+                      
+                      <p className="text-sm text-gray-600 text-center leading-relaxed">
+                        Soutien à la formation professionnelle, à la création d'emplois décents et à l'insertion des jeunes femmes vulnérables.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: '#1B2A31' }}>
-                Autonomisation socioéconomique
-                </h3>
-                <p className="text-sm md:text-base">Soutien à la formation professionnelle, à la création d'emplois décents et à l'insertion des jeunes femmes vulnérables.</p>
               </div>
             </div>
           </div>
