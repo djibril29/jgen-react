@@ -221,7 +221,7 @@ export default function BlogPage() {
                           </div>
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-1 line-clamp-2">
-                              <Link
+                              <Link 
                                 to={`/blog/${article.slug}`}
                                 className="hover:text-pink-600 transition-colors"
                               >

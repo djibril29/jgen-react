@@ -190,10 +190,10 @@ export default function ResourcesPage() {
                       </Button>
                       <Button asChild disabled={!resource.fileUrl} className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
                         <a href={resource.fileUrl || '#'} className="flex items-center justify-center" onClick={(e) => { if (!resource.fileUrl) e.preventDefault() }}>
-                          <Download className="h-4 w-4 mr-2" />
+                        <Download className="h-4 w-4 mr-2" />
                           {t('resourcesPage.download')}
-                        </a>
-                      </Button>
+                      </a>
+                    </Button>
                     </div>
                   </CardContent>
                 </Card>

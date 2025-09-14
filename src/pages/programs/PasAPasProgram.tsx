@@ -44,7 +44,7 @@ export default function PasAPasProgram() {
     "Développer des campagnes de sensibilisation nationales",
     'Capitaliser et partager les bonnes pratiques en justice reproductive',
     'Établir des partenariats avec les services de santé pour l’orientation',
-  ]
+    ]
 
   return (
     <div className="min-h-screen flex flex-col">

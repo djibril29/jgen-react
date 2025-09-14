@@ -29,6 +29,7 @@ import { sanityClient } from '@/lib/sanity'
 import { homeDoc, blogList } from '@/lib/queries'
 import { PROGRAMS } from '@/data/programs'
 import { urlFor } from '@/lib/image'
+import type { CarouselApi } from '@/components/ui/carousel'
 
 /**
  * Page d'accueil - Page principale du site J-GEN Sénégal
@@ -72,13 +73,27 @@ export default function HomePage() {
   const news = ((home?.news && home.news.length > 0)
     ? home.news
     : latestPosts
-  ).slice(0, 6).map((n: any) => ({
+  ).slice(0, 4).map((n: any) => ({
     slug: n.slug,
     title: n.title,
     date: n.date ? new Date(n.date).toLocaleDateString('fr-FR') : '',
     excerpt: n.excerpt || '',
     image: n.coverImage ? urlFor(n.coverImage).width(1200).height(630).url() : '',
   }))
+
+  const newsItems = news.slice(0, 4)
+  const newsSlides: any[][] = Array.from({ length: Math.ceil(newsItems.length / 2) }, (_, i) => newsItems.slice(i * 2, i * 2 + 2))
+    .slice(0, 2)
+  const [newsApi, setNewsApi] = useState<CarouselApi | null>(null)
+  const [newsIndex, setNewsIndex] = useState(0)
+
+  useEffect(() => {
+    if (!newsApi) return
+    const onSelect = () => setNewsIndex(newsApi.selectedScrollSnap())
+    newsApi.on('select', onSelect)
+    onSelect()
+    return () => { newsApi.off('select', onSelect) }
+  }, [newsApi])
 
   const CountUp = ({ end, durationMs = 1500, className, suffix = '' }: { end: number; durationMs?: number; className?: string; suffix?: string }) => {
     const [value, setValue] = useState(0)
@@ -137,7 +152,7 @@ export default function HomePage() {
         {/* Hero Section - Layout inspiré de l'image */}
         <section className="h-screen flex flex-col lg:flex-row relative overflow-hidden">
           {/* Section gauche - Contenu textuel */}
-          <div className="w-full lg:w-2/3 bg-[#A42C64] flex items-center justify-center p-6 md:p-8 lg:p-12 relative min-h-[50vh] lg:min-h-screen">
+          <div className="w-full lg:w-3/5 bg-[#A42C64] flex items-center justify-center p-6 md:p-8 lg:p-12 relative min-h-[50vh] lg:min-h-screen">
             <div className="max-w-lg text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tight">
                 WEBSITE
@@ -152,7 +167,7 @@ export default function HomePage() {
           </div>
 
           {/* Section droite - Image et éléments graphiques */}
-          <div className="w-full lg:w-1/3 bg-white relative flex items-center justify-center min-h-[50vh] lg:min-h-screen">
+          <div className="w-full lg:w-2/5 bg-white relative flex items-center justify-center min-h-[50vh] lg:min-h-screen">
             {/* Image principale */}
             <div className="relative z-10">
               <img 
@@ -176,7 +191,7 @@ export default function HomePage() {
             <div className="max-w-6xl mx-auto">
               <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
                 {/* Section gauche - Image avec formes géométriques */}
-                <div className="w-full lg:w-1/3 relative">
+                <div className="w-full lg:w-2/5 relative">
                   {/* Formes géométriques en arrière-plan */}
                   <div className="absolute -top-4 -left-4 w-32 h-32 bg-[#8A1036] rounded-full opacity-20"></div>
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#E81F74] rounded-full opacity-20"></div>
@@ -204,7 +219,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Section droite - Contenu textuel */}
-                <div className="w-full lg:w-2/3">
+                <div className="w-full lg:w-3/5">
                   <div className="max-w-2xl">
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#8A1036] mb-6">
                       Mot de bienvenue de la directrice exécutive
@@ -262,7 +277,7 @@ export default function HomePage() {
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col lg:flex-row items-start gap-16 lg:gap-24">
                 {/* Section gauche - Titre et texte de mission */}
-                <div className="w-full lg:w-1/3 relative">
+                <div className="w-full lg:w-2/5 relative">
                   {/* Image de fond subtile */}
                   <div 
                     className="absolute inset-0 opacity-10 bg-cover bg-center bg-no-repeat"
@@ -291,7 +306,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Section droite - Trois piliers de la mission */}
-                <div className="w-full lg:w-2/3">
+                <div className="w-full lg:w-3/5">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* Pilier 1 - Renforcement des capacités */}
                     <div className="bg-white border-2 border-orange-400 rounded-lg p-6 relative shadow-lg">
@@ -413,7 +428,7 @@ export default function HomePage() {
 
                 {/* Section droite - Titre et image */}
                 <div className="w-full lg:w-3/5 relative">
-                  {/* Titre et Image */}
+                  {/* Titre */}
                   <div className="mb-8">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#8A1036] leading-tight">
                       <span className="block">NOTRE IMPACT</span>
@@ -441,7 +456,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>        {/* Programmes phares - Layout inspiré de l'image */}
+        </section>{/* Programmes phares - Layout inspiré de l'image */}
         <section className="py-16 md:py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-7xl mx-auto">
@@ -460,15 +475,15 @@ export default function HomePage() {
                   <div className="relative mb-6">
                     {/* Image circulaire avec overlay */}
                     <div className="relative w-48 h-48 mx-auto">
-                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
+                     
                         <img 
                           src={jeunesVolontairesImg} 
                           alt="Jeunes Volontaires" 
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                      </div>
+                      
                       {/* Overlay décoratif */}
-                      <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-8 h-16 bg-black rounded-full opacity-60"></div>
+                      
                     </div>
                   </div>
                   
@@ -485,22 +500,22 @@ export default function HomePage() {
                       En savoir plus
                     </Link>
                   </Button>
-                </div>
+                      </div>
 
                 {/* Programme 2 - Liggeeyal Eleg */}
                 <div className="text-center group">
                   <div className="relative mb-6">
                     {/* Image circulaire avec overlay */}
                     <div className="relative w-48 h-48 mx-auto">
-                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
+                      
                         <img 
                           src={liggeeyalImg} 
                           alt="Liggeeyal Eleg" 
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                      </div>
+                      
                       {/* Overlay décoratif */}
-                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-[#8A1036] rounded-full opacity-60"></div>
+                     
                     </div>
                   </div>
                   
@@ -515,8 +530,8 @@ export default function HomePage() {
                   <Button asChild className="bg-[#8A1036] hover:bg-[#8A1036]/90 text-white px-8 py-3 rounded-none font-semibold">
                     <Link to="/programme/liggeeyal-eleg">
                       En savoir plus
-                    </Link>
-                  </Button>
+                      </Link>
+                    </Button>
                 </div>
 
                 {/* Programme 3 - UEF */}
@@ -524,18 +539,18 @@ export default function HomePage() {
                   <div className="relative mb-6">
                     {/* Image circulaire avec overlay */}
                     <div className="relative w-48 h-48 mx-auto">
-                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
+                     
                         <img 
                           src={uefImg} 
                           alt="Université Féministe d'Été" 
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                      </div>
+                     
                       {/* Overlay décoratif */}
-                      <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-16 bg-[#E8C4A0] rounded-full opacity-60"></div>
+                     
                     </div>
-                  </div>
-                  
+            </div>
+
                   <h3 className="text-lg md:text-xl font-bold text-[#8A1036] mb-4 uppercase leading-tight">
                     UNIVERSITÉ FÉMINISTE D'ÉTÉ D'AFRIQUE DE L'OUEST ET DU CENTRE
                   </h3>
@@ -547,65 +562,91 @@ export default function HomePage() {
                   <Button asChild className="bg-[#8A1036] hover:bg-[#8A1036]/90 text-white px-8 py-3 rounded-none font-semibold">
                     <Link to="/programme/universite-ete-feministe">
                       En savoir plus
-                    </Link>
-                  </Button>
+                </Link>
+              </Button>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Actualités (grid) */}
-        <section className="py-12 md:py-16 bg-white">
+{/* Actualités - Layout inspiré de l'image */}
+        <section className="py-16 md:py-20 bg-[#ecd5c3]">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-10 md:mb-12">
-              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">{t('home.newsGridTitle')}</h2>
-              <p className="text-base md:text-lg text-gray-600">
-                {t('home.newsGridSub')}
-              </p>
-            </div>
+            <div className="max-w-7xl mx-auto">
+              {/* Titre de la section */}
+              <div className="text-center mb-12 md:mb-16">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E3A8A] mb-4">
+                  Actualités
+                </h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Restez informé de nos dernières actions et événements.
+                </p>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {news.map((item: any) => (
-                <Reveal key={item.slug} animation="fade-up">
-                  <Card className="overflow-hidden shadow-md h-full rounded-xl max-w-sm mx-auto">
-                    <div className="h-44 md:h-48 overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
+              {/* Conteneur principal avec fond magenta foncé */}
+              <div className="bg-[#8A1036] p-8 md:p-12">
+                {/* Carousel pour les actualités (2 slides, 2 cartes par slide) */}
+                <Carousel opts={{ loop: newsSlides.length > 1, align: 'start' }} className="w-full" setApi={setNewsApi}>
+                  <CarouselContent>
+                    {newsSlides.map((pair, slideIdx) => (
+                      <CarouselItem key={slideIdx} className="md:basis-full">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                          {pair.map((item: any, idx: number) => (
+                            <div key={item.slug ?? idx} className="bg-gray-800 rounded-xl p-6 md:p-8 relative group hover:transform hover:scale-105 transition-all duration-300">
+                              {/* Image d'actualité */}
+                              <div className="mb-6">
+                                <div className="h-48 md:h-56 w-full rounded-lg overflow-hidden">
+                                  {item?.image ? (
+                                    <img src={item.image} alt={item.title ?? ''} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                  ) : (
+                                    <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+                                      <span className="text-gray-400">Image à venir</span>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* Contenu de la carte */}
+                              <div className="space-y-4">
+                                <div className="text-white text-sm font-medium">{item?.date}</div>
+                                <h3 className="text-white text-lg md:text-xl font-bold uppercase leading-tight">{item?.title}</h3>
+                                {item?.excerpt && (
+                                  <p className="text-white text-sm md:text-base leading-relaxed">{item.excerpt}</p>
+                                )}
+                              </div>
+
+                              {/* Zone cliquable vers l'article */}
+                              <Link to={item?.slug ? `/blog/${item.slug}` : '/blog'} className="absolute inset-0 z-10" aria-label={item?.title ?? 'Voir l\'article'} />
+                            </div>
+                          ))}
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+
+                {/* Points de navigation */}
+                {newsSlides.length > 1 && (
+                  <div className="flex items-center justify-center gap-2 mt-6">
+                    {newsSlides.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => newsApi?.scrollTo(i)}
+                        className={newsIndex === i ? 'h-2.5 w-2.5 rounded-full bg-white' : 'h-2.5 w-2.5 rounded-full bg-white/40'}
+                        aria-label={`Aller au slide ${i + 1}`}
+                      />
+                    ))}
                   </div>
-                  <CardHeader>
-                      <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      {item.date}
-                    </div>
-                      <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                      <CardDescription className="text-gray-600 text-sm md:text-base">
-                      {item.excerpt}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                      <Button asChild variant="outline" className="rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
-                        <Link to={`/blog/${item.slug}`} className="flex items-center">
-                          {t('common.readMore')} <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-                </Reveal>
-              ))}
-            </div>
+                )}
 
-            <div className="text-center mt-10 md:mt-12">
-              <Button asChild variant="outline" className="bg-transparent rounded-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
-                <Link to="/blog">
-                  {t('common.viewAll')} {t('home.news')}
-                </Link>
-              </Button>
+                {/* Bouton Voir toutes les actualités */}
+                <div className="text-center mt-8 md:mt-12">
+                  <Button asChild className="bg-white text-[#8A1036] hover:bg-gray-100 px-8 py-3 rounded-full font-semibold">
+                    <Link to="/blog">Voir toutes les actualités</Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
